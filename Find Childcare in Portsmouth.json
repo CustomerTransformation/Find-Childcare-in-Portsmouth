@@ -1,0 +1,2594 @@
+{
+  "processName": "Find Childcare in Portsmouth",
+  "processDescription": "",
+  "props": {
+    "id": "AF-Process-80ebb725-677f-4375-af13-56c46578d17b",
+    "category": "AF-Category-3903decb-c905-4e99-b293-e4d8bb380e55",
+    "tags": "",
+    "viewGroup": null,
+    "viewGroupToken": null,
+    "date_due": "",
+    "date_due_warn": "",
+    "showCaseReference": false,
+    "isSubform": false,
+    "notes": "updated selection to use list IDs and allow select all",
+    "initial_stage": "Search",
+    "initial_stage_id": "AF-Stage-86787fe8-6f92-4ac0-acac-4bb0a5b85a1a",
+    "prefix": "CM",
+    "serverSubmit": true,
+    "isPublished": true
+  },
+  "stages": {
+    "Search": {
+      "url": "Stage-1.html",
+      "id": "AF-Stage-86787fe8-6f92-4ac0-acac-4bb0a5b85a1a",
+      "name": "Search",
+      "props": {
+        "form": "AF-Form-0a355bb1-da32-4aa1-81a0-dc226b263b8b",
+        "xpos": 19,
+        "ypos": 19,
+        "group": null,
+        "integrations": [],
+        "user_token": null,
+        "group_token": null,
+        "stopOnFailure": false,
+        "useNewPaymentMethod": false,
+        "textColor": "#ffffff",
+        "user": "__originator__",
+        "backgroundColor": "#0033cc",
+        "date_due": "",
+        "date_due_warn": "",
+        "notification": {
+          "notify_assigned_users": false,
+          "recipients_to": null,
+          "subject": null,
+          "body": null
+        },
+        "escalation": {
+          "notify_assigned_users": true,
+          "recipients_to": null,
+          "subject": null,
+          "body": null,
+          "date": null,
+          "date_type": null,
+          "user_token": null,
+          "group_token": null,
+          "user": null,
+          "group": null,
+          "condition": null,
+          "conditionInputs": {}
+        },
+        "caseViewOption": false,
+        "startSection": null,
+        "usenewPaymentMethod": false,
+        "formDefinition": {
+          "formName": "Find Childcare in Portsmouth",
+          "formDescription": "",
+          "props": {
+            "id": "AF-Form-0a355bb1-da32-4aa1-81a0-dc226b263b8b",
+            "category": "AF-Category-3903decb-c905-4e99-b293-e4d8bb380e55",
+            "saveSubmissionData": true,
+            "usePHPIntregration": false,
+            "serverSideLookupValidation": false,
+            "tags": "",
+            "navigateAwayWarning": "Are you sure you want to navigate away? All progress in this form will be lost.",
+            "navigateAwayWarn": false,
+            "validateOnInit": true,
+            "stopOnFailure": false,
+            "stickyError": false,
+            "showFormReference": false,
+            "mustBeValid": true,
+            "hideHeader": false,
+            "isSubform": false,
+            "integrations": [],
+            "notes": false,
+            "submission": {
+              "message": "<div>Thank you for using the lookup.</div>",
+              "api": "/form/submit/",
+              "download": "Download PDF",
+              "cancel_redirect": "https://www.portsmouth.gov.uk/childcare",
+              "continue": "Continue",
+              "conditionInputs": "",
+              "showDownload": false,
+              "showMessage": true,
+              "serverSubmit": true,
+              "redirect": "https://www.portsmouth.gov.uk/childcare",
+              "condition": "3>1",
+              "printableIntegrationId": "",
+              "newPaymentMethod": false
+            },
+            "save": {
+              "lim": "3f07ecf4-0dfa-11e2-b0b9-12313b03ed59",
+              "displayCondition": "",
+              "conditionInputs": "",
+              "redirect": null,
+              "allow": false,
+              "fromName": "",
+              "message": "",
+              "subject": "",
+              "mail": false,
+              "from": "",
+              "disableSaveNotify": false
+            },
+            "hideSaveUrl": false,
+            "usePHPIntegrations": true,
+            "integrationDefinition": {
+              "5a8d600db005d": {
+                "Editable": true,
+                "ID": "5a8d600db005d",
+                "Name": "CHM013 - List Ofsted judgements",
+                "Type": "DATABASE",
+                "LIM_name": "Portsmouth",
+                "Category": "ChildCare",
+                "data_type": "lookup",
+                "allow_offline": 0,
+                "Output_template": "{\"lookup_validation\":\"0\",\"systemID\":\"5a8c309998604\",\"systemName\":\"ChildCare\",\"query\":\"EXEC ListCMofsted\\n\\t@listAll = {OfstedLstAll},\\n\\t@currentSel = {OfstedSel}\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
+                "log_only_on_error": 0,
+                "error_notification": "{\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniel.gregory@portsmouthcc.gov.uk\"}"
+              },
+              "5b1fc3e28b993": {
+                "Editable": true,
+                "ID": "5b1fc3e28b993",
+                "Name": "CHM026 - List Filtered Carers",
+                "Type": "DATABASE",
+                "LIM_name": "Portsmouth",
+                "Category": "ChildCare",
+                "data_type": "integration-lookup",
+                "allow_offline": 0,
+                "Output_template": "{\"lookup_validation\":\"0\",\"systemID\":\"5a8c309998604\",\"systemName\":\"ChildCare\",\"query\":\"DECLARE @nearlatTMP as float\\n\\t\\t,@nearlngTMP as float\\n\\t\\t,@distanceTMP as float\\n\\t\\t,@minOfstedJudgeTMP as int\\n\\t\\t\\nSET @nearlatTMP = NULLIF({nearlat}, '')\\nSET\\t@nearlngTMP = NULLIF({nearlng}, '')\\nSET @distanceTMP = NULLIF({withinDistance}, '')\\nSET @minOfstedJudgeTMP = NULLIF({OfstedJudgeFilter}, '')\\n\\nEXEC ListFilteredRegisteredCarersv2\\n\\t@postcode = {postcodeFilter},\\n\\t@2yearFund = {twoYearFundfilter},\\n\\t@15hrFund = {accepts15HourFund},\\n\\t@30hrFund = {accepts30HourFund},\\n\\t@taxFree = {TaxFreeChild},\\n\\t@minOfstedJudge = {OfstedJudgeFilter},\\n\\t@ofstedNew = {newShowFilter},\\n\\t@nearLoc = {findClosest},\\n\\t@nearlat = @nearlatTMP,\\n\\t@nearlng = @nearlngTMP,\\n\\t@distance = @distanceTMP\\n\\t\\n\\t\\n\\t--@ageFrom = {ageFrom},\\n\\t--@ageTo = {ageTo},\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
+                "log_only_on_error": 0,
+                "error_notification": "{\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniel.gregory@portsmouthcc.gov.uk\"}"
+              },
+              "5a8ea193a7031": {
+                "Editable": true,
+                "ID": "5a8ea193a7031",
+                "Name": "CHM016 - get lat lng for postcode",
+                "Type": "HTTP",
+                "LIM_name": "LIM14",
+                "Category": "ChildCare",
+                "data_type": "lookup",
+                "allow_offline": 0,
+                "Output_template": "{\"method\":\"GET\",\"url\":\"https://postcodes.io/postcodes/{nearPostcode}\",\"show_headers\":\"no\",\"responseType\":\"JSON\",\"strip_namespaces\":\"1\",\"path_to_values\":\"TransResults/PostcodeDetails\",\"fields\":\"\",\"xslt_stylesheet\":\"<?xml version=\\\"1.0\\\" encoding=\\\"ISO-8859-1\\\"?>\\n<xsl:stylesheet version=\\\"1.0\\\" xmlns:xsl=\\\"http://www.w3.org/1999/XSL/Transform\\\">\\n<xsl:template match=\\\"Root\\\">\\n  <body>\\n\\t<TransResults>\\n\\t\\t<PostcodeDetails>\\n\\t\\t\\t<status><xsl:value-of select=\\\"status\\\"/></status>\\n\\t\\t\\t<nearlat><xsl:value-of select=\\\"result/latitude\\\"/></nearlat>\\n\\t\\t\\t<nearlng><xsl:value-of select=\\\"result/longitude\\\"/></nearlng>\\n\\t\\t\\t<postcodeFound><xsl:value-of select=\\\"result/postcode\\\"/></postcodeFound>\\n\\t\\t</PostcodeDetails>\\n\\t</TransResults>\\n  </body>\\n</xsl:template>\\n</xsl:stylesheet>\",\"results_page_columns\":\"\",\"secure_fields_db_http\":\"\"}",
+                "log_only_on_error": 0,
+                "error_notification": "{\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniela.dutu@portsmouthcc.gov.uk\"}"
+              },
+              "5b20e27b6787b": {
+                "Editable": true,
+                "ID": "5b20e27b6787b",
+                "Name": "CHM027 - List summary filtered registered carers",
+                "Type": "DATABASE",
+                "LIM_name": "Portsmouth",
+                "Category": "ChildCare",
+                "data_type": "lookup",
+                "allow_offline": 0,
+                "Output_template": "{\"lookup_validation\":\"0\",\"systemID\":\"5a8c309998604\",\"systemName\":\"ChildCare\",\"query\":\"EXEC ListFilteredRegCareSum3\\n\\t@selectedIDs = {listIDs}\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
+                "log_only_on_error": 0,
+                "error_notification": "{\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniel.gregory@portsmouthcc.gov.uk\"}"
+              },
+              "5bcdd297a39c5": {
+                "Editable": true,
+                "ID": "5bcdd297a39c5",
+                "Name": "CHM029 - Select all values",
+                "Type": "DATABASE",
+                "LIM_name": "LIM14",
+                "Category": "ChildCare",
+                "data_type": "integration-lookup",
+                "allow_offline": 0,
+                "Output_template": "{\"systemID\":\"59dc224eb4f63\",\"systemName\":\"Firmstep Solutions Read\",\"query\":\"SELECT IF({selectAll}='yes', {listIDs}, '') as selectDef\\n\\t\\t,'' as selectAll\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
+                "log_only_on_error": 0,
+                "error_notification": "{\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniel.gregory@portsmouthcc.gov.uk\"}"
+              },
+              "5b20e5abb0478": {
+                "Editable": true,
+                "ID": "5b20e5abb0478",
+                "Name": "CHM028 - List for map points",
+                "Type": "DATABASE",
+                "LIM_name": "Portsmouth",
+                "Category": "ChildCare",
+                "data_type": "integration-lookup",
+                "allow_offline": 0,
+                "Output_template": "{\"lookup_validation\":\"0\",\"systemID\":\"5a8c309998604\",\"systemName\":\"ChildCare\",\"query\":\"EXEC MapCMselectedV2\\n\\t\\t@selectedIDs = {selCarers}\\n\\t\\t,@selectAll = {selectAll}\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
+                "log_only_on_error": 0,
+                "error_notification": "{\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniel.gregory@portsmouthcc.gov.uk\"}"
+              }
+            }
+          },
+          "sections": [
+            {
+              "url": "Search-for-childcare.html",
+              "id": "AF-Section-1b9b1166-ecba-43c6-a0ff-e336487b2401",
+              "props": {
+                "hideCancel": false,
+                "conditionInputs": "",
+                "displayCondition": "",
+                "validationInputs": "",
+                "validation": "",
+                "validationMessage": "This Section is Invalid",
+                "validationLookup": {
+                  "enableLookup": false,
+                  "lookupID": "",
+                  "lookupName": "",
+                  "lookupValidation": "",
+                  "lookupOperator": ""
+                }
+              },
+              "name": "Search for childcare",
+              "fields": [
+                {
+                  "type": "html",
+                  "props": {
+                    "label": "html 4",
+                    "dataName": "html4",
+                    "displayName": "",
+                    "outerClass": "",
+                    "width": "",
+                    "showInSummary": false,
+                    "content": "<style>\n    p.condensed{\n    margin-bottom:0.5em;\n    }\n    \n    .card {\n    /* Add shadows to create the \"card\" effect */\n    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);\n    transition: 0.3s;\n    }\n    \n    .card-body {\n    /* padding  top right bottom left */\n        padding: 5px 10px 3px 10px;\n    }\n    \n    div.range-prefix {\n        width: 0px;\n        color: rgba(0, 0, 0, 0);\n    }\n    \n    div.range-postfix {\n        width: 50px;\n    }\n    \n    label.PCCright {\n        text-align: right;\n    }\n    \n    .PCChidden {\n        display: none;\n    }\n\n    details summary {\n        /*background-color: #eee;\n        color: #444;\n        cursor: pointer;\n        padding: 18px;\n        width: 100%;\n        border: none;*/\n        text-align: right;\n        color: blue;\n        cursor: pointer;\n        /*outline: none;\n        font-size: 15px;\n        transition: 0.4s;*/\n    }\n    \n    .panel {\n        padding: 0 0px;\n        /*background-color: white;*/\n        max-height: 0;\n        overflow: hidden;\n         /*transition: max-height 0.2s ease-out;*/\n    }\n    \n    .panelP {\n        padding: 0 0px;\n        /*background-color: white;*/\n        max-height: 0;\n        overflow: hidden;\n         /*transition: max-height 0.2s ease-out;*/\n    }\n</style>\n\n\n<p><strong>Use the filters below to select your childcare needs.  The list of childcare providers matching your search will be displayed below.</strong></p>",
+                    "displayCondition": ""
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-ff901349-e0f8-4c64-ad46-18cfbd3235b3"
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "OR label",
+                    "dataName": "ORlabel",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "if({findClosestAsk} = 'yes', '', 'OR')",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "outputFormat": "normal",
+                    "currencyPrefix": null,
+                    "width": null,
+                    "inputMask": null,
+                    "inputMaskPlaceholder": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationCondition": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-a3d73763-883a-4b63-9f79-8bdd668ff409"
+                },
+                {
+                  "type": "select",
+                  "props": {
+                    "minimumChoices": "",
+                    "maximumChoices": "",
+                    "minimumChoicesMessage": "Please select at least _min_value_ choices",
+                    "maximumChoicesMessage": "Please select no more than _max_value_ choices",
+                    "label": "Choose a postcode area",
+                    "dataName": "postcodeFilter",
+                    "labelPosition": "alignLeft",
+                    "defaultType": "specific",
+                    "defaultValue": null,
+                    "defaultValueText": null,
+                    "listSource": "one-time-list",
+                    "helpText": "",
+                    "readOnly": false,
+                    "allowOther": false,
+                    "summaryField": false,
+                    "lookup": null,
+                    "lookupCondition": null,
+                    "lookupButton": null,
+                    "preventRunningOnInitialisation": null,
+                    "noResultsMessage": null,
+                    "tokenName": null,
+                    "listOfValues": [
+                      {
+                        "label": "PO1",
+                        "value": "PO1"
+                      },
+                      {
+                        "label": "PO2",
+                        "value": "PO2"
+                      },
+                      {
+                        "label": "PO3",
+                        "value": "PO3"
+                      },
+                      {
+                        "label": "PO4",
+                        "value": "PO4"
+                      },
+                      {
+                        "label": "PO5",
+                        "value": "PO5"
+                      },
+                      {
+                        "label": "PO6",
+                        "value": "PO6"
+                      }
+                    ],
+                    "displayName": "true",
+                    "outerClass": "",
+                    "labelClass": "",
+                    "inputClass": "",
+                    "width": "6",
+                    "selectLabel": "Select...",
+                    "allowMultiple": false,
+                    "enableFilter": false,
+                    "hideWhenBlank": false,
+                    "hidden": false,
+                    "disableEmptyValue": false,
+                    "displayCondition": "{findClosestAsk} noticontains 'yes'",
+                    "selectCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "mandatoryMessage": "This field is required"
+                  },
+                  "conditionInputs": [
+                    {
+                      "element": "select",
+                      "value": "findClosestAsk",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "noticontains",
+                      "type": [
+                        "_select"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "yes",
+                      "type": [
+                        "list"
+                      ]
+                    }
+                  ],
+                  "id": "AF-Field-551e7213-2d12-472f-8888-50fada2550dc"
+                },
+                {
+                  "type": "checkbox",
+                  "props": {
+                    "minimumChoices": "",
+                    "maximumChoices": "",
+                    "minimumChoicesMessage": "Please select at least _min_value_ choices",
+                    "maximumChoicesMessage": "Please select no more than _max_value_ choices",
+                    "label": "{ORlabel}",
+                    "dataName": "findClosestAsk",
+                    "labelPosition": "alignLeft",
+                    "defaultType": "specific",
+                    "defaultValue": null,
+                    "defaultValueText": null,
+                    "listSource": "one-time-list",
+                    "helpText": "",
+                    "readOnly": false,
+                    "allowOther": false,
+                    "summaryField": false,
+                    "lookup": null,
+                    "lookupCondition": null,
+                    "lookupButton": null,
+                    "preventRunningOnInitialisation": null,
+                    "noResultsMessage": null,
+                    "tokenName": null,
+                    "listOfValues": [
+                      {
+                        "label": "type in a postcode to search distance from…..",
+                        "value": "yes"
+                      }
+                    ],
+                    "displayName": "true",
+                    "outerClass": "",
+                    "labelClass": "PCCright",
+                    "inputClass": "",
+                    "width": "",
+                    "displayStyle": "horizontal",
+                    "styleAsButton": false,
+                    "hideWhenBlank": false,
+                    "hidden": false,
+                    "displayCondition": null,
+                    "selectCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "mandatoryMessage": "This field is required"
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-038a7d9a-6503-4824-a058-25780cd85f36"
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "Distance from postcode",
+                    "dataName": "nearPostcode",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "{postcode}",
+                    "helpText": "",
+                    "hidden": false,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": "true",
+                    "outerClass": "",
+                    "labelClass": "",
+                    "inputClass": "",
+                    "outputFormat": "normal",
+                    "currencyPrefix": "",
+                    "width": "6",
+                    "inputMask": "",
+                    "inputMaskPlaceholder": "",
+                    "lengthCount": false,
+                    "hideWhenBlank": false,
+                    "displayCondition": "{findClosestAsk} icontains 'yes'",
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": true,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationCondition": "",
+                    "validationMask": "_custom_regex_",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid",
+                    "validationMaskMessageValue": "Custom Regex",
+                    "_custom_regex_": "(((^[BEGLMNSbeglmns][1-9]\\d?)|(^[Ww][2-9])|(^([Aa][BLbl]|[Bb][ABDHLNRSTabnhlnrst]|[Cc][ABFHMORTVWabfhmortvw]|[Dd][ADEGHLNTYadeghlnty]|[Ee][HNXhnx]|[Ff][KYky]|[Gg][LUYluy]|[Hh][ADGPRSUXadgprsux]|[Ii][GMPVgmpv]|[JEje]|[Kk][ATWYatwy]|[Ll][ADELNSUadelnsu]|[Mm][EKLekl]|[Nn][EGNPRWegnprw]|O[LXlx]|[Pp][AEHLORaehlor]|[Rr][GHMghm]|[Ss][AEGKL-Paegkl-pRSTWYrstwy]|[Tt][ADFNQRSWadfnqrsw]|[UBub]|[Ww][ADFNRSVadfnrsv]|YO|ZE|yo|ze)\\d\\d?)|(^[Ww]1[A-Ha-hJKSTUWjkstuw0-9])|(((^[Ww][Cc][1-2])|(^[Ee][Cc][1-4])|(^[Ss][Ww]1))[ABEHMNPRVWXYabehmnprvwxy]))\\s([0-9][ABD-Habd-hJLNP-Ujlnp-uW-Zw-z]{2}))$|(^[Gg][Ii][Rr]\\s0[Aa]{2})$"
+                  },
+                  "conditionInputs": [
+                    {
+                      "element": "select",
+                      "value": "findClosestAsk",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "icontains",
+                      "type": [
+                        "_select"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "yes",
+                      "type": [
+                        "list"
+                      ]
+                    }
+                  ],
+                  "id": "AF-Field-a1403f2d-3418-4faa-9f59-45f25f99ce0c"
+                },
+                {
+                  "type": "html",
+                  "props": {
+                    "label": "html 1",
+                    "dataName": "html1",
+                    "displayName": "",
+                    "outerClass": "",
+                    "width": "",
+                    "showInSummary": false,
+                    "content": "<p><font color=\"red\">Sorry don't recognise that postcode</font></p>",
+                    "displayCondition": "upperstr({nearPostcode}) isnt {postcodeFound} and {findClosestAsk} icontains 'yes'"
+                  },
+                  "id": "AF-Field-11471150-dae9-493f-8ef1-3a5ea4328f15"
+                },
+                {
+                  "type": "number",
+                  "props": {
+                    "label": "Search distance in miles",
+                    "dataName": "withinDistanceGet",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "1",
+                    "helpText": "",
+                    "hidden": false,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": "true",
+                    "outerClass": "",
+                    "labelClass": "",
+                    "inputClass": "",
+                    "prefix": "",
+                    "suffix": "miles",
+                    "width": "8",
+                    "decimalPlaces": "1",
+                    "numberToText": false,
+                    "hideWhenBlank": false,
+                    "displayCondition": "{findClosestAsk} icontains 'yes'",
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": true,
+                    "minimumValue": ".1",
+                    "maximumValue": "10",
+                    "validationCondition": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumValueMessage": "Please select at least _min_value_",
+                    "maximumValueMessage": "Please select no more than _max_value_",
+                    "validationConditionMessage": "This field is invalid"
+                  },
+                  "conditionInputs": [
+                    {
+                      "element": "select",
+                      "value": "findClosestAsk",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "icontains",
+                      "type": [
+                        "_select"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "yes",
+                      "type": [
+                        "list"
+                      ]
+                    }
+                  ],
+                  "id": "AF-Field-38e53533-b6d1-4a51-af89-7ed11b5f0d13"
+                },
+                {
+                  "type": "html",
+                  "props": {
+                    "label": "html 7",
+                    "dataName": "html7",
+                    "displayName": "",
+                    "outerClass": "",
+                    "width": "",
+                    "showInSummary": false,
+                    "content": "<p style=\"color:blue\">Different childcare providers accept different types of funding.  For more information on childcare funding and what you may be eligible for, <a target=\"_blank\" href=\"https://www.portsmouth.gov.uk/ext/early-years-and-childcare/help-with-childcare-costs/help-with-childcare-costs\">click here.</a></p>\n<br />\n<p>Select which types of funding you would like to use:</p>",
+                    "displayCondition": null
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-db2a93f4-34d1-4f23-8122-b55ee04f94a3"
+                },
+                {
+                  "type": "checkbox",
+                  "props": {
+                    "minimumChoices": "",
+                    "maximumChoices": "",
+                    "minimumChoicesMessage": "Please select at least _min_value_ choices",
+                    "maximumChoicesMessage": "Please select no more than _max_value_ choices",
+                    "label": "Accepts 2 year funding",
+                    "dataName": "twoYearFundfilter",
+                    "labelPosition": "hideLabel",
+                    "defaultType": "specific",
+                    "defaultValue": null,
+                    "defaultValueText": null,
+                    "listSource": "one-time-list",
+                    "helpText": "",
+                    "readOnly": false,
+                    "allowOther": false,
+                    "summaryField": false,
+                    "lookup": null,
+                    "lookupCondition": null,
+                    "lookupButton": null,
+                    "preventRunningOnInitialisation": null,
+                    "noResultsMessage": null,
+                    "tokenName": null,
+                    "listOfValues": [
+                      {
+                        "label": "2 year funding",
+                        "value": "yes"
+                      }
+                    ],
+                    "displayName": "true",
+                    "outerClass": "",
+                    "labelClass": "",
+                    "inputClass": "",
+                    "width": "",
+                    "displayStyle": "horizontal",
+                    "styleAsButton": false,
+                    "hideWhenBlank": false,
+                    "hidden": false,
+                    "displayCondition": null,
+                    "selectCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "mandatoryMessage": "This field is required"
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-31615968-61d8-4734-861c-31934b1bc8a2"
+                },
+                {
+                  "type": "checkbox",
+                  "props": {
+                    "minimumChoices": "",
+                    "maximumChoices": "",
+                    "minimumChoicesMessage": "Please select at least _min_value_ choices",
+                    "maximumChoicesMessage": "Please select no more than _max_value_ choices",
+                    "label": "accepts15HourFund",
+                    "dataName": "accepts15HourFund",
+                    "labelPosition": "hideLabel",
+                    "defaultType": "specific",
+                    "defaultValue": null,
+                    "defaultValueText": null,
+                    "listSource": "one-time-list",
+                    "helpText": "",
+                    "readOnly": false,
+                    "allowOther": false,
+                    "summaryField": false,
+                    "lookup": null,
+                    "lookupCondition": null,
+                    "lookupButton": null,
+                    "preventRunningOnInitialisation": null,
+                    "noResultsMessage": null,
+                    "tokenName": null,
+                    "listOfValues": [
+                      {
+                        "label": "Universal funding for 3 & 4 year olds (15 hours)",
+                        "value": "yes"
+                      }
+                    ],
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "width": null,
+                    "displayStyle": "horizontal",
+                    "styleAsButton": null,
+                    "hideWhenBlank": null,
+                    "hidden": null,
+                    "displayCondition": null,
+                    "selectCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "mandatoryMessage": "This field is required"
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-5a3dec47-d16b-43fc-bb7a-bcd81f7096ad"
+                },
+                {
+                  "type": "checkbox",
+                  "props": {
+                    "minimumChoices": "",
+                    "maximumChoices": "",
+                    "minimumChoicesMessage": "Please select at least _min_value_ choices",
+                    "maximumChoicesMessage": "Please select no more than _max_value_ choices",
+                    "label": "Accepts 30 hour funding for 3 & 4 year olds",
+                    "dataName": "accepts30HourFund",
+                    "labelPosition": "hideLabel",
+                    "defaultType": "specific",
+                    "defaultValue": null,
+                    "defaultValueText": null,
+                    "listSource": "one-time-list",
+                    "helpText": "",
+                    "readOnly": false,
+                    "allowOther": false,
+                    "summaryField": false,
+                    "lookup": null,
+                    "lookupCondition": null,
+                    "lookupButton": null,
+                    "preventRunningOnInitialisation": null,
+                    "noResultsMessage": null,
+                    "tokenName": null,
+                    "listOfValues": [
+                      {
+                        "label": "Extended funding for 3 & 4 year olds (30 hours)",
+                        "value": "yes"
+                      }
+                    ],
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "width": null,
+                    "displayStyle": "horizontal",
+                    "styleAsButton": null,
+                    "hideWhenBlank": null,
+                    "hidden": null,
+                    "displayCondition": null,
+                    "selectCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "mandatoryMessage": "This field is required"
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-1dd4e0e3-b512-4e27-845b-4904f57f7056"
+                },
+                {
+                  "type": "checkbox",
+                  "props": {
+                    "minimumChoices": "",
+                    "maximumChoices": "",
+                    "minimumChoicesMessage": "Please select at least _min_value_ choices",
+                    "maximumChoicesMessage": "Please select no more than _max_value_ choices",
+                    "label": "Accepts tax free childcare payments",
+                    "dataName": "TaxFreeChild",
+                    "labelPosition": "hideLabel",
+                    "defaultType": "specific",
+                    "defaultValue": null,
+                    "defaultValueText": null,
+                    "listSource": "one-time-list",
+                    "helpText": "",
+                    "readOnly": false,
+                    "allowOther": false,
+                    "summaryField": false,
+                    "lookup": null,
+                    "lookupCondition": null,
+                    "lookupButton": null,
+                    "preventRunningOnInitialisation": null,
+                    "noResultsMessage": null,
+                    "tokenName": null,
+                    "listOfValues": [
+                      {
+                        "label": "Tax free childcare payments",
+                        "value": "yes"
+                      }
+                    ],
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "width": null,
+                    "displayStyle": "horizontal",
+                    "styleAsButton": null,
+                    "hideWhenBlank": null,
+                    "hidden": null,
+                    "displayCondition": null,
+                    "selectCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "mandatoryMessage": "This field is required"
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-33927119-59d2-4415-bbbe-d75c60d3d72f"
+                },
+                {
+                  "type": "select",
+                  "props": {
+                    "minimumChoices": "",
+                    "maximumChoices": "",
+                    "minimumChoicesMessage": "Please select at least _min_value_ choices",
+                    "maximumChoicesMessage": "Please select no more than _max_value_ choices",
+                    "label": "Minimum Ofsted Judgment",
+                    "dataName": "OfstedJudgeFilterSel",
+                    "labelPosition": "alignLeft",
+                    "defaultType": "specific",
+                    "defaultValue": null,
+                    "defaultValueText": null,
+                    "listSource": "lookup",
+                    "helpText": "",
+                    "readOnly": false,
+                    "allowOther": false,
+                    "summaryField": false,
+                    "lookup": "5a8d600db005d",
+                    "lookupCondition": "onDisplayInputChange",
+                    "lookupButton": null,
+                    "preventRunningOnInitialisation": false,
+                    "noResultsMessage": "",
+                    "tokenName": null,
+                    "listOfValues": null,
+                    "displayName": "true",
+                    "outerClass": "",
+                    "labelClass": "",
+                    "inputClass": "",
+                    "width": "",
+                    "selectLabel": "Select...",
+                    "allowMultiple": false,
+                    "enableFilter": false,
+                    "hideWhenBlank": false,
+                    "hidden": true,
+                    "disableEmptyValue": false,
+                    "displayCondition": null,
+                    "selectCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "mandatoryMessage": "This field is required"
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-eceb1eb1-ba95-443f-aa7b-0dda392e3c1e"
+                },
+                {
+                  "type": "number",
+                  "props": {
+                    "label": "OfstedJudgeFilter",
+                    "dataName": "OfstedJudgeFilter",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "{OfstedJudgeFilterSel:scoreValue}",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "prefix": null,
+                    "suffix": null,
+                    "width": null,
+                    "decimalPlaces": null,
+                    "numberToText": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumValue": "",
+                    "maximumValue": "",
+                    "validationCondition": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumValueMessage": "Please input _min_value_ or more",
+                    "maximumValueMessage": "Please input _max_value_ or less",
+                    "validationConditionMessage": "This field is invalid"
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-739401bb-3444-4d5d-a046-dc84e7aeaf9c"
+                },
+                {
+                  "type": "checkbox",
+                  "props": {
+                    "minimumChoices": "",
+                    "maximumChoices": "",
+                    "minimumChoicesMessage": "Please select at least _min_value_ choices",
+                    "maximumChoicesMessage": "Please select no more than _max_value_ choices",
+                    "label": "Include new not yet inspected",
+                    "dataName": "newShowFilter",
+                    "labelPosition": "alignLeft",
+                    "defaultType": "specific",
+                    "defaultValue": null,
+                    "defaultValueText": null,
+                    "listSource": "one-time-list",
+                    "helpText": "",
+                    "readOnly": false,
+                    "allowOther": false,
+                    "summaryField": false,
+                    "lookup": null,
+                    "lookupCondition": null,
+                    "lookupButton": null,
+                    "preventRunningOnInitialisation": null,
+                    "noResultsMessage": null,
+                    "tokenName": null,
+                    "listOfValues": [
+                      {
+                        "label": "Yes",
+                        "value": "yes"
+                      }
+                    ],
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "width": null,
+                    "displayStyle": "horizontal",
+                    "styleAsButton": null,
+                    "hideWhenBlank": null,
+                    "hidden": null,
+                    "displayCondition": "{OfstedJudgeFilterSel} isnt '' and {OfstedJudgeFilterSel} notcontains '4'",
+                    "selectCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "mandatoryMessage": "This field is required"
+                  },
+                  "conditionInputs": [
+                    {
+                      "element": "select",
+                      "value": "OfstedJudgeFilterSel",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "isnt ''",
+                      "type": [
+                        "_select"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "and",
+                      "type": [
+                        "logicalOperators"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "OfstedJudgeFilterSel",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "notcontains",
+                      "type": [
+                        "_select"
+                      ]
+                    },
+                    {
+                      "element": "text",
+                      "value": "4",
+                      "type": [
+                        "literal"
+                      ]
+                    }
+                  ],
+                  "id": "AF-Field-12826db5-0b27-449c-ab6d-31b24508307b"
+                },
+                {
+                  "type": "range",
+                  "props": {
+                    "label": "Age from (0 to 16 years)",
+                    "dataName": "ageFrom",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "0",
+                    "helpText": "",
+                    "minimum": "0",
+                    "maximum": "16",
+                    "step": "1",
+                    "hidden": true,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": "true",
+                    "outerClass": "",
+                    "labelClass": "",
+                    "inputClass": "",
+                    "width": "",
+                    "numberToText": false,
+                    "hideWhenBlank": false,
+                    "displayCondition": "",
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumValue": "",
+                    "maximumValue": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumValueMessage": "Please select at least _min_value_",
+                    "maximumValueMessage": "Please select no more than _max_value_"
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-dd827309-9568-4df9-a028-110d942f1ac3"
+                },
+                {
+                  "type": "range",
+                  "props": {
+                    "label": "Age to (2 to 16 years)",
+                    "dataName": "ageTo",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "16",
+                    "helpText": "",
+                    "minimum": "2",
+                    "maximum": "16",
+                    "step": "1",
+                    "hidden": true,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "width": null,
+                    "numberToText": false,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumValue": "",
+                    "maximumValue": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumValueMessage": "Please input _min_value_ or more",
+                    "maximumValueMessage": "Please input _max_value_ or less"
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-4a61c212-cabf-4ce8-9081-75a3db43ba5a"
+                },
+                {
+                  "type": "html",
+                  "props": {
+                    "label": "html 2",
+                    "dataName": "html2",
+                    "displayName": "",
+                    "outerClass": "",
+                    "width": "",
+                    "showInSummary": false,
+                    "content": "<p style=\"color:red; text-align:center\">Age to must be greater than Age from</p>",
+                    "displayCondition": "{ageFrom} > {ageTo}"
+                  },
+                  "conditionInputs": [
+                    {
+                      "element": "select",
+                      "value": "ageFrom",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": " >",
+                      "type": [
+                        "_match"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "ageTo",
+                      "type": [
+                        "fields_match"
+                      ]
+                    }
+                  ],
+                  "id": "AF-Field-5d821a7a-77ed-46b1-87a9-d460d5233623"
+                },
+                {
+                  "type": "number",
+                  "props": {
+                    "label": "withinDistance",
+                    "dataName": "withinDistance",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "if({findClosestAsk}='yes' and {postcodeFound} != '' , {withinDistanceGet} * 1609.344, '')",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": true,
+                    "summaryField": false,
+                    "displayName": "true",
+                    "outerClass": "",
+                    "labelClass": "",
+                    "inputClass": "",
+                    "prefix": "",
+                    "suffix": "",
+                    "width": "",
+                    "decimalPlaces": "3",
+                    "numberToText": false,
+                    "hideWhenBlank": false,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumValue": "",
+                    "maximumValue": "",
+                    "validationCondition": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumValueMessage": "Please input _min_value_ or more",
+                    "maximumValueMessage": "Please input _max_value_ or less",
+                    "validationConditionMessage": "This field is invalid"
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-a391432a-f8fa-42b2-850f-4bb073cc864c"
+                },
+                {
+                  "type": "number",
+                  "props": {
+                    "label": "Lookup Status",
+                    "dataName": "status",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": true,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "prefix": null,
+                    "suffix": null,
+                    "width": null,
+                    "decimalPlaces": null,
+                    "numberToText": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumValue": "",
+                    "maximumValue": "",
+                    "validationCondition": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumValueMessage": "Please input _min_value_ or more",
+                    "maximumValueMessage": "Please input _max_value_ or less",
+                    "validationConditionMessage": "This field is invalid"
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-5528a92e-31ec-483b-b547-01979f9b2a82"
+                },
+                {
+                  "type": "number",
+                  "props": {
+                    "label": "nearlat",
+                    "dataName": "nearlat",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "prefix": null,
+                    "suffix": null,
+                    "width": null,
+                    "decimalPlaces": null,
+                    "numberToText": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumValue": "",
+                    "maximumValue": "",
+                    "validationCondition": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumValueMessage": "Please input _min_value_ or more",
+                    "maximumValueMessage": "Please input _max_value_ or less",
+                    "validationConditionMessage": "This field is invalid"
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-dccd1fbc-04c7-4dcf-819b-f17e0727982b"
+                },
+                {
+                  "type": "number",
+                  "props": {
+                    "label": "nearlng",
+                    "dataName": "nearlng",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "prefix": null,
+                    "suffix": null,
+                    "width": null,
+                    "decimalPlaces": null,
+                    "numberToText": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumValue": "",
+                    "maximumValue": "",
+                    "validationCondition": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumValueMessage": "Please input _min_value_ or more",
+                    "maximumValueMessage": "Please input _max_value_ or less",
+                    "validationConditionMessage": "This field is invalid"
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-929cf52e-b883-4e20-b417-e0580217c028"
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "Postcode returned from lookup",
+                    "dataName": "postcodeFound",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": true,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "outputFormat": "normal",
+                    "currencyPrefix": null,
+                    "width": null,
+                    "inputMask": null,
+                    "inputMaskPlaceholder": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationCondition": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-ba3cd599-d4da-4cfc-a027-2ac11e174c24"
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "findClosest",
+                    "dataName": "findClosest",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "if({findClosestAsk}='yes' and {postcodeFound} != '' and {withinDistance} > 0, {findClosestAsk}, '')",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": true,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "outputFormat": "normal",
+                    "currencyPrefix": null,
+                    "width": null,
+                    "inputMask": null,
+                    "inputMaskPlaceholder": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationCondition": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-50c0b2b7-6b6b-4226-a8b6-30d238c258f4"
+                },
+                {
+                  "type": "autoLookup",
+                  "props": {
+                    "label": "autoLookup 1",
+                    "dataName": "autolookup1",
+                    "lookup": "5b1fc3e28b993",
+                    "lookupCondition": "onDisplayInputChange",
+                    "lookupButton": null,
+                    "noResultsMessage": "",
+                    "noRetryOnIntegrationFailure": false,
+                    "preventRunningOnInitialisation": false,
+                    "displayName": "",
+                    "displayCondition": null
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-ebc796d3-0abb-4397-a7f4-5810c010cf37"
+                },
+                {
+                  "type": "textarea",
+                  "props": {
+                    "label": "html Search Results",
+                    "dataName": "htmlSearchResults",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "width": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-39a1d4b6-092f-46b1-bfad-c0825f596a60"
+                },
+                {
+                  "type": "html",
+                  "props": {
+                    "label": "html 3",
+                    "dataName": "html3",
+                    "displayName": "",
+                    "outerClass": "",
+                    "width": "",
+                    "showInSummary": false,
+                    "content": "<p><strong>Results below based on the criteria above</strong></p>\n<p style=\"color:Blue\">Use the Next button at the bottom of the page or the List view tab at the top to select providers to list on a PDF or view on a Map.</p>\n{#htmlSearchResults}",
+                    "displayCondition": ""
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-149730e2-48c5-430d-9485-98b410ba4047"
+                },
+                {
+                  "type": "autoLookup",
+                  "props": {
+                    "label": "autoLookup 1",
+                    "dataName": "getLatLng",
+                    "lookup": "5a8ea193a7031",
+                    "lookupCondition": "onDisplayInputChange",
+                    "lookupButton": null,
+                    "noResultsMessage": "",
+                    "noRetryOnIntegrationFailure": false,
+                    "preventRunningOnInitialisation": true,
+                    "displayName": "",
+                    "displayCondition": "upperstr({nearPostcode}) match '^(((([BEGLMNS][1-9]{1,2})|(W[2-9])|((A[BL]|B[ABDHLNRST]|C[ABFHMORTVW]|D[ADEGHLNTY]|E[HNX]|F[KY]|G[LUY}|H[ADGPRSUX]|I[GMPV]|JE|K[ATWY]|L[ADELNSU]|M[EKL]|N[EGNPRW]|O[LX]|P[AEHLOR]|R[GHM]|S[AEGKL-PRSTWY]|T[ADFNQRSW]|UB|W[ADFNRSV]|YO|ZE)[1-9]{1,2})|(W1[A-HJKSTUW0-9])|(((WC[1-2])|(EC[1-4])|(SW1))[ABEHMNPRVWXY])) ([0-9][ABD-HJLNP-UW-Z]{2}))$|(GIR 0AA))$'"
+                  },
+                  "id": "AF-Field-088d9972-0efe-4fd4-9959-6c3920906eea"
+                },
+                {
+                  "type": "number",
+                  "props": {
+                    "label": "Number of settings",
+                    "dataName": "checkRows",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": true,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "prefix": null,
+                    "suffix": null,
+                    "width": null,
+                    "decimalPlaces": null,
+                    "numberToText": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumValue": "",
+                    "maximumValue": "",
+                    "validationCondition": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumValueMessage": "Please input _min_value_ or more",
+                    "maximumValueMessage": "Please input _max_value_ or less",
+                    "validationConditionMessage": "This field is invalid"
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-50c2693d-3adf-4ef0-83fb-b91a59994a56"
+                },
+                {
+                  "type": "textarea",
+                  "props": {
+                    "label": "List IDs",
+                    "dataName": "listIDs",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": true,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "width": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-f5e813fd-22cf-412e-8473-dc29d1da5037"
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "nearPoint",
+                    "dataName": "nearPoint",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "outputFormat": "normal",
+                    "currencyPrefix": null,
+                    "width": null,
+                    "inputMask": null,
+                    "inputMaskPlaceholder": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationCondition": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-4b0c8cc8-f51a-494d-b2d2-31754c32af0d"
+                }
+              ]
+            },
+            {
+              "url": "List-view.html",
+              "id": "AF-Section-87eb723b-1c46-4b5b-b34d-a2fdcaf908a4",
+              "props": {
+                "hideCancel": false,
+                "conditionInputs": [
+                  {
+                    "element": "select",
+                    "value": "checkRows",
+                    "type": [
+                      "fields"
+                    ]
+                  },
+                  {
+                    "element": "select",
+                    "value": ">",
+                    "type": [
+                      "_number"
+                    ]
+                  },
+                  {
+                    "element": "number",
+                    "value": "0",
+                    "type": [
+                      "literal"
+                    ]
+                  }
+                ],
+                "displayCondition": "{checkRows} > '0'",
+                "validationInputs": "",
+                "validation": "",
+                "validationMessage": "This Section is Invalid",
+                "validationLookup": {
+                  "enableLookup": false,
+                  "lookupID": "",
+                  "lookupName": "",
+                  "lookupValidation": "",
+                  "lookupOperator": ""
+                }
+              },
+              "name": "List view",
+              "fields": [
+                {
+                  "type": "html",
+                  "props": {
+                    "label": "html 5",
+                    "dataName": "html5",
+                    "displayName": "",
+                    "outerClass": "",
+                    "width": "",
+                    "showInSummary": false,
+                    "content": "<p style=\"color:blue\">We can email you a list of your selected childcare providers. Just tick the providers you want the details of, enter your email address and then click 'create PDF'</p>\n\n<p style=\"color:blue\">Or you can view your selected childcare providers on the map, just click the 'map view'</p>",
+                    "displayCondition": null
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-407a1f55-bf90-4ee6-b488-85f4e638e27f"
+                },
+                {
+                  "type": "checkbox",
+                  "props": {
+                    "minimumChoices": "",
+                    "maximumChoices": "",
+                    "minimumChoicesMessage": "Please select at least _min_value_ choices",
+                    "maximumChoicesMessage": "Please select no more than _max_value_ choices",
+                    "label": "Selection",
+                    "dataName": "selectAll",
+                    "labelPosition": "alignLeft",
+                    "defaultType": "specific",
+                    "defaultValue": null,
+                    "defaultValueText": null,
+                    "listSource": "one-time-list",
+                    "helpText": "",
+                    "readOnly": false,
+                    "allowOther": false,
+                    "summaryField": false,
+                    "lookup": null,
+                    "lookupCondition": null,
+                    "lookupButton": null,
+                    "preventRunningOnInitialisation": null,
+                    "noResultsMessage": null,
+                    "tokenName": null,
+                    "listOfValues": [
+                      {
+                        "label": "Select All",
+                        "value": "yes"
+                      },
+                      {
+                        "label": "Clear Selected",
+                        "value": "clear"
+                      }
+                    ],
+                    "displayName": "true",
+                    "outerClass": "",
+                    "labelClass": "",
+                    "inputClass": "",
+                    "width": "",
+                    "displayStyle": "horizontal",
+                    "styleAsButton": true,
+                    "hideWhenBlank": false,
+                    "hidden": false,
+                    "displayCondition": null,
+                    "selectCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "mandatoryMessage": "This field is required"
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-2f0f8ba6-d1be-4ee5-b6ed-a3787d806a90"
+                },
+                {
+                  "type": "checkbox",
+                  "props": {
+                    "minimumChoices": "",
+                    "maximumChoices": "",
+                    "minimumChoicesMessage": "Please select at least _min_value_ choices",
+                    "maximumChoicesMessage": "Please select no more than _max_value_ choices",
+                    "label": "checkbox 1",
+                    "dataName": "checkbox1",
+                    "labelPosition": "hideLabel",
+                    "defaultType": "text",
+                    "defaultValue": null,
+                    "defaultValueText": "{selectDef}",
+                    "listSource": "lookup",
+                    "helpText": "",
+                    "readOnly": false,
+                    "allowOther": false,
+                    "summaryField": false,
+                    "lookup": "5b20e27b6787b",
+                    "lookupCondition": "onDisplayInputChange",
+                    "lookupButton": null,
+                    "preventRunningOnInitialisation": false,
+                    "noResultsMessage": "",
+                    "tokenName": null,
+                    "listOfValues": null,
+                    "displayName": "true",
+                    "outerClass": "",
+                    "labelClass": "",
+                    "inputClass": "",
+                    "width": "",
+                    "displayStyle": "vertical",
+                    "styleAsButton": false,
+                    "hideWhenBlank": false,
+                    "hidden": false,
+                    "displayCondition": "{selectAll} is ''",
+                    "selectCondition": "",
+                    "mandatoryCondition": "",
+                    "readonlyCondition": "",
+                    "mandatory": false,
+                    "mandatoryMessage": "This field is required"
+                  },
+                  "conditionInputs": [
+                    {
+                      "element": "select",
+                      "value": "selectAll",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "is ''",
+                      "type": [
+                        "_select"
+                      ]
+                    }
+                  ],
+                  "id": "AF-Field-d1505bcb-d2bf-493d-9ec1-48dd73a1dc88"
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "Selection Default",
+                    "dataName": "selectDef",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "outputFormat": "normal",
+                    "currencyPrefix": null,
+                    "width": null,
+                    "inputMask": null,
+                    "inputMaskPlaceholder": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationCondition": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-99254d39-70cf-4484-b2b0-ffaac8e42189"
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "Selected List Values",
+                    "dataName": "selectedListValues",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "{checkbox1}",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "outputFormat": "normal",
+                    "currencyPrefix": null,
+                    "width": null,
+                    "inputMask": null,
+                    "inputMaskPlaceholder": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationCondition": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-36ab2dff-5b5e-4af4-aca3-3cfa7b835fc7"
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "CheckBox values",
+                    "dataName": "selCarers",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "if({selectAll} = 'yes', {listIDs}, {selectedListValues})",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "outputFormat": "normal",
+                    "currencyPrefix": null,
+                    "width": null,
+                    "inputMask": null,
+                    "inputMaskPlaceholder": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationCondition": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-26b0dfb0-3a05-4b4e-8319-0af954b2abda"
+                },
+                {
+                  "type": "number",
+                  "props": {
+                    "label": "Check something selected",
+                    "dataName": "checkSel",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "if({checkbox1} != '', 1, 0)",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": true,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "prefix": null,
+                    "suffix": null,
+                    "width": null,
+                    "decimalPlaces": null,
+                    "numberToText": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumValue": "",
+                    "maximumValue": "",
+                    "validationCondition": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumValueMessage": "Please input _min_value_ or more",
+                    "maximumValueMessage": "Please input _max_value_ or less",
+                    "validationConditionMessage": "This field is invalid"
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-a193d93b-5e56-41a1-81a8-f4f440e41a2c"
+                },
+                {
+                  "type": "button",
+                  "props": {
+                    "label": "Create PDF",
+                    "dataName": "generatePDF",
+                    "labelPosition": "hideLabel",
+                    "helpText": "",
+                    "lookup": [
+                      "5b224ecd64960"
+                    ],
+                    "noResultsMessage": "",
+                    "action": "",
+                    "displayName": "true",
+                    "outerClass": "",
+                    "labelClass": "",
+                    "inputClass": "",
+                    "width": "",
+                    "buttonText": "Create PDF",
+                    "displayCondition": "{selCarers} isnt {confirmSelection} and {selCarers} isnt ''"
+                  },
+                  "conditionInputs": [
+                    {
+                      "element": "select",
+                      "value": "selCarers",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": " isnt",
+                      "type": [
+                        "_match"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "confirmSelection",
+                      "type": [
+                        "fields_match"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "and",
+                      "type": [
+                        "logicalOperators"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "selCarers",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "isnt ''",
+                      "type": [
+                        "_core"
+                      ]
+                    }
+                  ],
+                  "id": "AF-Field-1274dccc-7926-4576-a5b0-c3942eb3ce64"
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "confirmSelection",
+                    "dataName": "confirmSelection",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "outputFormat": "normal",
+                    "currencyPrefix": null,
+                    "width": null,
+                    "inputMask": null,
+                    "inputMaskPlaceholder": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationCondition": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-48eeb894-91c8-47bc-a2a5-48ed889aee45"
+                },
+                {
+                  "type": "textarea",
+                  "props": {
+                    "label": "htmlSelectResults",
+                    "dataName": "htmlSelectResults",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "width": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-05aaf2bd-841a-4949-927b-be394e7b2d8d"
+                },
+                {
+                  "type": "number",
+                  "props": {
+                    "label": "checkRowsPDF",
+                    "dataName": "checkRowsPDF",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "prefix": null,
+                    "suffix": null,
+                    "width": null,
+                    "decimalPlaces": null,
+                    "numberToText": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumValue": "",
+                    "maximumValue": "",
+                    "validationCondition": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumValueMessage": "Please input _min_value_ or more",
+                    "maximumValueMessage": "Please input _max_value_ or less",
+                    "validationConditionMessage": "This field is invalid"
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-a9f15a8d-271d-4f4e-86a3-a4f703698637"
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "Email Address to send PDF to",
+                    "dataName": "Email_Address",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "",
+                    "helpText": "",
+                    "hidden": false,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "outputFormat": "normal",
+                    "currencyPrefix": null,
+                    "width": null,
+                    "inputMask": null,
+                    "inputMaskPlaceholder": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": "{checkRowsPDF} > '0'",
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationCondition": "",
+                    "validationMask": "/^[-a-z0-9~!$%^&*#_=+}{\\'?]+(\\.[-a-z0-9~!$%^&*#_=+}{\\'?]+)*@[a-z0-9][-a-z0-9_]*(\\.[-a-z0-9_]+)(\\.[a-z0-9]+)*$/gim",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid",
+                    "validationMaskMessageValue": "Email Address"
+                  },
+                  "conditionInputs": [
+                    {
+                      "element": "select",
+                      "value": "checkRowsPDF",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": ">",
+                      "type": [
+                        "_number"
+                      ]
+                    },
+                    {
+                      "element": "number",
+                      "value": "0",
+                      "type": [
+                        "literal"
+                      ]
+                    }
+                  ],
+                  "id": "AF-Field-c60212e7-348b-4923-8297-1dd149b016d3"
+                },
+                {
+                  "type": "button",
+                  "props": {
+                    "label": "Send PDF",
+                    "dataName": "sendPDF",
+                    "labelPosition": "hideLabel",
+                    "helpText": "",
+                    "lookup": [
+                      "5b227229674c3"
+                    ],
+                    "noResultsMessage": "",
+                    "action": "",
+                    "displayName": "true",
+                    "outerClass": "",
+                    "labelClass": "",
+                    "inputClass": "",
+                    "width": "",
+                    "buttonText": "Email PDF",
+                    "displayCondition": "{checkRowsPDF} > '0' and {Email_Address} contains '@' and {Email_Address} contains '.' and {selCarers} is {confirmSelection}"
+                  },
+                  "conditionInputs": [
+                    {
+                      "element": "select",
+                      "value": "checkRowsPDF",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": ">",
+                      "type": [
+                        "_number"
+                      ]
+                    },
+                    {
+                      "element": "number",
+                      "value": "0",
+                      "type": [
+                        "literal"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "and",
+                      "type": [
+                        "logicalOperators"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "Email_Address",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "contains",
+                      "type": [
+                        "_core"
+                      ]
+                    },
+                    {
+                      "element": "text",
+                      "value": "@",
+                      "type": [
+                        "literal"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "and",
+                      "type": [
+                        "logicalOperators"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "Email_Address",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "contains",
+                      "type": [
+                        "_core"
+                      ]
+                    },
+                    {
+                      "element": "text",
+                      "value": ".",
+                      "type": [
+                        "literal"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "and",
+                      "type": [
+                        "logicalOperators"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "selCarers",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": " is",
+                      "type": [
+                        "_match"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "confirmSelection",
+                      "type": [
+                        "fields_match"
+                      ]
+                    }
+                  ],
+                  "id": "AF-Field-0aadfb62-04d3-4292-8ecf-97637ab3dc8d"
+                },
+                {
+                  "type": "html",
+                  "props": {
+                    "label": "html 6",
+                    "dataName": "html6",
+                    "displayName": "",
+                    "outerClass": "",
+                    "width": "",
+                    "showInSummary": false,
+                    "content": "<p style=\"color:blue; text-align:center;\">The slection has changed recreate PDF<p>",
+                    "displayCondition": "{Email_Address} contains '@' and {Email_Address} contains '.' and {selCarers} isnt {confirmSelection}"
+                  },
+                  "conditionInputs": [
+                    {
+                      "element": "select",
+                      "value": "Email_Address",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "contains",
+                      "type": [
+                        "_core"
+                      ]
+                    },
+                    {
+                      "element": "text",
+                      "value": "@",
+                      "type": [
+                        "literal"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "and",
+                      "type": [
+                        "logicalOperators"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "Email_Address",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "contains",
+                      "type": [
+                        "_core"
+                      ]
+                    },
+                    {
+                      "element": "text",
+                      "value": ".",
+                      "type": [
+                        "literal"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "and",
+                      "type": [
+                        "logicalOperators"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "selCarers",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": " isnt",
+                      "type": [
+                        "_match"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "confirmSelection",
+                      "type": [
+                        "fields_match"
+                      ]
+                    }
+                  ],
+                  "id": "AF-Field-1b1a4a85-79f4-463b-876c-8392786b97d3"
+                },
+                {
+                  "type": "autoLookup",
+                  "props": {
+                    "label": "autoLookup 2",
+                    "dataName": "autolookup2",
+                    "lookup": "5bcdd297a39c5",
+                    "lookupCondition": "onDisplay",
+                    "lookupButton": null,
+                    "noResultsMessage": "",
+                    "noRetryOnIntegrationFailure": false,
+                    "preventRunningOnInitialisation": true,
+                    "displayName": "",
+                    "displayCondition": "{selectAll} isnt ''"
+                  },
+                  "conditionInputs": [
+                    {
+                      "element": "select",
+                      "value": "selectAll",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "isnt ''",
+                      "type": [
+                        "_select"
+                      ]
+                    }
+                  ],
+                  "id": "AF-Field-96e4e1ec-4a79-4b13-a56e-6668ee1fad7e"
+                }
+              ]
+            },
+            {
+              "url": "Map-view.html",
+              "id": "AF-Section-1b636acc-907e-44c5-8b1f-42c1199ee4cf",
+              "props": {
+                "hideCancel": false,
+                "conditionInputs": [
+                  {
+                    "element": "select",
+                    "value": "checkSel",
+                    "type": [
+                      "fields"
+                    ]
+                  },
+                  {
+                    "element": "select",
+                    "value": ">",
+                    "type": [
+                      "_number"
+                    ]
+                  },
+                  {
+                    "element": "number",
+                    "value": "0",
+                    "type": [
+                      "literal"
+                    ]
+                  },
+                  {
+                    "element": "select",
+                    "value": "or",
+                    "type": [
+                      "logicalOperators"
+                    ]
+                  },
+                  {
+                    "element": "select",
+                    "value": "selectAll",
+                    "type": [
+                      "fields"
+                    ]
+                  },
+                  {
+                    "element": "select",
+                    "value": "icontains",
+                    "type": [
+                      "_select"
+                    ]
+                  },
+                  {
+                    "element": "select",
+                    "value": "yes",
+                    "type": [
+                      "list"
+                    ]
+                  }
+                ],
+                "displayCondition": "{checkSel} > '0' or {selectAll} icontains 'yes'",
+                "validationInputs": "",
+                "validation": "",
+                "validationMessage": "This Section is Invalid",
+                "validationLookup": {
+                  "enableLookup": false,
+                  "lookupID": "",
+                  "lookupName": "",
+                  "lookupValidation": "",
+                  "lookupOperator": ""
+                }
+              },
+              "name": "Map view",
+              "fields": [
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "mapCentre",
+                    "dataName": "mapCentre",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "if({findClosest}, concat({nearlat}, ',', {nearlng}), '50.805, -1.08')",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": true,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "outputFormat": "normal",
+                    "currencyPrefix": null,
+                    "width": null,
+                    "inputMask": null,
+                    "inputMaskPlaceholder": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationCondition": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-26a5f376-6bff-44a2-b305-646c88222301"
+                },
+                {
+                  "type": "mapMultiple",
+                  "props": {
+                    "label": "mapMultiple 1",
+                    "dataName": "mapmultiple1",
+                    "labelPosition": "hideLabel",
+                    "defaultValue": null,
+                    "helpText": "",
+                    "initialZoom": "12",
+                    "listSource": "lookup",
+                    "initialViewCentre": "{mapCentre}",
+                    "readOnly": true,
+                    "allowOther": true,
+                    "summaryField": false,
+                    "lookup": "5b20e5abb0478",
+                    "lookupCondition": "onDisplayInputChange",
+                    "lookupButton": "",
+                    "preventRunningOnInitialisation": false,
+                    "disableAutoPan": false,
+                    "noResultsMessage": "",
+                    "listOfPoints": null,
+                    "displayName": "true",
+                    "outerClass": "",
+                    "labelClass": "",
+                    "inputClass": "",
+                    "width": "",
+                    "height": "38",
+                    "mapTileService": "google",
+                    "customBasemapLayer": "",
+                    "customLayers": "",
+                    "boundaryLayer": "",
+                    "popupFields": "",
+                    "staticMap": true,
+                    "showControls": true,
+                    "hideWhenBlank": false,
+                    "allowOutside": true,
+                    "clustered": false,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "showInitialMarker": true,
+                    "allowMultiple": false,
+                    "mandatoryMessage": "This field is required"
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-25ab0b18-f665-4504-94d3-3bb29a124f99"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "routes": {},
+      "populateFields": [
+        {
+          "label": "OR label",
+          "dataName": "ORlabel",
+          "populated": true
+        },
+        {
+          "label": "Find Childcare in postcode area",
+          "dataName": "postcodeFilter",
+          "populated": true
+        },
+        {
+          "label": "{ORlabel}",
+          "dataName": "findClosestAsk",
+          "populated": true
+        },
+        {
+          "label": "Your postcode",
+          "dataName": "nearPostcode",
+          "populated": true
+        },
+        {
+          "label": "Search distance in miles",
+          "dataName": "withinDistanceGet",
+          "populated": true
+        },
+        {
+          "label": "Accepts 2 year funding",
+          "dataName": "twoYearFundfilter",
+          "populated": true
+        },
+        {
+          "label": "Accepts 30 hour funding for 3 & 4 year olds",
+          "dataName": "accepts30HourFund",
+          "populated": true
+        },
+        {
+          "label": "Accepts tax free childcare payments",
+          "dataName": "TaxFreeChild",
+          "populated": true
+        },
+        {
+          "label": "Minimum Ofsted Judgment",
+          "dataName": "OfstedJudgeFilterSel",
+          "populated": true
+        },
+        {
+          "label": "OfstedJudgeFilter",
+          "dataName": "OfstedJudgeFilter",
+          "populated": true
+        },
+        {
+          "label": "Include new not yet inspected",
+          "dataName": "newShowFilter",
+          "populated": true
+        },
+        {
+          "label": "Age from (0 to 16 years)",
+          "dataName": "ageFrom",
+          "populated": true
+        },
+        {
+          "label": "Age to (2 to 16 years)",
+          "dataName": "ageTo",
+          "populated": true
+        },
+        {
+          "label": "withinDistance",
+          "dataName": "withinDistance",
+          "populated": true
+        },
+        {
+          "label": "Lookup Status",
+          "dataName": "status",
+          "populated": true
+        },
+        {
+          "label": "nearlat",
+          "dataName": "nearlat",
+          "populated": true
+        },
+        {
+          "label": "nearlng",
+          "dataName": "nearlng",
+          "populated": true
+        },
+        {
+          "label": "Postcode returned from lookup",
+          "dataName": "postcodeFound",
+          "populated": true
+        },
+        {
+          "label": "findClosest",
+          "dataName": "findClosest",
+          "populated": true
+        },
+        {
+          "label": "html Search Results",
+          "dataName": "htmlSearchResults",
+          "populated": true
+        },
+        {
+          "label": "Number of settings",
+          "dataName": "checkRows",
+          "populated": true
+        },
+        {
+          "label": "checkbox 1",
+          "dataName": "checkbox1",
+          "populated": true
+        },
+        {
+          "label": "CheckBox values",
+          "dataName": "selCarers",
+          "populated": true
+        },
+        {
+          "label": "Check something selected",
+          "dataName": "checkSel",
+          "populated": true
+        },
+        {
+          "label": "confirmSelection",
+          "dataName": "confirmSelection",
+          "populated": true
+        },
+        {
+          "label": "htmlSelectResults",
+          "dataName": "htmlSelectResults",
+          "populated": true
+        },
+        {
+          "label": "checkRowsPDF",
+          "dataName": "checkRowsPDF",
+          "populated": true
+        },
+        {
+          "label": "Email Address to send PDF to",
+          "dataName": "Email_Address",
+          "populated": true
+        },
+        {
+          "label": "mapCentre",
+          "dataName": "mapCentre",
+          "populated": true
+        },
+        {
+          "label": "mapMultiple 1",
+          "dataName": "mapmultiple1",
+          "populated": true
+        }
+      ]
+    }
+  }
+}
