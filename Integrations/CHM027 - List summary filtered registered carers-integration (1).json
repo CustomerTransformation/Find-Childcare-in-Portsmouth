@@ -1,0 +1,16 @@
+[
+    {
+        "ID": "5b20e27b6787b",
+        "Name": "CHM027 - List summary filtered registered carers",
+        "Type": "DATABASE",
+        "LIM_id": "83ef69d1-2c5e-11e5-ad20-22000a7a05f5",
+        "Editable": true,
+        "LIM_name": "Portsmouth",
+        "Category": "ChildCare",
+        "data_type": "lookup",
+        "allow_offline": 0,
+        "Output_template": "{\"lookup_validation\":\"0\",\"systemID\":\"5b87d305583a1\",\"systemName\":\"ChildCare\",\"query\":\"EXEC ListFilteredRegCareSum3\\n\\t@selectedIDs = {listIDs}\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
+        "log_only_on_error": 0,
+        "error_notification": "{\"LIM_id\":\"3f07ecf4-0dfa-11e2-b0b9-12313b03ed59\",\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniel.gregory@portsmouthcc.gov.uk\"}"
+    }
+]

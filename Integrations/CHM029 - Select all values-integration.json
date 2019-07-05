@@ -1,0 +1,16 @@
+[
+    {
+        "ID": "5bcdd297a39c5",
+        "Name": "CHM029 - Select all values",
+        "Type": "DATABASE",
+        "LIM_id": "3f07ecf4-0dfa-11e2-b0b9-12313b03ed59",
+        "Editable": true,
+        "LIM_name": "LIM14",
+        "Category": "ChildCare",
+        "data_type": "integration-lookup",
+        "allow_offline": 0,
+        "Output_template": "{\"systemID\":\"59a4f21090a7f\",\"systemName\":\"Firmstep Solutions Read\",\"query\":\"SELECT IF({selectAll}='yes', {listIDs}, '') as selectDef\\n\\t\\t,'' as selectAll\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
+        "log_only_on_error": 0,
+        "error_notification": "{\"LIM_id\":\"3f07ecf4-0dfa-11e2-b0b9-12313b03ed59\",\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniel.gregory@portsmouthcc.gov.uk\"}"
+    }
+]

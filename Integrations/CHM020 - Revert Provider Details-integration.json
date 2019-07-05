@@ -1,0 +1,16 @@
+[
+    {
+        "ID": "5ae9984a6af07",
+        "Name": "CHM045 - Clear all Provider Details",
+        "Type": "DATABASE",
+        "LIM_id": "3f07ecf4-0dfa-11e2-b0b9-12313b03ed59",
+        "Editable": true,
+        "LIM_name": "LIM14",
+        "Category": "ChildCare",
+        "data_type": "integration-lookup",
+        "allow_offline": 0,
+        "Output_template": "{\"systemID\":\"59dc224eb4f63\",\"systemName\":\"Firmstep Solutions Read\",\"query\":\"SELECT  {toShow1} as toShow,\\n\\t\\t{typeID1} as typeID,\\n\\t\\t{URN1} as URN, \\n\\t\\t{settingName1} as settingName,\\n\\t\\t{phoneNo1} as phoneNo,\\n\\t\\t{mobile1} as mobile,\\n\\t\\t{contactName1} as contactName,\\n\\t\\t{email1} as email,\\n\\t\\t{pccEmail11} as pccEmail1,\\n\\t\\t{pccEmail21} as pccEmail2,\\n\\t\\t{postcode1} as postcode,\\n\\t\\t{locality1} as locality,\\n\\t\\t{linkedOfficer1} as linkedOfficer,\\n\\t\\t{idaci1} as idaci,\\n\\t\\t{website1} as website,\\n\\t\\t{ageFrom1} as ageFrom,\\n\\t\\t{ageTo1} as ageTo,\\n\\t\\t{vacancies1} as vacancies,\\n\\t\\t{schoolPickups1} as schoolPickups,\\n\\t\\t{addInformation1} as addInformation,\\n\\t\\t{overallOfstedJudgeID1} as overallOfstedJudgeID,\\n\\t\\t{ofstedDate1} as ofstedDate,\\n\\t\\t{ofstedLink1} as ofstedLink,\\n\\t\\t{options1} as options,\\n\\t\\t{notes1} as notes,\\n\\t\\t{lat1} as lat,\\n\\t\\t{lng1} as lng,\\n\\t\\t'' as newRecord\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
+        "log_only_on_error": 0,
+        "error_notification": "{\"LIM_id\":\"3f07ecf4-0dfa-11e2-b0b9-12313b03ed59\",\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniel.gregory@portsmouthcc.gov.uk\"}"
+    }
+]

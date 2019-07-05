@@ -1,0 +1,1924 @@
+{
+  "processName": "FID Provider Access Request",
+  "processDescription": "",
+  "props": {
+    "id": "AF-Process-f0b3a3a4-77e9-4de3-81dd-7f0e2ec3cb5c",
+    "category": "AF-Category-ec967425-274f-44f8-92bd-c58220819504",
+    "tags": "",
+    "viewGroup": null,
+    "viewGroupToken": null,
+    "date_due": null,
+    "date_due_warn": null,
+    "showCaseReference": false,
+    "isSubform": false,
+    "notes": "First publish in live",
+    "initial_stage": "Request",
+    "initial_stage_id": "AF-Stage-4b2fb4eb-cbcf-468e-81e7-0534268fe810",
+    "serverSubmit": true,
+    "prefix": "FID",
+    "isPublished": true
+  },
+  "stages": {
+    "Request": {
+      "url": "Stage-1.html",
+      "id": "AF-Stage-4b2fb4eb-cbcf-468e-81e7-0534268fe810",
+      "name": "Request",
+      "props": {
+        "form": "AF-Form-8754f18e-bb5d-48a8-91c9-58d47d676fc7",
+        "xpos": 20,
+        "ypos": 20,
+        "group": null,
+        "integrations": [],
+        "user_token": null,
+        "group_token": null,
+        "stopOnFailure": false,
+        "useNewPaymentMethod": false,
+        "textColor": "#ffffff",
+        "user": "__originator__",
+        "backgroundColor": "#0033cc",
+        "date_due": null,
+        "date_due_warn": null,
+        "notification": {
+          "notify_assigned_users": false,
+          "recipients_to": null,
+          "subject": null,
+          "body": null
+        },
+        "escalation": {
+          "notify_assigned_users": true,
+          "recipients_to": null,
+          "subject": null,
+          "body": null,
+          "date": null,
+          "date_type": null,
+          "user_token": null,
+          "group_token": null,
+          "user": null,
+          "group": null,
+          "condition": null,
+          "conditionInputs": {}
+        },
+        "formDefinition": {
+          "formName": "FID Provider Access Request",
+          "formDescription": "",
+          "props": {
+            "id": "AF-Form-8754f18e-bb5d-48a8-91c9-58d47d676fc7",
+            "category": "AF-Category-ec967425-274f-44f8-92bd-c58220819504",
+            "saveSubmissionData": true,
+            "usePHPIntregration": false,
+            "serverSideLookupValidation": false,
+            "tags": "",
+            "navigateAwayWarning": "Are you sure you want to navigate away? All progress in this form will be lost.",
+            "navigateAwayWarn": true,
+            "validateOnInit": true,
+            "stopOnFailure": false,
+            "stickyError": false,
+            "showFormReference": false,
+            "mustBeValid": true,
+            "hideHeader": false,
+            "isPublished": false,
+            "isSubform": false,
+            "integrations": [],
+            "notes": false,
+            "submission": {
+              "message": "<p>Your reference number is {summary_ref}.</p><p>Thank you for submitting {form_name}</p><p>{visiblesummary}</p>",
+              "api": "/form/submit/",
+              "download": "Download PDF",
+              "cancel_redirect": null,
+              "continue": "Continue",
+              "conditionInputs": [
+                {
+                  "element": "select",
+                  "value": "selectProvider",
+                  "type": [
+                    "fields"
+                  ]
+                },
+                {
+                  "element": "select",
+                  "value": "is ''",
+                  "type": [
+                    "_select"
+                  ]
+                },
+                {
+                  "element": "select",
+                  "value": "or",
+                  "type": [
+                    "logicalOperators"
+                  ]
+                },
+                {
+                  "element": "select",
+                  "value": "alreadyReg",
+                  "type": [
+                    "fields"
+                  ]
+                },
+                {
+                  "element": "select",
+                  "value": "contains",
+                  "type": [
+                    "_core"
+                  ]
+                },
+                {
+                  "element": "text",
+                  "value": "yes",
+                  "type": [
+                    "literal"
+                  ]
+                }
+              ],
+              "showDownload": false,
+              "showMessage": true,
+              "serverSubmit": true,
+              "redirect": null,
+              "condition": "{selectProvider} is '' or {alreadyReg} contains 'yes'",
+              "printableIntegrationId": "",
+              "newPaymentMethod": false
+            },
+            "save": {
+              "lim": "3f07ecf4-0dfa-11e2-b0b9-12313b03ed59",
+              "displayCondition": "",
+              "conditionInputs": "",
+              "redirect": null,
+              "allow": false,
+              "fromName": "",
+              "message": "",
+              "subject": "",
+              "mail": false,
+              "from": "",
+              "disableSaveNotify": false
+            },
+            "hideSaveUrl": false,
+            "usePHPIntegrations": true,
+            "integrationDefinition": {
+              "5ae836998dfd2": {
+                "Editable": true,
+                "ID": "5ae836998dfd2",
+                "Name": "CHM017 - List providers for pick list",
+                "Type": "DATABASE",
+                "LIM_name": "Portsmouth",
+                "Category": "ChildCare",
+                "data_type": "integration-lookup",
+                "allow_offline": 0,
+                "Output_template": "{\"lookup_validation\":\"0\",\"systemID\":\"5b87d305583a1\",\"systemName\":\"ChildCare\",\"query\":\"EXEC ListProviders\\n\\t\\t@typeID = {careType}\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
+                "log_only_on_error": 0,
+                "error_notification": "{\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniel.gregory@portsmouthcc.gov.uk\"}"
+              },
+              "5b291cf12dacb": {
+                "Editable": true,
+                "ID": "5b291cf12dacb",
+                "Name": "CHM037 - Check if Registered",
+                "Type": "DATABASE",
+                "LIM_name": "Portsmouth",
+                "Category": "ChildCare",
+                "data_type": "lookup",
+                "allow_offline": 0,
+                "Output_template": "{\"lookup_validation\":\"0\",\"systemID\":\"5b87d305583a1\",\"systemName\":\"ChildCare\",\"query\":\"EXEC ProviderCheckUpdaters\\n\\t\\t@IDcarer = {selectProvider}\\n\\t\\t,@UCRN = {UCRN_prov}\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
+                "log_only_on_error": 0,
+                "error_notification": "{\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniel.gregory@portsmouthcc.gov.uk\"}"
+              }
+            }
+          },
+          "sections": [
+            {
+              "url": "Section-1.html",
+              "id": "AF-Section-8af97d60-d839-4469-8f59-21de6496902f",
+              "props": {
+                "hideCancel": false,
+                "conditionInputs": "",
+                "displayCondition": "",
+                "validationInputs": "",
+                "validation": "",
+                "validationMessage": "This Section is Invalid",
+                "validationLookup": {
+                  "enableLookup": false,
+                  "lookupID": "",
+                  "lookupName": "",
+                  "lookupValidation": "",
+                  "lookupOperator": ""
+                }
+              },
+              "name": "Section 1",
+              "fields": [
+                {
+                  "type": "html",
+                  "props": {
+                    "label": "html 1",
+                    "dataName": "html1",
+                    "displayName": "",
+                    "outerClass": "",
+                    "width": "",
+                    "showInSummary": false,
+                    "content": "<p>This form is to request that your account is linked to the provider record to allow you to update the details for the record used on the Childcare search</p>\n<p>There are also some details for contact information used by the Portsmouth City Council team</p>",
+                    "displayCondition": null
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-b197ce15-ec53-49d7-a77f-6f8081bc88d4"
+                },
+                {
+                  "type": "select",
+                  "props": {
+                    "minimumChoices": null,
+                    "maximumChoices": null,
+                    "minimumChoicesMessage": "Please select at least _min_value_ choices",
+                    "maximumChoicesMessage": "Please select no more than _max_value_ choices",
+                    "label": "Select provider",
+                    "dataName": "selectProvider",
+                    "labelPosition": "alignLeft",
+                    "defaultType": "text",
+                    "defaultValue": null,
+                    "defaultValueText": "{querystring:selectProvider}",
+                    "listSource": "lookup",
+                    "helpText": "",
+                    "readOnly": false,
+                    "allowOther": false,
+                    "summaryField": false,
+                    "lookup": "5ae836998dfd2",
+                    "lookupCondition": "onDisplayInputChange",
+                    "lookupButton": null,
+                    "preventRunningOnInitialisation": false,
+                    "noResultsMessage": "",
+                    "tokenName": null,
+                    "listOfValues": null,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "width": null,
+                    "selectLabel": "Select...",
+                    "allowMultiple": false,
+                    "enableFilter": false,
+                    "hideWhenBlank": null,
+                    "hidden": false,
+                    "disableEmptyValue": null,
+                    "displayCondition": "{newRecord} notcontains 'yes'",
+                    "selectCondition": null,
+                    "mandatoryCondition": "{showDetails} != 'show'",
+                    "readonlyCondition": "{entryUpdated} = 'updated' and {showDetails} = 'show'",
+                    "mandatory": true,
+                    "mandatoryMessage": "This field is required"
+                  },
+                  "conditionInputs": [
+                    {
+                      "element": "select",
+                      "value": "newRecord",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "notcontains",
+                      "type": [
+                        "_core"
+                      ]
+                    },
+                    {
+                      "element": "text",
+                      "value": "yes",
+                      "type": [
+                        "literal"
+                      ]
+                    }
+                  ],
+                  "id": "AF-Field-baae7803-2724-4758-804f-651eaf4be221"
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "UCRN",
+                    "dataName": "UCRN_prov",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "{UCRN}",
+                    "helpText": "",
+                    "hidden": false,
+                    "readOnly": true,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "outputFormat": "normal",
+                    "currencyPrefix": null,
+                    "width": null,
+                    "inputMask": null,
+                    "inputMaskPlaceholder": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": true,
+                    "minimumLength": null,
+                    "maximumLength": null,
+                    "validationCondition": null,
+                    "validationMask": null,
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid"
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-3038a54d-3229-4c0a-b2cb-1bb9aecb0bca"
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "Email Address",
+                    "dataName": "Email_AddressProv",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "{Email_Address}",
+                    "helpText": "",
+                    "hidden": false,
+                    "readOnly": true,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "outputFormat": "normal",
+                    "currencyPrefix": null,
+                    "width": null,
+                    "inputMask": null,
+                    "inputMaskPlaceholder": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": true,
+                    "minimumLength": null,
+                    "maximumLength": null,
+                    "validationCondition": null,
+                    "validationMask": null,
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid"
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-df761bf4-ce64-4338-9783-78bfd15c59be"
+                },
+                {
+                  "type": "html",
+                  "props": {
+                    "label": "html 2",
+                    "dataName": "html2",
+                    "displayName": "",
+                    "outerClass": "",
+                    "width": "",
+                    "showInSummary": false,
+                    "content": "<p>This will go to the Portsmouth City Council team to check and then you will be emailed a link to use to update the record</p>",
+                    "displayCondition": "{selectProvider} isnt '' and {alreadyReg} notcontains 'yes'"
+                  },
+                  "conditionInputs": [
+                    {
+                      "element": "select",
+                      "value": "selectProvider",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "isnt ''",
+                      "type": [
+                        "_select"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "and",
+                      "type": [
+                        "logicalOperators"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "alreadyReg",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "notcontains",
+                      "type": [
+                        "_core"
+                      ]
+                    },
+                    {
+                      "element": "text",
+                      "value": "yes",
+                      "type": [
+                        "literal"
+                      ]
+                    }
+                  ],
+                  "id": "AF-Field-ba27fc6c-1cc4-4c52-b3f7-1a8370757fb4"
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "UCRN",
+                    "dataName": "UCRN",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "outputFormat": "normal",
+                    "currencyPrefix": null,
+                    "width": null,
+                    "inputMask": null,
+                    "inputMaskPlaceholder": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationCondition": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-8f51bb92-9281-4119-bf1f-4adc0d3edb51"
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "Email_Address",
+                    "dataName": "Email_Address",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "outputFormat": "normal",
+                    "currencyPrefix": null,
+                    "width": null,
+                    "inputMask": null,
+                    "inputMaskPlaceholder": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationCondition": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-ff8404c0-f82f-4305-a249-55303ea5bb1a"
+                },
+                {
+                  "type": "autoLookup",
+                  "props": {
+                    "label": "autoLookup 1",
+                    "dataName": "CheckAlready",
+                    "lookup": "5b291cf12dacb",
+                    "lookupCondition": "onDisplayInputChange",
+                    "lookupButton": null,
+                    "noResultsMessage": "",
+                    "noRetryOnIntegrationFailure": false,
+                    "preventRunningOnInitialisation": false,
+                    "displayName": "",
+                    "displayCondition": "{selectProvider} isnt '' and {UCRN_prov} isnt ''"
+                  },
+                  "conditionInputs": [
+                    {
+                      "element": "select",
+                      "value": "selectProvider",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "isnt ''",
+                      "type": [
+                        "_select"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "and",
+                      "type": [
+                        "logicalOperators"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "UCRN_prov",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "isnt ''",
+                      "type": [
+                        "_core"
+                      ]
+                    }
+                  ],
+                  "id": "AF-Field-e5791efe-01d0-4541-9e38-6e00e9bcb1a2"
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "alreadyReg",
+                    "dataName": "alreadyReg",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": true,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "outputFormat": "normal",
+                    "currencyPrefix": null,
+                    "width": null,
+                    "inputMask": null,
+                    "inputMaskPlaceholder": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationCondition": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-d2604c78-3841-47a5-a83d-30b80a363e76"
+                },
+                {
+                  "type": "number",
+                  "props": {
+                    "label": "numReg",
+                    "dataName": "numReg",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": true,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "prefix": null,
+                    "suffix": null,
+                    "width": null,
+                    "decimalPlaces": null,
+                    "numberToText": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumValue": "",
+                    "maximumValue": "",
+                    "validationCondition": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumValueMessage": "Please input _min_value_ or more",
+                    "maximumValueMessage": "Please input _max_value_ or less",
+                    "validationConditionMessage": "This field is invalid"
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-5def51a0-9d03-49ec-b09f-ee1302b47e96"
+                },
+                {
+                  "type": "html",
+                  "props": {
+                    "label": "html 3",
+                    "dataName": "html3",
+                    "displayName": "",
+                    "outerClass": "",
+                    "width": "",
+                    "showInSummary": false,
+                    "content": "<p>You are already registered to update the setting details please use the following link to update the setting details</p>\n<br />\n<a target= \"_top\" href=\"{url_childcareUpdate}\">Update Setting Details</a>",
+                    "displayCondition": "{selectProvider} isnt '' and {alreadyReg} contains 'yes'"
+                  },
+                  "conditionInputs": [
+                    {
+                      "element": "select",
+                      "value": "selectProvider",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "isnt ''",
+                      "type": [
+                        "_select"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "and",
+                      "type": [
+                        "logicalOperators"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "alreadyReg",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "contains",
+                      "type": [
+                        "_core"
+                      ]
+                    },
+                    {
+                      "element": "text",
+                      "value": "yes",
+                      "type": [
+                        "literal"
+                      ]
+                    }
+                  ],
+                  "id": "AF-Field-03334b6b-ac25-4582-8a5e-51aae664c4c3"
+                },
+                {
+                  "type": "html",
+                  "props": {
+                    "label": "html 4",
+                    "dataName": "html4",
+                    "displayName": "",
+                    "outerClass": "",
+                    "width": "",
+                    "showInSummary": false,
+                    "content": "<p>Please note there is another person already registered to update this provider</p>",
+                    "displayCondition": "{selectProvider} isnt '' and {alreadyReg} contains 'no' and {numReg} > '0'"
+                  },
+                  "conditionInputs": [
+                    {
+                      "element": "select",
+                      "value": "selectProvider",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "isnt ''",
+                      "type": [
+                        "_select"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "and",
+                      "type": [
+                        "logicalOperators"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "alreadyReg",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "contains",
+                      "type": [
+                        "_core"
+                      ]
+                    },
+                    {
+                      "element": "text",
+                      "value": "no",
+                      "type": [
+                        "literal"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "and",
+                      "type": [
+                        "logicalOperators"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "numReg",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": ">",
+                      "type": [
+                        "_number"
+                      ]
+                    },
+                    {
+                      "element": "number",
+                      "value": "0",
+                      "type": [
+                        "literal"
+                      ]
+                    }
+                  ],
+                  "id": "AF-Field-f1c418c3-4840-403f-b120-d32ecd42fb31"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "routes": {
+        "Authorise": {
+          "origin": "Request",
+          "destination": "Authorise",
+          "label": "Stage 1 to Stage 2",
+          "onComplete": true,
+          "condition": "",
+          "conditionInputs": {},
+          "onEscalation": false,
+          "escalationCondition": "",
+          "escalationConditionInputs": {}
+        }
+      },
+      "populateFields": [
+        {
+          "label": "Select provider",
+          "dataName": "selectProvider",
+          "populated": true
+        },
+        {
+          "label": "UCRN",
+          "dataName": "UCRN_prov",
+          "populated": true
+        },
+        {
+          "label": "Email Address",
+          "dataName": "Email_AddressProv",
+          "populated": true
+        },
+        {
+          "label": "UCRN",
+          "dataName": "UCRN",
+          "populated": true
+        },
+        {
+          "label": "Email_Address",
+          "dataName": "Email_Address",
+          "populated": true
+        },
+        {
+          "label": "alreadyReg",
+          "dataName": "alreadyReg",
+          "populated": true
+        },
+        {
+          "label": "numReg",
+          "dataName": "numReg",
+          "populated": true
+        }
+      ]
+    },
+    "Authorise": {
+      "url": "Stage-2.html",
+      "id": "AF-Stage-f203eb77-a886-4277-8eb9-428ccc794853",
+      "name": "Authorise",
+      "props": {
+        "form": "AF-Form-dbc72bf1-510a-4767-a060-ee5324567bd0",
+        "xpos": 405.98959541321,
+        "ypos": 30.989593505859,
+        "group": "USERGROUP-ff39fc66-8447-4593-a5d5-7ffa9aaeed04",
+        "integrations": [
+          {
+            "id": "5b23d646b4fad",
+            "condition": "",
+            "repeat_against": "",
+            "type_condition": "creation",
+            "timed_condition": "",
+            "repeat_interval": ""
+          },
+          {
+            "id": "5b23cc2c2f763",
+            "condition": "{isItOKToAuthoris} icontains 'yes'",
+            "repeat_against": "",
+            "type_condition": "submission",
+            "timed_condition": "",
+            "repeat_interval": "",
+            "conditionInputs": [
+              {
+                "element": "select",
+                "value": "isItOKToAuthoris",
+                "type": [
+                  "fields"
+                ]
+              },
+              {
+                "element": "select",
+                "value": "icontains",
+                "type": [
+                  "_select"
+                ]
+              },
+              {
+                "element": "select",
+                "value": "yes",
+                "type": [
+                  "list"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "59392d6eb3c82",
+            "condition": "{isItOKToAuthoris} icontains 'yes'",
+            "repeat_against": "",
+            "type_condition": "submission",
+            "timed_condition": "",
+            "repeat_interval": "",
+            "conditionInputs": [
+              {
+                "element": "select",
+                "value": "isItOKToAuthoris",
+                "type": [
+                  "fields"
+                ]
+              },
+              {
+                "element": "select",
+                "value": "icontains",
+                "type": [
+                  "_select"
+                ]
+              },
+              {
+                "element": "select",
+                "value": "yes",
+                "type": [
+                  "list"
+                ]
+              }
+            ]
+          }
+        ],
+        "user_token": "",
+        "group_token": "",
+        "stopOnFailure": false,
+        "useNewPaymentMethod": false,
+        "textColor": "#ffffff",
+        "user": "",
+        "backgroundColor": "#0033cc",
+        "date_due": "",
+        "date_due_warn": "",
+        "notification": {
+          "notify_assigned_users": false,
+          "recipients_to": null,
+          "subject": null,
+          "body": null
+        },
+        "escalation": {
+          "notify_assigned_users": true,
+          "recipients_to": null,
+          "subject": null,
+          "body": null,
+          "date": null,
+          "date_type": null,
+          "user_token": null,
+          "group_token": null,
+          "user": null,
+          "group": null,
+          "condition": null,
+          "conditionInputs": {}
+        },
+        "caseViewOption": false,
+        "startSection": "",
+        "usenewPaymentMethod": false,
+        "formDefinition": {
+          "formName": "FID Authorise Provider Access",
+          "formDescription": "",
+          "props": {
+            "id": "AF-Form-dbc72bf1-510a-4767-a060-ee5324567bd0",
+            "category": "",
+            "saveSubmissionData": true,
+            "usePHPIntregration": false,
+            "serverSideLookupValidation": false,
+            "tags": "",
+            "navigateAwayWarning": "Are you sure you want to navigate away? All progress in this form will be lost.",
+            "navigateAwayWarn": true,
+            "validateOnInit": true,
+            "stopOnFailure": false,
+            "stickyError": false,
+            "showFormReference": false,
+            "mustBeValid": true,
+            "hideHeader": false,
+            "isPublished": false,
+            "isSubform": false,
+            "integrations": [],
+            "notes": false,
+            "submission": {
+              "message": "<p>Your reference number is {summary_ref}.</p>\n<p>Thank you for submitting {form_name}</p>",
+              "api": "/form/submit/",
+              "download": "Download PDF",
+              "cancel_redirect": null,
+              "continue": "Continue",
+              "conditionInputs": "",
+              "showDownload": false,
+              "showMessage": true,
+              "serverSubmit": true,
+              "redirect": null,
+              "condition": "",
+              "printableIntegrationId": "",
+              "newPaymentMethod": false
+            },
+            "save": {
+              "lim": "3f07ecf4-0dfa-11e2-b0b9-12313b03ed59",
+              "displayCondition": "",
+              "conditionInputs": "",
+              "redirect": null,
+              "allow": false,
+              "fromName": "",
+              "message": "",
+              "subject": "",
+              "mail": false,
+              "from": "",
+              "disableSaveNotify": false
+            },
+            "hideSaveUrl": false,
+            "usePHPIntegrations": true,
+            "integrationDefinition": {
+              "5ae836998dfd2": {
+                "Editable": true,
+                "ID": "5ae836998dfd2",
+                "Name": "CHM017 - List providers for pick list",
+                "Type": "DATABASE",
+                "LIM_name": "Portsmouth",
+                "Category": "ChildCare",
+                "data_type": "integration-lookup",
+                "allow_offline": 0,
+                "Output_template": "{\"lookup_validation\":\"0\",\"systemID\":\"5b87d305583a1\",\"systemName\":\"ChildCare\",\"query\":\"EXEC ListProviders\\n\\t\\t@typeID = {careType}\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
+                "log_only_on_error": 0,
+                "error_notification": "{\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniel.gregory@portsmouthcc.gov.uk\"}"
+              },
+              "5b291cf12dacb": {
+                "Editable": true,
+                "ID": "5b291cf12dacb",
+                "Name": "CHM037 - Check if Registered",
+                "Type": "DATABASE",
+                "LIM_name": "Portsmouth",
+                "Category": "ChildCare",
+                "data_type": "lookup",
+                "allow_offline": 0,
+                "Output_template": "{\"lookup_validation\":\"0\",\"systemID\":\"5b87d305583a1\",\"systemName\":\"ChildCare\",\"query\":\"EXEC ProviderCheckUpdaters\\n\\t\\t@IDcarer = {selectProvider}\\n\\t\\t,@UCRN = {UCRN_prov}\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
+                "log_only_on_error": 0,
+                "error_notification": "{\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniel.gregory@portsmouthcc.gov.uk\"}"
+              }
+            }
+          },
+          "sections": [
+            {
+              "url": "Section-1.html",
+              "id": "AF-Section-30a77091-c34a-4b8e-ae5f-56d09376f178",
+              "props": {
+                "hideCancel": false,
+                "conditionInputs": "",
+                "displayCondition": "",
+                "validationInputs": "",
+                "validation": "",
+                "validationMessage": "This Section is Invalid",
+                "validationLookup": {
+                  "enableLookup": false,
+                  "lookupID": "",
+                  "lookupName": "",
+                  "lookupValidation": "",
+                  "lookupOperator": ""
+                }
+              },
+              "name": "Section 1",
+              "fields": [
+                {
+                  "type": "select",
+                  "props": {
+                    "minimumChoices": null,
+                    "maximumChoices": null,
+                    "minimumChoicesMessage": "Please select at least _min_value_ choices",
+                    "maximumChoicesMessage": "Please select no more than _max_value_ choices",
+                    "label": "Selected Provider",
+                    "dataName": "selectProvider",
+                    "labelPosition": "alignLeft",
+                    "defaultType": "text",
+                    "defaultValue": null,
+                    "defaultValueText": "",
+                    "listSource": "lookup",
+                    "helpText": "",
+                    "readOnly": true,
+                    "allowOther": false,
+                    "summaryField": false,
+                    "lookup": "5ae836998dfd2",
+                    "lookupCondition": "onDisplayInputChange",
+                    "lookupButton": null,
+                    "preventRunningOnInitialisation": false,
+                    "noResultsMessage": "",
+                    "tokenName": null,
+                    "listOfValues": null,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "width": null,
+                    "selectLabel": "Select...",
+                    "allowMultiple": false,
+                    "enableFilter": false,
+                    "hideWhenBlank": null,
+                    "hidden": false,
+                    "disableEmptyValue": null,
+                    "displayCondition": "{newRecord} notcontains 'yes'",
+                    "selectCondition": null,
+                    "mandatoryCondition": "{showDetails} != 'show'",
+                    "readonlyCondition": "{entryUpdated} = 'updated' and {showDetails} = 'show'",
+                    "mandatory": true,
+                    "mandatoryMessage": "This field is required"
+                  },
+                  "conditionInputs": [
+                    {
+                      "element": "select",
+                      "value": "newRecord",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "notcontains",
+                      "type": [
+                        "_core"
+                      ]
+                    },
+                    {
+                      "element": "text",
+                      "value": "yes",
+                      "type": [
+                        "literal"
+                      ]
+                    }
+                  ],
+                  "id": "AF-Field-55882233-c135-40e7-b90f-c9c39252a40e"
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "UCRN",
+                    "dataName": "UCRN_prov",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "",
+                    "helpText": "",
+                    "hidden": false,
+                    "readOnly": true,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "outputFormat": "normal",
+                    "currencyPrefix": null,
+                    "width": null,
+                    "inputMask": null,
+                    "inputMaskPlaceholder": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": true,
+                    "minimumLength": null,
+                    "maximumLength": null,
+                    "validationCondition": null,
+                    "validationMask": null,
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid"
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-7a238e03-a48a-43ff-8539-eb3ef1aab511"
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "Email Address",
+                    "dataName": "Email_AddressProv",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "",
+                    "helpText": "",
+                    "hidden": false,
+                    "readOnly": true,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "outputFormat": "normal",
+                    "currencyPrefix": null,
+                    "width": null,
+                    "inputMask": null,
+                    "inputMaskPlaceholder": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": true,
+                    "minimumLength": null,
+                    "maximumLength": null,
+                    "validationCondition": null,
+                    "validationMask": null,
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid"
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-2a403287-87ff-4fec-b151-e22052360e17"
+                },
+                {
+                  "type": "html",
+                  "props": {
+                    "label": "html 2",
+                    "dataName": "html2",
+                    "displayName": "",
+                    "outerClass": "",
+                    "width": "",
+                    "showInSummary": false,
+                    "content": "<h4>The following are already registered</h4>\n<ul>{#ListReg}</ul>",
+                    "displayCondition": "{numReg} > '0'"
+                  },
+                  "conditionInputs": [
+                    {
+                      "element": "select",
+                      "value": "numReg",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": ">",
+                      "type": [
+                        "_number"
+                      ]
+                    },
+                    {
+                      "element": "number",
+                      "value": "0",
+                      "type": [
+                        "literal"
+                      ]
+                    }
+                  ],
+                  "id": "AF-Field-953d53e2-be60-488e-9ccf-125483b8c5d9"
+                },
+                {
+                  "type": "radio",
+                  "props": {
+                    "label": "Is it OK to authorise access to the Provider record?",
+                    "dataName": "isItOKToAuthoris",
+                    "labelPosition": "alignLeft",
+                    "defaultType": "specific",
+                    "defaultValue": "",
+                    "defaultValueText": null,
+                    "listSource": "one-time-list",
+                    "helpText": "",
+                    "readOnly": false,
+                    "allowOther": false,
+                    "summaryField": false,
+                    "lookup": null,
+                    "lookupCondition": null,
+                    "lookupButton": null,
+                    "preventRunningOnInitialisation": null,
+                    "noResultsMessage": null,
+                    "tokenName": null,
+                    "listOfValues": [
+                      {
+                        "label": "Yes",
+                        "value": "yes"
+                      },
+                      {
+                        "label": "No",
+                        "value": "no"
+                      }
+                    ],
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "width": null,
+                    "displayStyle": "horizontal",
+                    "styleAsButton": null,
+                    "hideWhenBlank": null,
+                    "hidden": null,
+                    "displayCondition": null,
+                    "selectCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": true,
+                    "mandatoryMessage": "This field is required"
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-23a73ed0-1ffd-43e8-a272-acb970af0da7"
+                },
+                {
+                  "type": "html",
+                  "props": {
+                    "label": "html 1",
+                    "dataName": "html1",
+                    "displayName": "",
+                    "outerClass": "",
+                    "width": "",
+                    "showInSummary": false,
+                    "content": "<p style=\"color:blue text-align:center\">A link to the update form will be sent to {Email_AddressProv}</p>",
+                    "displayCondition": "{isItOKToAuthoris} icontains 'yes'"
+                  },
+                  "conditionInputs": [
+                    {
+                      "element": "select",
+                      "value": "isItOKToAuthoris",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "icontains",
+                      "type": [
+                        "_select"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "yes",
+                      "type": [
+                        "list"
+                      ]
+                    }
+                  ],
+                  "id": "AF-Field-e439b3c7-8acd-4cb9-b51b-fcc632d5ae7a"
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "emailSubject",
+                    "dataName": "emailSubject",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "Childcare details Update",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "outputFormat": "normal",
+                    "currencyPrefix": null,
+                    "width": null,
+                    "inputMask": null,
+                    "inputMaskPlaceholder": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationCondition": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-c9454f18-498f-436e-9248-ea2524c9b5e6"
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "emailSenderN",
+                    "dataName": "emailSenderN",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "{NoReplyEmail_N}",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "outputFormat": "normal",
+                    "currencyPrefix": null,
+                    "width": null,
+                    "inputMask": null,
+                    "inputMaskPlaceholder": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationCondition": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-b981b26d-5fcb-4e9d-b26c-ffaad35c01d8"
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "emailSenderA",
+                    "dataName": "emailSenderA",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "{NoReplyEmail}",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "outputFormat": "normal",
+                    "currencyPrefix": null,
+                    "width": null,
+                    "inputMask": null,
+                    "inputMaskPlaceholder": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationCondition": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-c25c62d2-0009-444d-8305-f96ea39f8941"
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "emailRecipientA",
+                    "dataName": "emailRecipientA",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "{Email_AddressProv}",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "outputFormat": "normal",
+                    "currencyPrefix": null,
+                    "width": null,
+                    "inputMask": null,
+                    "inputMaskPlaceholder": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationCondition": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-6eebda80-4d21-4341-8494-b05ca7fbcdd0"
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "emailCCRecipient",
+                    "dataName": "emailCCRecipient",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "outputFormat": "normal",
+                    "currencyPrefix": null,
+                    "width": null,
+                    "inputMask": null,
+                    "inputMaskPlaceholder": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationCondition": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-63d988c8-a61d-4c36-915c-084ec42de50a"
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "emailBCCRecipient",
+                    "dataName": "emailBCCRecipient",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "outputFormat": "normal",
+                    "currencyPrefix": null,
+                    "width": null,
+                    "inputMask": null,
+                    "inputMaskPlaceholder": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationCondition": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-9ed2ff13-4666-4a7c-91c6-d757477335eb"
+                },
+                {
+                  "type": "textarea",
+                  "props": {
+                    "label": "emailMain",
+                    "dataName": "emailMain",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "concat({#emailStart},'You have been authorised,\\n\n\\n\nPlease save the following link to use for updating the details on the Childcare record.\\n\n\\n',\n{url_childcareUpdate},\n'\\n\nYours sincerely,\\n\nPortsmouth City Council',{#emailEnd})",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "width": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-83a6602c-443a-401e-8adc-f27decaabf1a"
+                },
+                {
+                  "type": "autoLookup",
+                  "props": {
+                    "label": "autoLookup 1",
+                    "dataName": "CheckAlready",
+                    "lookup": "5b291cf12dacb",
+                    "lookupCondition": "onDisplayInputChange",
+                    "lookupButton": null,
+                    "noResultsMessage": "",
+                    "noRetryOnIntegrationFailure": false,
+                    "preventRunningOnInitialisation": false,
+                    "displayName": "",
+                    "displayCondition": "{selectProvider} isnt '' and {UCRN_prov} isnt ''",
+                    "readOnly": false,
+                    "mandatory": false
+                  },
+                  "conditionInputs": [
+                    {
+                      "element": "select",
+                      "value": "selectProvider",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "isnt ''",
+                      "type": [
+                        "_select"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "and",
+                      "type": [
+                        "logicalOperators"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "UCRN_prov",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "isnt ''",
+                      "type": [
+                        "_core"
+                      ]
+                    }
+                  ],
+                  "id": "AF-Field-c9f0a2c4-196d-4397-a8e1-166856fbfcf6"
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "alreadyReg",
+                    "dataName": "alreadyReg",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": true,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "outputFormat": "normal",
+                    "currencyPrefix": null,
+                    "width": null,
+                    "inputMask": null,
+                    "inputMaskPlaceholder": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationCondition": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-7eb87273-c9d6-4860-abc7-5e7cd1518c81"
+                },
+                {
+                  "type": "number",
+                  "props": {
+                    "label": "numReg",
+                    "dataName": "numReg",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": true,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "prefix": null,
+                    "suffix": null,
+                    "width": null,
+                    "decimalPlaces": null,
+                    "numberToText": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumValue": "",
+                    "maximumValue": "",
+                    "validationCondition": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumValueMessage": "Please input _min_value_ or more",
+                    "maximumValueMessage": "Please input _max_value_ or less",
+                    "validationConditionMessage": "This field is invalid"
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-efddfd53-3dbd-4ab7-84df-d7d46f3ad771"
+                },
+                {
+                  "type": "html",
+                  "props": {
+                    "label": "html 3",
+                    "dataName": "html3",
+                    "displayName": "",
+                    "outerClass": "",
+                    "width": "",
+                    "showInSummary": false,
+                    "content": "<p>This person is already registered to update the setting details, submit will send them another email to the form to update setting details</p>",
+                    "displayCondition": "{selectProvider} isnt '' and {alreadyReg} contains 'yes' and {isItOKToAuthoris} icontains 'yes'",
+                    "readOnly": false
+                  },
+                  "conditionInputs": [
+                    {
+                      "element": "select",
+                      "value": "selectProvider",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "isnt ''",
+                      "type": [
+                        "_select"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "and",
+                      "type": [
+                        "logicalOperators"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "alreadyReg",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "contains",
+                      "type": [
+                        "_core"
+                      ]
+                    },
+                    {
+                      "element": "text",
+                      "value": "yes",
+                      "type": [
+                        "literal"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "and",
+                      "type": [
+                        "logicalOperators"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "isItOKToAuthoris",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "icontains",
+                      "type": [
+                        "_select"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "yes",
+                      "type": [
+                        "list"
+                      ]
+                    }
+                  ],
+                  "id": "AF-Field-87bad16e-4edc-4ca4-8a1e-cd0629f3089c"
+                },
+                {
+                  "type": "textarea",
+                  "props": {
+                    "label": "ListReg",
+                    "dataName": "ListReg",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": true,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "width": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-8611a97d-d130-4d0c-b8b1-f3276c4c38ff"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "routes": {},
+      "populateFields": [
+        {
+          "label": "Selected Provider",
+          "dataName": "selectProvider",
+          "populated": true
+        },
+        {
+          "label": "UCRN",
+          "dataName": "UCRN_prov",
+          "populated": true
+        },
+        {
+          "label": "Email Address",
+          "dataName": "Email_AddressProv",
+          "populated": true
+        },
+        {
+          "label": "Is it OK to authorise access to the Provider record?",
+          "dataName": "isItOKToAuthoris",
+          "populated": true
+        },
+        {
+          "label": "emailSubject",
+          "dataName": "emailSubject",
+          "populated": true
+        },
+        {
+          "label": "emailSenderN",
+          "dataName": "emailSenderN",
+          "populated": true
+        },
+        {
+          "label": "emailSenderA",
+          "dataName": "emailSenderA",
+          "populated": true
+        },
+        {
+          "label": "emailRecipientA",
+          "dataName": "emailRecipientA",
+          "populated": true
+        },
+        {
+          "label": "emailCCRecipient",
+          "dataName": "emailCCRecipient",
+          "populated": true
+        },
+        {
+          "label": "emailBCCRecipient",
+          "dataName": "emailBCCRecipient",
+          "populated": true
+        },
+        {
+          "label": "emailMain",
+          "dataName": "emailMain",
+          "populated": true
+        },
+        {
+          "label": "alreadyReg",
+          "dataName": "alreadyReg",
+          "populated": true
+        },
+        {
+          "label": "numReg",
+          "dataName": "numReg",
+          "populated": true
+        },
+        {
+          "label": "ListReg",
+          "dataName": "ListReg",
+          "populated": true
+        }
+      ]
+    }
+  }
+}

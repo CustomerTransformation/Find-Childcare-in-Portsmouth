@@ -1,0 +1,16 @@
+[
+    {
+        "ID": "5b2250d1483d9",
+        "Name": "CHM031 - PDF of selected",
+        "Type": "PRINTABLE",
+        "LIM_id": "3f07ecf4-0dfa-11e2-b0b9-12313b03ed59",
+        "Editable": true,
+        "LIM_name": "LIM14",
+        "Category": "ChildCare",
+        "data_type": "lookup",
+        "allow_offline": 0,
+        "Output_template": "{\"lookup_validation\":\"0\",\"name\":\"{reference}\",\"remove_margins\":\"\",\"setPaperType\":\"a4\",\"content\":\"<style><!--\\n.card {\\n    /* Add shadows to create the \\\"card\\\" effect */\\n    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);\\n    transition: 0.3s;\\n    padding: 5px 10px 5px;\\n    }\\n--></style>\\n<div>{#htmlSelectResults}</div>\"}",
+        "log_only_on_error": 0,
+        "error_notification": "{\"LIM_id\":\"3f07ecf4-0dfa-11e2-b0b9-12313b03ed59\",\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniel.gregory@portsmouthcc.gov.uk\"}"
+    }
+]
