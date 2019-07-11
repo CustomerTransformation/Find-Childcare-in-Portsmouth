@@ -2,7 +2,7 @@
   "processName": "FID Update Portsmouth Childcare Provider details",
   "processDescription": "",
   "props": {
-    "id": "AF-Process-8a24a929-1a62-4ec3-82ce-4b417878c529",
+    "id": "AF-Process-ce67adb7-fe7e-42d6-b92d-7a4602d97dd1",
     "category": "AF-Category-40390eb6-3a16-492c-9ba7-cfa8eba41027",
     "tags": "",
     "viewGroup": null,
@@ -135,7 +135,7 @@
                 "Category": "ChildCare",
                 "data_type": "lookup",
                 "allow_offline": 0,
-                "Output_template": "{\"lookup_validation\":\"0\",\"systemID\":\"5b87d305583a1\",\"systemName\":\"ChildCare\",\"query\":\"EXEC ListCMtype\\n\\t@listAll = {CMtypeLstAll},\\n\\t@currentSel = {CMtypeSel}\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
+                "Output_template": "{\"lookup_validation\":\"0\",\"systemID\":\"5a8c309998604\",\"systemName\":\"ChildCare\",\"query\":\"EXEC ListCMtype\\n\\t@listAll = {CMtypeLstAll},\\n\\t@currentSel = {CMtypeSel}\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
                 "log_only_on_error": 0,
                 "error_notification": "{\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniel.gregory@portsmouthcc.gov.uk\"}"
               },
@@ -148,7 +148,7 @@
                 "Category": "ChildCare",
                 "data_type": "integration-lookup",
                 "allow_offline": 0,
-                "Output_template": "{\"lookup_validation\":\"0\",\"systemID\":\"5b87d305583a1\",\"systemName\":\"ChildCare\",\"query\":\"EXEC ListProviders\\n\\t\\t@typeID = {careType}\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
+                "Output_template": "{\"systemID\":\"5a8c309998604\",\"systemName\":\"ChildCare\",\"query\":\"DECLARE @check as varchar(10)\\nSET @check = {newRecord}\\nEXEC ListProviders\\n\\t\\t@typeID = {careType}\\n\\t\\t,@countChanges = {countChanges}\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
                 "log_only_on_error": 0,
                 "error_notification": "{\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniel.gregory@portsmouthcc.gov.uk\"}"
               },
@@ -161,7 +161,7 @@
                 "Category": "ChildCare",
                 "data_type": "integration-lookup",
                 "allow_offline": 0,
-                "Output_template": "{\"lookup_validation\":\"0\",\"systemID\":\"5b87d305583a1\",\"systemName\":\"ChildCare\",\"query\":\"EXEC ListCMdispOptions\\n\\t\\t@selValue = {selValue},\\n\\t\\t@currValues = 1\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
+                "Output_template": "{\"lookup_validation\":\"0\",\"systemID\":\"5a8c309998604\",\"systemName\":\"ChildCare\",\"query\":\"EXEC ListCMdispOptions\\n\\t\\t@selValue = {selValue},\\n\\t\\t@currValues = 1\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
                 "log_only_on_error": 0,
                 "error_notification": "{\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniel.gregory@portsmouthcc.gov.uk\"}"
               },
@@ -174,7 +174,7 @@
                 "Category": "ChildCare",
                 "data_type": "integration-lookup",
                 "allow_offline": 0,
-                "Output_template": "{\"lookup_validation\":\"0\",\"systemID\":\"5b87d305583a1\",\"systemName\":\"ChildCare\",\"query\":\"EXEC ListCMidaci\\n\\t\\t@selValue = {selValIDACI},\\n\\t\\t@currValues = 1\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
+                "Output_template": "{\"lookup_validation\":\"0\",\"systemID\":\"5a8c309998604\",\"systemName\":\"ChildCare\",\"query\":\"EXEC ListCMidaci\\n\\t\\t@selValue = {selValIDACI},\\n\\t\\t@currValues = 1\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
                 "log_only_on_error": 0,
                 "error_notification": "{\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniel.gregory@portsmouthcc.gov.uk\"}"
               },
@@ -187,7 +187,7 @@
                 "Category": "ChildCare",
                 "data_type": "lookup",
                 "allow_offline": 0,
-                "Output_template": "{\"lookup_validation\":\"0\",\"systemID\":\"5b87d305583a1\",\"systemName\":\"ChildCare\",\"query\":\"EXEC ListCMofsted\\n\\t@listAll = {OfstedLstAll},\\n\\t@currentSel = {OfstedSel}\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
+                "Output_template": "{\"lookup_validation\":\"0\",\"systemID\":\"5a8c309998604\",\"systemName\":\"ChildCare\",\"query\":\"EXEC ListCMofsted\\n\\t@listAll = {OfstedLstAll},\\n\\t@currentSel = {OfstedSel}\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
                 "log_only_on_error": 0,
                 "error_notification": "{\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniel.gregory@portsmouthcc.gov.uk\"}"
               },
@@ -200,7 +200,7 @@
                 "Category": "ChildCare",
                 "data_type": "integration-lookup",
                 "allow_offline": 0,
-                "Output_template": "{\"lookup_validation\":\"0\",\"systemID\":\"5b87d305583a1\",\"systemName\":\"ChildCare\",\"query\":\"EXEC ListCMoptions\\n\\t\\t@selValue = {selValue},\\n\\t\\t@currValues = 1\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
+                "Output_template": "{\"lookup_validation\":\"0\",\"systemID\":\"5a8c309998604\",\"systemName\":\"ChildCare\",\"query\":\"EXEC ListCMoptions\\n\\t\\t@selValue = {selValue},\\n\\t\\t@currValues = 1\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
                 "log_only_on_error": 0,
                 "error_notification": "{\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniel.gregory@portsmouthcc.gov.uk\"}"
               },
@@ -213,7 +213,7 @@
                 "Category": "ChildCare",
                 "data_type": "integration-lookup",
                 "allow_offline": 0,
-                "Output_template": "{\"lookup_validation\":\"0\",\"systemID\":\"5b87d305583a1\",\"systemName\":\"ChildCare\",\"query\":\"EXEC GetSettingDetails\\n\\t\\t@carerID = {selectProvider}\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
+                "Output_template": "{\"lookup_validation\":\"0\",\"systemID\":\"5a8c309998604\",\"systemName\":\"ChildCare\",\"query\":\"EXEC GetSettingDetails\\n\\t\\t@carerID = {selectProvider}\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
                 "log_only_on_error": 0,
                 "error_notification": "{\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniel.gregory@portsmouthcc.gov.uk\"}"
               },
@@ -226,7 +226,7 @@
                 "Category": "ChildCare",
                 "data_type": "lookup",
                 "allow_offline": 0,
-                "Output_template": "{\"systemID\":\"5b87d305583a1\",\"systemName\":\"ChildCare\",\"query\":\"EXEC SurveyLatestDetials\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
+                "Output_template": "{\"systemID\":\"5a8c309998604\",\"systemName\":\"ChildCare\",\"query\":\"EXEC SurveyLatestDetials\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
                 "log_only_on_error": 0,
                 "error_notification": "{\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniel.gregory@portsmouthcc.gov.uk\"}"
               },
@@ -239,7 +239,7 @@
                 "Category": "ChildCare",
                 "data_type": "lookup",
                 "allow_offline": 0,
-                "Output_template": "{\"systemID\":\"5b87d305583a1\",\"systemName\":\"ChildCare\",\"query\":\"EXEC sufficiencySurveyLoadResponses \\n\\t@provID = {settingID}\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
+                "Output_template": "{\"systemID\":\"5a8c309998604\",\"systemName\":\"ChildCare\",\"query\":\"EXEC sufficiencySurveyLoadResponses \\n\\t@provID = {settingID}\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
                 "log_only_on_error": 0,
                 "error_notification": "{\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniel.gregory@portsmouthcc.gov.uk\"}"
               }
@@ -281,6 +281,86 @@
                     "displayCondition": "{locUpdated} contains 'yes' and {postcode} isnt {postcodeFound} and upperstr({postcode}) match '^(((([BEGLMNS][1-9]{1,2})|(W[2-9])|((A[BL]|B[ABDHLNRST]|C[ABFHMORTVW]|D[ADEGHLNTY]|E[HNX]|F[KY]|G[LUY}|H[ADGPRSUX]|I[GMPV]|JE|K[ATWY]|L[ADELNSU]|M[EKL]|N[EGNPRW]|O[LX]|P[AEHLOR]|R[GHM]|S[AEGKL-PRSTWY]|T[ADFNQRSW]|UB|W[ADFNRSV]|YO|ZE)[1-9]{1,2})|(W1[A-HJKSTUW0-9])|(((WC[1-2])|(EC[1-4])|(SW1))[ABEHMNPRVWXY])) ([0-9][ABD-HJLNP-UW-Z]{2}))$|(GIR 0AA))$'"
                   },
                   "id": "AF-Field-164cc605-6c47-4147-be70-bfc313bd62fd"
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "New Record",
+                    "dataName": "newRecord",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": true,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "outputFormat": "normal",
+                    "currencyPrefix": null,
+                    "width": null,
+                    "inputMask": null,
+                    "inputMaskPlaceholder": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationCondition": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-3ca16ec4-4c5c-43cc-8ce2-35f707947b97"
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "Default select provider",
+                    "dataName": "defaultSelectProvi",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "if({IDcarer} = '' and {newRecord} = '' ,{valFromLink}, {IDcarer})",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": true,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "outputFormat": "normal",
+                    "currencyPrefix": null,
+                    "width": null,
+                    "inputMask": null,
+                    "inputMaskPlaceholder": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationCondition": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-9cbbf05b-0455-4685-a44a-25f97e6b9374"
                 },
                 {
                   "type": "select",
@@ -390,7 +470,7 @@
                     "labelPosition": "alignLeft",
                     "defaultType": "text",
                     "defaultValue": null,
-                    "defaultValueText": "{querystring:selectProvider}",
+                    "defaultValueText": "{defaultSelectProvi}",
                     "listSource": "lookup",
                     "helpText": "",
                     "readOnly": false,
@@ -477,10 +557,50 @@
                 {
                   "type": "text",
                   "props": {
+                    "label": "valFromLink",
+                    "dataName": "valFromLink",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "{querystring:selectProvider}",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": true,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "outputFormat": "normal",
+                    "currencyPrefix": null,
+                    "width": null,
+                    "inputMask": null,
+                    "inputMaskPlaceholder": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationCondition": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-71486010-b0bd-4bd8-a691-d18eabe09a9c"
+                },
+                {
+                  "type": "text",
+                  "props": {
                     "label": "Show Details",
                     "dataName": "showDetails",
                     "labelPosition": "alignLeft",
-                    "defaultValue": "if({selectProvider} != '' or {newRecord} = 'yes', 'show', '')",
+                    "defaultValue": "if({selectProvider} != '' or {newRecord} = 'yes' or {newRecord} = 'added', 'show', '')",
                     "helpText": "",
                     "hidden": true,
                     "readOnly": false,
@@ -638,15 +758,50 @@
                   "id": "AF-Field-e7ecb953-0f89-4fd9-b892-61810fa250e2"
                 },
                 {
-                  "type": "text",
+                  "type": "number",
                   "props": {
-                    "label": "New Record",
-                    "dataName": "newRecord",
+                    "label": "IDcarer",
+                    "dataName": "IDcarer",
                     "labelPosition": "alignLeft",
                     "defaultValue": "",
                     "helpText": "",
                     "hidden": true,
                     "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "prefix": null,
+                    "suffix": null,
+                    "width": null,
+                    "decimalPlaces": null,
+                    "numberToText": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": "{showDetails} contains 'show'",
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumValue": "",
+                    "maximumValue": "",
+                    "validationCondition": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumValueMessage": "Please input _min_value_ or more",
+                    "maximumValueMessage": "Please input _max_value_ or less",
+                    "validationConditionMessage": "This field is invalid"
+                  },
+                  "id": "AF-Field-41bd344c-d830-46b3-ab2c-feb792fb7c95"
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "Default for to show",
+                    "dataName": "defaultForToShow",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "if({newRecord} = 'yes' or {newRecord} = 'added', 'hAl','')",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": true,
                     "summaryField": false,
                     "displayName": true,
                     "outerClass": null,
@@ -675,43 +830,7 @@
                     "validationMaskMessageValue": "Select..."
                   },
                   "conditionInputs": [],
-                  "id": "AF-Field-3ca16ec4-4c5c-43cc-8ce2-35f707947b97"
-                },
-                {
-                  "type": "number",
-                  "props": {
-                    "label": "IDcarer",
-                    "dataName": "IDcarer",
-                    "labelPosition": "alignLeft",
-                    "defaultValue": "",
-                    "helpText": "",
-                    "hidden": true,
-                    "readOnly": false,
-                    "summaryField": false,
-                    "displayName": true,
-                    "outerClass": null,
-                    "labelClass": null,
-                    "inputClass": null,
-                    "prefix": null,
-                    "suffix": null,
-                    "width": null,
-                    "decimalPlaces": null,
-                    "numberToText": null,
-                    "hideWhenBlank": null,
-                    "displayCondition": null,
-                    "mandatoryCondition": null,
-                    "readonlyCondition": null,
-                    "mandatory": false,
-                    "minimumValue": "",
-                    "maximumValue": "",
-                    "validationCondition": "",
-                    "mandatoryMessage": "This field is required",
-                    "minimumValueMessage": "Please input _min_value_ or more",
-                    "maximumValueMessage": "Please input _max_value_ or less",
-                    "validationConditionMessage": "This field is invalid"
-                  },
-                  "conditionInputs": [],
-                  "id": "AF-Field-41bd344c-d830-46b3-ab2c-feb792fb7c95"
+                  "id": "AF-Field-9f882c1d-b6cc-4e0f-90f1-aa3964bd7cb3"
                 },
                 {
                   "type": "checkbox",
@@ -723,9 +842,9 @@
                     "label": "Select which information to hide from the public search",
                     "dataName": "toShow",
                     "labelPosition": "alignLeft",
-                    "defaultType": "specific",
+                    "defaultType": "text",
                     "defaultValue": null,
-                    "defaultValueText": null,
+                    "defaultValueText": "{defaultForToShow}",
                     "listSource": "lookup",
                     "helpText": "",
                     "readOnly": false,
@@ -1904,7 +2023,7 @@
                     "width": "",
                     "showInSummary": false,
                     "content": "<p style=\"text-align:center\">Check Ofsted report link <a target=\"_blank\" href=\"{#ofstedLink}\">{overallOfstedJudgeID:display}</a></p>",
-                    "displayCondition": "{overallOfstedJudgeID} isnt '' and {ofstedLink} isnt ''"
+                    "displayCondition": "{overallOfstedJudgeID} isnt '' and {ofstedLink} isnt '' and {showDetails} contains 'show'"
                   },
                   "conditionInputs": [
                     {
@@ -1940,6 +2059,34 @@
                       "value": "isnt ''",
                       "type": [
                         "_core"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "and",
+                      "type": [
+                        "logicalOperators"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "showDetails",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "contains",
+                      "type": [
+                        "_core"
+                      ]
+                    },
+                    {
+                      "element": "text",
+                      "value": "show",
+                      "type": [
+                        "literal"
                       ]
                     }
                   ],
@@ -3300,7 +3447,7 @@
                     "noRetryOnIntegrationFailure": false,
                     "preventRunningOnInitialisation": false,
                     "displayName": "",
-                    "displayCondition": "{selectProvider} isnt '' and {selectProvider} isnt {IDcarer}"
+                    "displayCondition": "{selectProvider} isnt '' and ( {selectProvider} isnt {IDcarer} or ( {selectProvider} is {IDcarer} and {checkSummary} is '' ) )"
                   },
                   "conditionInputs": [
                     {
@@ -3326,6 +3473,13 @@
                     },
                     {
                       "element": "select",
+                      "value": "(",
+                      "type": [
+                        "brackets_open"
+                      ]
+                    },
+                    {
+                      "element": "select",
                       "value": "selectProvider",
                       "type": [
                         "fields"
@@ -3343,6 +3497,76 @@
                       "value": "IDcarer",
                       "type": [
                         "fields_match"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "or",
+                      "type": [
+                        "logicalOperators"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "(",
+                      "type": [
+                        "brackets_open"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "selectProvider",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": " is",
+                      "type": [
+                        "_match"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "IDcarer",
+                      "type": [
+                        "fields_match"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "and",
+                      "type": [
+                        "logicalOperators"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "checkSummary",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "is ''",
+                      "type": [
+                        "_core"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": ")",
+                      "type": [
+                        "brackets_close"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": ")",
+                      "type": [
+                        "brackets_close"
                       ]
                     }
                   ],
@@ -4209,7 +4433,7 @@
                     "label": "emailMain",
                     "dataName": "emailMain",
                     "labelPosition": "alignLeft",
-                    "defaultValue": "concat({#emailStart},'Dear Team,\\n\n\\n\nThe provider has updated the record for the setting:\\n\n\\n\n',{#SHL}, {#urlUpdateSpecificEntry}, {selectProvider},{#PEM}, {settingName}, {#PEE}, '\\n\n\\n',\nif({otherInformationQu} = 'yes', concat(\n{#H4},'Message from provider:',{#H4E},\n{pleaseEnterMessage}, '\\n\n\\n'), ''),\nif({updateDet} != '', concat(\n{#H4},'Updates as follows:',{#H4E},\n{#updateDet}, '\\n\n\\n'), ''),\n'Automated Email',{#emailEnd})",
+                    "defaultValue": "concat({#emailStart},'Dear Team,\\n\n\\n',\nif({newRecord} = 'yes', concat('A new provider record has been added:\\n\n\\n',\n{#SHL}, {#urlUpdateSpecificEntry}, {selectProvider},{#PEM}, {settingName}, {#PEE}, '\\n'),\nconcat('The provider record has been updated for the setting:\\n\n\\n\n',{#SHL}, {#urlUpdateSpecificEntry}, {selectProvider},{#PEM}, {settingName}, {#PEE}, '\\n\n\\n',\nif({updateDet} != '', concat(\n{#H4},'Updates as follows:',{#H4E},\n{#updateDet}, '\\n\n\\n'), ''))),\n'Automated Email',{#emailEnd})",
                     "helpText": "",
                     "hidden": true,
                     "readOnly": false,
@@ -5216,6 +5440,46 @@
                   },
                   "conditionInputs": [],
                   "id": "AF-Field-817731b5-7368-435b-866c-599cba68030f"
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "checkSummary",
+                    "dataName": "checkSummary",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "concat({toShow}, {typeID}, {URN}, {settingName}, {phoneNo}, {mobile}, {contactName}, {pccEmail1}, {pccEmail2}, {locality}, {linkedOfficer}, {idaci}, {website}, {ageFrom}, {ageTo}, {vacancies}, {schoolPickups}, {ofstedDate}, {ofstedLink}, {options}, {addInformation}, {notes})",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": true,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "outputFormat": "normal",
+                    "currencyPrefix": null,
+                    "width": null,
+                    "inputMask": null,
+                    "inputMaskPlaceholder": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationCondition": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-2654221d-bb2c-4e42-baaa-0ed31e659477"
                 }
               ]
             },
@@ -5339,7 +5603,6 @@
                         "showFormReference": false,
                         "mustBeValid": true,
                         "hideHeader": false,
-                        "isPublished": false,
                         "isSubform": true,
                         "integrations": [],
                         "notes": false,
@@ -9500,6 +9763,76 @@
         {
           "label": "msgDelete",
           "dataName": "msgDelete",
+          "populated": true
+        },
+        {
+          "label": "Show sufficiency survey options",
+          "dataName": "surveyOptions",
+          "populated": true
+        },
+        {
+          "label": "Show survey from:",
+          "dataName": "showSurveyFrom",
+          "populated": true
+        },
+        {
+          "label": "Survey required by",
+          "dataName": "surveyRequiredBy",
+          "populated": true
+        },
+        {
+          "label": "Stop showing survey",
+          "dataName": "stopShowingSurvey",
+          "populated": true
+        },
+        {
+          "label": "Text specifying for when to base figures on",
+          "dataName": "surveyWhen",
+          "populated": true
+        },
+        {
+          "label": "Numbers for week commencing",
+          "dataName": "surveyWeek",
+          "populated": true
+        },
+        {
+          "label": "Show survey from:",
+          "dataName": "showSurveyFrom1",
+          "populated": true
+        },
+        {
+          "label": "Survey required by",
+          "dataName": "surveyRequiredBy1",
+          "populated": true
+        },
+        {
+          "label": "Stop showing survey",
+          "dataName": "stopShowingSurvey1",
+          "populated": true
+        },
+        {
+          "label": "Text specifying for when to base figures on",
+          "dataName": "surveyWhen1",
+          "populated": true
+        },
+        {
+          "label": "Numbers for week commencing",
+          "dataName": "surveyWeek1",
+          "populated": true
+        },
+        {
+          "label": "survey dates updated",
+          "dataName": "surveyDatesUpdated",
+          "populated": true
+        },
+        {
+          "label": "Show Survey Current",
+          "dataName": "showSurveyCurrent",
+          "populated": true
+        },
+        {
+          "label": "Survey Questions",
+          "dataName": "survey",
           "populated": true
         }
       ]
