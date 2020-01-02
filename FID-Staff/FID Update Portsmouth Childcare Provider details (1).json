@@ -12,7 +12,7 @@
     "showCaseReference": false,
     "isPublished": true,
     "isSubform": false,
-    "notes": "update to labels",
+    "notes": "updates for out of school clubs",
     "initial_stage": "Maintain Records",
     "initial_stage_id": "AF-Stage-a6f23839-c539-4f3f-96e8-84476976e2bc",
     "serverSubmit": true,
@@ -148,7 +148,7 @@
                 "Category": "ChildCare",
                 "data_type": "integration-lookup",
                 "allow_offline": 0,
-                "Output_template": "{\"systemID\":\"5a8c309998604\",\"systemName\":\"ChildCare\",\"query\":\"DECLARE @check as varchar(10)\\nSET @check = {newRecord}\\nEXEC ListProviders\\n\\t\\t@typeID = {careType}\\n\\t\\t,@countChanges = {countChanges}\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
+                "Output_template": "{\"systemID\":\"5a8c309998604\",\"systemName\":\"ChildCare\",\"query\":\"EXEC ListProviders\\n\\t\\t@typeID = {careType}\\n\\t\\t,@countChanges = {countChanges}\\n\\t\\t,@filCategory = {filCategory}\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
                 "log_only_on_error": 0,
                 "error_notification": "{\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniel.gregory@portsmouthcc.gov.uk\"}"
               },
@@ -204,6 +204,19 @@
                 "log_only_on_error": 0,
                 "error_notification": "{\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniel.gregory@portsmouthcc.gov.uk\"}"
               },
+              "5d270fe1a72e5": {
+                "Editable": true,
+                "ID": "5d270fe1a72e5",
+                "Name": "CHM046 List Schemes - out of school clubs",
+                "Type": "DATABASE",
+                "LIM_name": "Portsmouth",
+                "Category": "ChildCare",
+                "data_type": "integration-lookup",
+                "allow_offline": 0,
+                "Output_template": "{\"systemID\":\"5a8c309998604\",\"systemName\":\"ChildCare\",\"query\":\"EXEC ListCMschemes\\n\\t@selValue = '',\\n\\t@currValues = 1\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
+                "log_only_on_error": 0,
+                "error_notification": "{\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniel.gregory@portsmouthcc.gov.uk\"}"
+              },
               "5ae9831838b93": {
                 "Editable": true,
                 "ID": "5ae9831838b93",
@@ -227,6 +240,45 @@
                 "data_type": "lookup",
                 "allow_offline": 0,
                 "Output_template": "{\"systemID\":\"5a8c309998604\",\"systemName\":\"ChildCare\",\"query\":\"EXEC SurveyLatestDetials\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
+                "log_only_on_error": 0,
+                "error_notification": "{\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniel.gregory@portsmouthcc.gov.uk\"}"
+              },
+              "5da865c864df6": {
+                "Editable": true,
+                "ID": "5da865c864df6",
+                "Name": "GPR052 - Pick list from csv 01",
+                "Type": "DATABASE",
+                "LIM_name": "Portsmouth",
+                "Category": "",
+                "data_type": "lookup",
+                "allow_offline": 0,
+                "Output_template": "{\"systemID\":\"56f286c867311\",\"systemName\":\"CodeTables\",\"query\":\"EXEC pickListFromCSV\\n\\t\\t@listCSV = {listValues01}\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
+                "log_only_on_error": 0,
+                "error_notification": "{\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniel.gregory@portsmouthcc.gov.uk\"}"
+              },
+              "5da978be443d1": {
+                "Editable": true,
+                "ID": "5da978be443d1",
+                "Name": "GPR053 - Pick list from csv 02",
+                "Type": "DATABASE",
+                "LIM_name": "Portsmouth",
+                "Category": "",
+                "data_type": "lookup",
+                "allow_offline": 0,
+                "Output_template": "{\"systemID\":\"56f286c867311\",\"systemName\":\"CodeTables\",\"query\":\"EXEC pickListFromCSV\\n\\t\\t@listCSV = {listValues02}\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
+                "log_only_on_error": 0,
+                "error_notification": "{\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniel.gregory@portsmouthcc.gov.uk\"}"
+              },
+              "5b291cf12dacb": {
+                "Editable": true,
+                "ID": "5b291cf12dacb",
+                "Name": "CHM037 - Check if Registered",
+                "Type": "DATABASE",
+                "LIM_name": "Portsmouth",
+                "Category": "ChildCare",
+                "data_type": "lookup",
+                "allow_offline": 0,
+                "Output_template": "{\"lookup_validation\":\"0\",\"systemID\":\"5a8c309998604\",\"systemName\":\"ChildCare\",\"query\":\"EXEC ProviderCheckUpdaters\\n\\t\\t@IDcarer = {selectProvider}\\n\\t\\t,@UCRN = {UCRN_prov}\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
                 "log_only_on_error": 0,
                 "error_notification": "{\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniel.gregory@portsmouthcc.gov.uk\"}"
               },
@@ -369,6 +421,112 @@
                     "maximumChoices": "",
                     "minimumChoicesMessage": "Please select at least _min_value_ choices",
                     "maximumChoicesMessage": "Please select no more than _max_value_ choices",
+                    "label": "Filter category",
+                    "dataName": "filCategory",
+                    "labelPosition": "alignLeft",
+                    "defaultType": "specific",
+                    "defaultValue": null,
+                    "defaultValueText": null,
+                    "listSource": "one-time-list",
+                    "helpText": "",
+                    "readOnly": false,
+                    "allowOther": false,
+                    "summaryField": false,
+                    "lookup": null,
+                    "lookupCondition": null,
+                    "lookupButton": null,
+                    "preventRunningOnInitialisation": null,
+                    "noResultsMessage": null,
+                    "tokenName": null,
+                    "listOfValues": [
+                      {
+                        "label": "Child Care",
+                        "value": "Child Care"
+                      },
+                      {
+                        "label": "Out of School Club",
+                        "value": "Out of School Club"
+                      }
+                    ],
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "width": null,
+                    "selectLabel": "Select...",
+                    "allowMultiple": false,
+                    "enableFilter": false,
+                    "hideWhenBlank": null,
+                    "hidden": null,
+                    "disableEmptyValue": null,
+                    "displayCondition": "{newRecord} notcontains 'yes' and {surveyOptions} notcontains 'yes'",
+                    "selectCondition": null,
+                    "weAdviseAgainstTheUseOfSelectConditions;PleaseUseDisplayConditionsInstead.": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "mandatoryMessage": "This field is required"
+                  },
+                  "conditionInputs": [
+                    {
+                      "element": "select",
+                      "value": "newRecord",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "notcontains",
+                      "type": [
+                        "_core"
+                      ]
+                    },
+                    {
+                      "element": "text",
+                      "value": "yes",
+                      "type": [
+                        "literal"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "and",
+                      "type": [
+                        "logicalOperators"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "surveyOptions",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "notcontains",
+                      "type": [
+                        "_select"
+                      ]
+                    },
+                    {
+                      "element": "text",
+                      "value": "yes",
+                      "type": [
+                        "literal"
+                      ]
+                    }
+                  ],
+                  "id": "AF-Field-0e0ce0ff-a3ba-4561-9ce4-74fa90a1ed71"
+                },
+                {
+                  "type": "select",
+                  "props": {
+                    "minimumChoices": "",
+                    "maximumChoices": "",
+                    "minimumChoicesMessage": "Please select at least _min_value_ choices",
+                    "maximumChoicesMessage": "Please select no more than _max_value_ choices",
                     "label": "Care Type",
                     "dataName": "careType",
                     "labelPosition": "alignLeft",
@@ -477,7 +635,7 @@
                     "allowOther": false,
                     "summaryField": false,
                     "lookup": "5ae836998dfd2",
-                    "lookupCondition": "onDisplayInputChange",
+                    "lookupCondition": "onInputChange",
                     "lookupButton": null,
                     "preventRunningOnInitialisation": false,
                     "noResultsMessage": "",
@@ -600,7 +758,7 @@
                     "label": "Show Details",
                     "dataName": "showDetails",
                     "labelPosition": "alignLeft",
-                    "defaultValue": "if({selectProvider} != '' or {newRecord} = 'yes' or {newRecord} = 'added', 'show', '')",
+                    "defaultValue": "if({selectProvider} != '' or {newRecord} = 'yes' or {newRecord} = 'added' or {pageTurn1} != {pageTurn2}, 'show', '')",
                     "helpText": "",
                     "hidden": true,
                     "readOnly": false,
@@ -708,19 +866,6 @@
                   "id": "AF-Field-18b0bdde-0dd8-4c77-86d9-128d74d61f7e"
                 },
                 {
-                  "type": "line",
-                  "props": {
-                    "label": "line 1",
-                    "dataName": "line1",
-                    "displayName": "",
-                    "width": "",
-                    "height": "",
-                    "outerClass": "",
-                    "displayCondition": "{showDetails} contains 'show'"
-                  },
-                  "id": "AF-Field-2ad93c8c-eaae-4381-a9ba-a929eb7ccf5f"
-                },
-                {
                   "type": "html",
                   "props": {
                     "label": "html 3",
@@ -729,7 +874,7 @@
                     "outerClass": "",
                     "width": "",
                     "showInSummary": false,
-                    "content": "<p style=\"color:blue\">Fields highlighted in Red are the fields that will be visible on the childcare search unless the Show in search options are set to hide them.</p>\n<p style=\"color:blue\">Fields with the lable ending in $ are able to be updated by the provider.</p>",
+                    "content": "<hr />\n<p style=\"color:blue\">Fields highlighted in Red are the fields that will be visible on the childcare search unless the Show in search options are set to hide them.</p>\n<p style=\"color:blue\">Fields with the lable ending in $ are able to be updated by the provider.</p>",
                     "displayCondition": "{showDetails} contains 'show'"
                   },
                   "conditionInputs": [
@@ -883,6 +1028,84 @@
                     "maximumChoices": null,
                     "minimumChoicesMessage": "Please select at least _min_value_ choices",
                     "maximumChoicesMessage": "Please select no more than _max_value_ choices",
+                    "label": "Category",
+                    "dataName": "category",
+                    "labelPosition": "alignLeft",
+                    "defaultType": "specific",
+                    "defaultValue": null,
+                    "defaultValueText": null,
+                    "listSource": "one-time-list",
+                    "helpText": "",
+                    "readOnly": false,
+                    "allowOther": false,
+                    "summaryField": false,
+                    "lookup": null,
+                    "lookupCondition": null,
+                    "lookupButton": null,
+                    "preventRunningOnInitialisation": null,
+                    "noResultsMessage": null,
+                    "tokenName": null,
+                    "listOfValues": [
+                      {
+                        "label": "Child Care",
+                        "value": "Child Care"
+                      },
+                      {
+                        "label": "Out of School Club",
+                        "value": "Out of School Club"
+                      }
+                    ],
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "width": null,
+                    "selectLabel": "Select...",
+                    "allowMultiple": false,
+                    "enableFilter": false,
+                    "hideWhenBlank": null,
+                    "hidden": null,
+                    "disableEmptyValue": null,
+                    "displayCondition": "{showDetails} contains 'show'",
+                    "selectCondition": null,
+                    "weAdviseAgainstTheUseOfSelectConditions;PleaseUseDisplayConditionsInstead.": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": true,
+                    "mandatoryMessage": "This field is required"
+                  },
+                  "conditionInputs": [
+                    {
+                      "element": "select",
+                      "value": "showDetails",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "contains",
+                      "type": [
+                        "_core"
+                      ]
+                    },
+                    {
+                      "element": "text",
+                      "value": "show",
+                      "type": [
+                        "literal"
+                      ]
+                    }
+                  ],
+                  "id": "AF-Field-cb3172cd-f2eb-468d-ba5f-37f2e6f2870a"
+                },
+                {
+                  "type": "select",
+                  "props": {
+                    "minimumChoices": null,
+                    "maximumChoices": null,
+                    "minimumChoicesMessage": "Please select at least _min_value_ choices",
+                    "maximumChoicesMessage": "Please select no more than _max_value_ choices",
                     "label": "Type",
                     "dataName": "typeID",
                     "labelPosition": "alignLeft",
@@ -959,6 +1182,96 @@
                     "validationMaskMessageValue": "Select..."
                   },
                   "id": "AF-Field-fe05d240-c7c7-4e37-b9a0-de9c01ccea1a"
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "Other URNs",
+                    "dataName": "otherURNs",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "",
+                    "helpText": "",
+                    "hidden": false,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "outputFormat": "normal",
+                    "currencyPrefix": null,
+                    "width": null,
+                    "inputMask": null,
+                    "inputMaskPlaceholder": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": "{showDetails} contains 'show' and {category} icontains 'Out of School Club'",
+                    "mandatoryCondition": "",
+                    "readonlyCondition": "",
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationCondition": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "conditionInputs": [
+                    {
+                      "element": "select",
+                      "value": "showDetails",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "contains",
+                      "type": [
+                        "_core"
+                      ]
+                    },
+                    {
+                      "element": "text",
+                      "value": "show",
+                      "type": [
+                        "literal"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "and",
+                      "type": [
+                        "logicalOperators"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "category",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "icontains",
+                      "type": [
+                        "_select"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "Out of School Club",
+                      "type": [
+                        "list"
+                      ]
+                    }
+                  ],
+                  "id": "AF-Field-2dae9801-5bb7-4699-ad7a-dd430610c599"
                 },
                 {
                   "type": "text",
@@ -1099,6 +1412,130 @@
                     }
                   ],
                   "id": "AF-Field-d669a606-bdd5-46da-922a-435dfbdb39fb"
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "phone2",
+                    "dataName": "phone2",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "",
+                    "helpText": "",
+                    "hidden": false,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "outputFormat": "normal",
+                    "currencyPrefix": null,
+                    "width": null,
+                    "inputMask": null,
+                    "inputMaskPlaceholder": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": "{showDetails} contains 'show'",
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationCondition": "",
+                    "validationMask": "/^\\(?(?:(?:0(?:0|11)\\)?[\\s-]?\\(?|\\+)?44\\)?[\\s-]?\\(?(?:0\\)?[\\s-]?\\(?)?|0)(?:\\d{5}\\)?[\\s-]?\\d{4,5}|\\d{4}\\)?[\\s-]?(?:\\d{5}|\\d{3}[\\s-]?\\d{3})|\\d{3}\\)?[\\s-]?\\d{3}[\\s-]?\\d{3,4}|\\d{2}\\)?[\\s-]?\\d{4}[\\s-]?\\d{4}|8(?:00[\\s-]?11[\\s-]?11|45[\\s-]?46[\\s-]?4\\d))(?:(?:[\\s-]?(?:x|ext\\.?\\s?|\\#)\\d+)?)$/gim",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid",
+                    "validationMaskMessageValue": "UK Phones"
+                  },
+                  "conditionInputs": [
+                    {
+                      "element": "select",
+                      "value": "showDetails",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "contains",
+                      "type": [
+                        "_core"
+                      ]
+                    },
+                    {
+                      "element": "text",
+                      "value": "show",
+                      "type": [
+                        "literal"
+                      ]
+                    }
+                  ],
+                  "id": "AF-Field-3160b50f-a360-4167-adea-ae3b3a871d87"
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "phone3",
+                    "dataName": "phone3",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "",
+                    "helpText": "",
+                    "hidden": false,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "outputFormat": "normal",
+                    "currencyPrefix": null,
+                    "width": null,
+                    "inputMask": null,
+                    "inputMaskPlaceholder": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": "{showDetails} contains 'show'",
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationCondition": "",
+                    "validationMask": "/^\\(?(?:(?:0(?:0|11)\\)?[\\s-]?\\(?|\\+)?44\\)?[\\s-]?\\(?(?:0\\)?[\\s-]?\\(?)?|0)(?:\\d{5}\\)?[\\s-]?\\d{4,5}|\\d{4}\\)?[\\s-]?(?:\\d{5}|\\d{3}[\\s-]?\\d{3})|\\d{3}\\)?[\\s-]?\\d{3}[\\s-]?\\d{3,4}|\\d{2}\\)?[\\s-]?\\d{4}[\\s-]?\\d{4}|8(?:00[\\s-]?11[\\s-]?11|45[\\s-]?46[\\s-]?4\\d))(?:(?:[\\s-]?(?:x|ext\\.?\\s?|\\#)\\d+)?)$/gim",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid",
+                    "validationMaskMessageValue": "UK Phones"
+                  },
+                  "conditionInputs": [
+                    {
+                      "element": "select",
+                      "value": "showDetails",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "contains",
+                      "type": [
+                        "_core"
+                      ]
+                    },
+                    {
+                      "element": "text",
+                      "value": "show",
+                      "type": [
+                        "literal"
+                      ]
+                    }
+                  ],
+                  "id": "AF-Field-f31476c4-c782-4fb6-a334-b07717f64a59"
                 },
                 {
                   "type": "text",
@@ -1326,6 +1763,90 @@
                   "id": "AF-Field-d0ea0bee-a696-41c5-97bd-53571f57356f"
                 },
                 {
+                  "type": "textarea",
+                  "props": {
+                    "label": "Address",
+                    "dataName": "addrTextArea",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "",
+                    "helpText": "",
+                    "hidden": false,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "width": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": "{showDetails} contains 'show' and {category} icontains 'Out of School Club'",
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "conditionInputs": [
+                    {
+                      "element": "select",
+                      "value": "showDetails",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "contains",
+                      "type": [
+                        "_core"
+                      ]
+                    },
+                    {
+                      "element": "text",
+                      "value": "show",
+                      "type": [
+                        "literal"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "and",
+                      "type": [
+                        "logicalOperators"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "category",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "icontains",
+                      "type": [
+                        "_select"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "Out of School Club",
+                      "type": [
+                        "list"
+                      ]
+                    }
+                  ],
+                  "id": "AF-Field-c222941b-36a8-4734-92e9-c1c8cfb59406"
+                },
+                {
                   "type": "text",
                   "props": {
                     "label": "Postcode",
@@ -1526,9 +2047,9 @@
                     "allowOther": false,
                     "summaryField": false,
                     "lookup": "5b195d16f402d",
-                    "lookupCondition": "onDisplayInputChange",
-                    "lookupButton": "",
-                    "preventRunningOnInitialisation": false,
+                    "lookupCondition": "once",
+                    "lookupButton": null,
+                    "preventRunningOnInitialisation": true,
                     "noResultsMessage": "",
                     "tokenName": null,
                     "listOfValues": null,
@@ -1698,7 +2219,7 @@
                     "readonlyCondition": null,
                     "mandatory": false,
                     "minimumValue": "2",
-                    "maximumValue": "16",
+                    "maximumValue": "{maxAge}",
                     "validationCondition": "",
                     "mandatoryMessage": "This field is required",
                     "minimumValueMessage": "Please input _min_value_ or more",
@@ -1729,6 +2250,42 @@
                     }
                   ],
                   "id": "AF-Field-f3b77b98-6430-4b2e-b30f-56190f453a66"
+                },
+                {
+                  "type": "number",
+                  "props": {
+                    "label": "max age",
+                    "dataName": "maxAge",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "if({category} = 'Out of School Club', 17, 16)",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "prefix": null,
+                    "suffix": null,
+                    "width": null,
+                    "decimalPlaces": null,
+                    "numberToText": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumValue": "",
+                    "maximumValue": "",
+                    "validationCondition": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumValueMessage": "Please input _min_value_ or more",
+                    "maximumValueMessage": "Please input _max_value_ or less",
+                    "validationConditionMessage": "This field is invalid"
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-823e3b66-71f4-4928-b21d-b34257da75a9"
                 },
                 {
                   "type": "select",
@@ -1787,6 +2344,92 @@
                     "mandatoryMessage": "This field is required"
                   },
                   "id": "AF-Field-cf468de1-2b09-4a3f-9d8c-083dc4ec7aab"
+                },
+                {
+                  "type": "number",
+                  "props": {
+                    "label": "Number of places",
+                    "dataName": "numberPlaces",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "",
+                    "helpText": "",
+                    "hidden": false,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "prefix": null,
+                    "suffix": null,
+                    "width": null,
+                    "decimalPlaces": null,
+                    "numberToText": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": "{showDetails} contains 'show' and {category} icontains 'Out of School Club'",
+                    "mandatoryCondition": "",
+                    "readonlyCondition": "",
+                    "mandatory": false,
+                    "minimumValue": "",
+                    "maximumValue": "",
+                    "validationCondition": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumValueMessage": "Please input _min_value_ or more",
+                    "maximumValueMessage": "Please input _max_value_ or less",
+                    "validationConditionMessage": "This field is invalid"
+                  },
+                  "conditionInputs": [
+                    {
+                      "element": "select",
+                      "value": "showDetails",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "contains",
+                      "type": [
+                        "_core"
+                      ]
+                    },
+                    {
+                      "element": "text",
+                      "value": "show",
+                      "type": [
+                        "literal"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "and",
+                      "type": [
+                        "logicalOperators"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "category",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "icontains",
+                      "type": [
+                        "_select"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "Out of School Club",
+                      "type": [
+                        "list"
+                      ]
+                    }
+                  ],
+                  "id": "AF-Field-532a6a2c-5eb6-479e-b11b-c4006f744e47"
                 },
                 {
                   "type": "text",
@@ -1871,7 +2514,7 @@
                     "lookup": "5a8d600db005d",
                     "lookupCondition": "once",
                     "lookupButton": null,
-                    "preventRunningOnInitialisation": false,
+                    "preventRunningOnInitialisation": true,
                     "noResultsMessage": "",
                     "tokenName": null,
                     "listOfValues": null,
@@ -2126,14 +2769,216 @@
                     "styleAsButton": false,
                     "hideWhenBlank": false,
                     "hidden": false,
-                    "displayCondition": "{showDetails} contains 'show'",
+                    "displayCondition": "{category} icontains 'Child Care'",
                     "selectCondition": null,
                     "mandatoryCondition": null,
                     "readonlyCondition": null,
                     "mandatory": false,
                     "mandatoryMessage": "This field is required"
                   },
-                  "id": "AF-Field-16ee93e9-af38-4f1e-be5c-cda574675d81"
+                  "id": "AF-Field-16ee93e9-af38-4f1e-be5c-cda574675d81",
+                  "conditionInputs": [
+                    {
+                      "element": "select",
+                      "value": "category",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "icontains",
+                      "type": [
+                        "_select"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "Child Care",
+                      "type": [
+                        "list"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "checkbox",
+                  "props": {
+                    "minimumChoices": "",
+                    "maximumChoices": "",
+                    "minimumChoicesMessage": "Please select at least _min_value_ choices",
+                    "maximumChoicesMessage": "Please select no more than _max_value_ choices",
+                    "label": "Available Schemes",
+                    "dataName": "schemes",
+                    "labelPosition": "alignLeft",
+                    "defaultType": "specific",
+                    "defaultValue": null,
+                    "defaultValueText": null,
+                    "listSource": "lookup",
+                    "helpText": "",
+                    "readOnly": false,
+                    "allowOther": false,
+                    "summaryField": false,
+                    "lookup": "5d270fe1a72e5",
+                    "lookupCondition": "once",
+                    "lookupButton": null,
+                    "preventRunningOnInitialisation": true,
+                    "noResultsMessage": "",
+                    "tokenName": null,
+                    "listOfValues": null,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "width": null,
+                    "displayStyle": "horizontal",
+                    "styleAsButton": null,
+                    "hideWhenBlank": null,
+                    "hidden": null,
+                    "displayCondition": "{showDetails} contains 'show' and {category} icontains 'Out of School Club'",
+                    "selectCondition": null,
+                    "weAdviseAgainstTheUseOfSelectConditions;PleaseUseDisplayConditionsInstead.": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "mandatoryMessage": "This field is required"
+                  },
+                  "conditionInputs": [
+                    {
+                      "element": "select",
+                      "value": "showDetails",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "contains",
+                      "type": [
+                        "_core"
+                      ]
+                    },
+                    {
+                      "element": "text",
+                      "value": "show",
+                      "type": [
+                        "literal"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "and",
+                      "type": [
+                        "logicalOperators"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "category",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "icontains",
+                      "type": [
+                        "_select"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "Out of School Club",
+                      "type": [
+                        "list"
+                      ]
+                    }
+                  ],
+                  "id": "AF-Field-27c345e0-205d-462b-b598-475a3f14121e"
+                },
+                {
+                  "type": "textarea",
+                  "props": {
+                    "label": "Opening hours and Fees",
+                    "dataName": "openHrsFeesTextArea",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "",
+                    "helpText": "",
+                    "hidden": false,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "width": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": "{showDetails} contains 'show' and {category} icontains 'Out of School Club'",
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "500",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "conditionInputs": [
+                    {
+                      "element": "select",
+                      "value": "showDetails",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "contains",
+                      "type": [
+                        "_core"
+                      ]
+                    },
+                    {
+                      "element": "text",
+                      "value": "show",
+                      "type": [
+                        "literal"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "and",
+                      "type": [
+                        "logicalOperators"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "category",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "icontains",
+                      "type": [
+                        "_select"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "Out of School Club",
+                      "type": [
+                        "list"
+                      ]
+                    }
+                  ],
+                  "id": "AF-Field-f6a6afb6-77f2-4faa-82d3-befa54a66d77"
                 },
                 {
                   "type": "textarea",
@@ -2896,7 +3741,7 @@
                     "allowOther": false,
                     "summaryField": false,
                     "lookup": "5b195d16f402d",
-                    "lookupCondition": "onDisplayInputChange",
+                    "lookupCondition": "once",
                     "lookupButton": null,
                     "preventRunningOnInitialisation": false,
                     "noResultsMessage": "",
@@ -2987,8 +3832,8 @@
                     "mandatoryCondition": null,
                     "readonlyCondition": null,
                     "mandatory": false,
-                    "minimumValue": "0",
-                    "maximumValue": "16",
+                    "minimumValue": "",
+                    "maximumValue": "",
                     "validationCondition": "",
                     "mandatoryMessage": "This field is required",
                     "minimumValueMessage": "Please input _min_value_ or more",
@@ -3023,8 +3868,8 @@
                     "mandatoryCondition": null,
                     "readonlyCondition": null,
                     "mandatory": false,
-                    "minimumValue": "1",
-                    "maximumValue": "16",
+                    "minimumValue": "",
+                    "maximumValue": "",
                     "validationCondition": "",
                     "mandatoryMessage": "This field is required",
                     "minimumValueMessage": "Please input _min_value_ or more",
@@ -3447,7 +4292,7 @@
                     "noRetryOnIntegrationFailure": false,
                     "preventRunningOnInitialisation": false,
                     "displayName": "",
-                    "displayCondition": "{selectProvider} isnt '' and ( {selectProvider} isnt {IDcarer} or ( {selectProvider} is {IDcarer} and {checkSummary} is '' ) )"
+                    "displayCondition": "{selectProvider} isnt '' and ( {selectProvider} isnt {IDcarer} or ( {selectProvider} is {IDcarer} and {checkSummary} is '' ) ) and {pageTurn1} is {pageTurn2}"
                   },
                   "conditionInputs": [
                     {
@@ -3568,6 +4413,34 @@
                       "type": [
                         "brackets_close"
                       ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "and",
+                      "type": [
+                        "logicalOperators"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "pageTurn1",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": " is",
+                      "type": [
+                        "_match"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "pageTurn2",
+                      "type": [
+                        "fields_match"
+                      ]
                     }
                   ],
                   "id": "AF-Field-81b4ce8c-546f-4ad2-99b1-df54db2163f6"
@@ -3578,7 +4451,7 @@
                     "label": "Entry Updated",
                     "dataName": "entryUpdated",
                     "labelPosition": "alignLeft",
-                    "defaultValue": "if({toShow} != {toShow1}\n\tor {typeID} != {typeID1}\n\tor {URN} != {URN1}\n\tor {settingName} != {settingName1}\n\tor {phoneNo} != {phoneNo1}\n\tor {mobile} != {mobile1}\n\tor {contactName} != {contactName1}\n\tor {email} != {email1}\n\tor {pccEmail1} != {pccEmail11}\n\tor {pccEmail2} != {pccEmail21}\n\tor {locality} != {locality1}\n\tor {linkedOfficer} != {linkedOfficer1}\n\tor {idaci} != {idaci1}\n\tor {website} != {website1}\n\tor {ageFrom} != {ageFrom1}\n\tor {ageTo} != {ageTo1}\n\tor {vacancies} != {vacancies1}\n\tor {schoolPickups} != {schoolPickups1}\n\tor {updatedOfstead} = 'yes'\n\tor {ofstedDate} != {ofstedDate1}\n\tor {ofstedLink} != {ofstedLink1}\n\tor {options} != {options1}\n\tor {addInformation} != {addInformation1}\n\tor {notes} != {notes1}\n\tor {locUpdated} = 'yes', 'updated', '')",
+                    "defaultValue": "if({toShow} != {toShow1}\n\tor {typeID} != {typeID1}\n\tor {URN} != {URN1}\n\tor {settingName} != {settingName1}\n\tor {phoneNo} != {phoneNo1}\n\tor {mobile} != {mobile1}\n\tor {contactName} != {contactName1}\n\tor {email} != {email1}\n\tor {pccEmail1} != {pccEmail11}\n\tor {pccEmail2} != {pccEmail21}\n\tor {locality} != {locality1}\n\tor {linkedOfficer} != {linkedOfficer1}\n\tor {idaci} != {idaci1}\n\tor {website} != {website1}\n\tor {ageFrom} != {ageFrom1}\n\tor {ageTo} != {ageTo1}\n\tor {vacancies} != {vacancies1}\n\tor {schoolPickups} != {schoolPickups1}\n\tor {updatedOfstead} = 'yes'\n\tor {ofstedDate} != {ofstedDate1}\n\tor {ofstedLink} != {ofstedLink1}\n\tor {options} != {options1}\n\tor {addInformation} != {addInformation1}\n\tor {notes} != {notes1}\n\tor {locUpdated} = 'yes'\n\tor {category} != {category1}\n\tor {addrTextArea} != {addrTextArea1}\n\tor {phone2} != {phone21}\n\tor {phone3} != {phone31}\n\tor {otherURNs} != {otherURNs1}\n\tor {numberPlaces} != {numberPlaces1}\n\tor {openHrsFeesTextArea} != {openHrsFeesTextArea1}\n\tor {schemes} != {schemes1}, 'updated', '')",
                     "helpText": "",
                     "hidden": true,
                     "readOnly": true,
@@ -3658,7 +4531,7 @@
                     "label": "Entry Valid",
                     "dataName": "entryValid",
                     "labelPosition": "alignLeft",
-                    "defaultValue": "if({settingName} != '' and {typeID} != ''\nand (({ageFrom} >=0 and {ageFrom} < 17) or {ageFrom} = '')\nand (({ageTo} > 1 and {ageTo} < 17) or {ageTo} = '')\nand ({email} match \"^\\\\w+[\\\\w-\\\\.']*\\@(-|\\\\w)+((-\\\\w+)|(\\\\w*))\\\\.[a-z]+(\\\\.[a-z]+)*$\"\n          or {email} = ''), 'valid', '')",
+                    "defaultValue": "if({settingName} != '' and {typeID} != ''\nand {category} != ''\nand (({ageFrom} >=0 and {ageFrom} < 17) or {ageFrom} = '')\nand (({ageTo} > 1 and {ageTo} <= {maxAge}) or {ageTo} = '')\nand ({email} match \"^\\\\w+[\\\\w-\\\\.']*\\@(-|\\\\w)+((-\\\\w+)|(\\\\w*))\\\\.[a-z]+(\\\\.[a-z]+)*$\"\n          or {email} = ''), 'valid', '')",
                     "helpText": "",
                     "hidden": true,
                     "readOnly": true,
@@ -3731,6 +4604,106 @@
                   },
                   "conditionInputs": [],
                   "id": "AF-Field-f17c2601-0925-40dc-b0ff-aafef59959dc"
+                },
+                {
+                  "type": "checkbox",
+                  "props": {
+                    "minimumChoices": "",
+                    "maximumChoices": "",
+                    "minimumChoicesMessage": "Please select at least _min_value_ choices",
+                    "maximumChoicesMessage": "Please select no more than _max_value_ choices",
+                    "label": "update maintain provider updaters",
+                    "dataName": "updateMaintainers",
+                    "labelPosition": "hideLabel",
+                    "defaultType": "specific",
+                    "defaultValue": null,
+                    "defaultValueText": null,
+                    "listSource": "one-time-list",
+                    "helpText": "",
+                    "readOnly": false,
+                    "allowOther": false,
+                    "summaryField": false,
+                    "lookup": null,
+                    "lookupCondition": null,
+                    "lookupButton": null,
+                    "preventRunningOnInitialisation": null,
+                    "noResultsMessage": null,
+                    "tokenName": null,
+                    "listOfValues": [
+                      {
+                        "label": "update maintain provider updaters",
+                        "value": "yes"
+                      }
+                    ],
+                    "displayName": "true",
+                    "outerClass": "",
+                    "labelClass": "",
+                    "inputClass": "pull-right",
+                    "width": "",
+                    "displayStyle": "horizontal",
+                    "styleAsButton": false,
+                    "hideWhenBlank": false,
+                    "hidden": false,
+                    "displayCondition": "{showDetails} contains 'show' and {entryUpdated} noticontains 'updated'",
+                    "selectCondition": null,
+                    "weAdviseAgainstTheUseOfSelectConditions;PleaseUseDisplayConditionsInstead.": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "mandatoryMessage": "This field is required"
+                  },
+                  "conditionInputs": [
+                    {
+                      "element": "select",
+                      "value": "showDetails",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "contains",
+                      "type": [
+                        "_core"
+                      ]
+                    },
+                    {
+                      "element": "text",
+                      "value": "show",
+                      "type": [
+                        "literal"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "and",
+                      "type": [
+                        "logicalOperators"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "entryUpdated",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "noticontains",
+                      "type": [
+                        "_core"
+                      ]
+                    },
+                    {
+                      "element": "text",
+                      "value": "updated",
+                      "type": [
+                        "literal"
+                      ]
+                    }
+                  ],
+                  "id": "AF-Field-40b87aa1-6122-4e0e-ae81-d670723c734e"
                 },
                 {
                   "type": "button",
@@ -4159,7 +5132,7 @@
                     "label": "Details of update",
                     "dataName": "updateDet",
                     "labelPosition": "alignLeft",
-                    "defaultValue": "concat(\nif({toShow} != {toShow1},\n     concat({#H4}, 'Search display options updated', {#H4E},\n                 {#P}, 'From:', {toShow1:display}, {#NL},\n                  'To:', {toShow:display}, {#PE}), ''),\nif({typeID} != {typeID1},\n     concat({#H4}, 'Type', {#H4E},\n                 {#P}, 'From:', {typeID1:display}, {#NL},\n                  'To:', {typeID:display}, {#PE}), ''),\nif({URN} != {URN1},\n     concat({#H4}, 'Ofsted URN', {#H4E},\n                 {#P}, 'From:', {URN1}, {#NL},\n                  'To:', {URN}, {#PE}), ''),\nif({settingName} != {settingName1},\n     concat({#H4}, 'Setting name', {#H4E},\n                 {#P}, 'From:', {settingName1}, {#NL},\n                  'To:', {settingName}, {#PE}), ''),\nif({phoneNo} != {phoneNo1},\n     concat({#H4}, 'Contact phone updated', {#H4E},\n                 {#P}, 'From:', {phoneNo1}, {#NL},\n                  'To:', {phoneNo}, {#PE}), ''),\nif({mobile} != {mobile1},\n     concat({#H4}, 'Mobile number updated', {#H4E},\n                 {#P}, 'From:', {mobile1}, {#NL},\n                  'To:', {mobile}, {#PE}), ''),\nif({contactName} != {contactName1},\n     concat({#H4}, 'Contact name updated', {#H4E},\n                 {#P}, 'From:', {contactName1}, {#NL},\n                  'To:', {contactName}, {#PE}), ''),\nif({email} != {email1},\n     concat({#H4}, 'Public email updated', {#H4E},\n                 {#P}, 'From:', {email1}, {#NL},\n                  'To:', {email}, {#PE}), ''),\nif({pccEmail1} != {pccEmail11},\n     concat({#H4}, 'PCC email 1 updated', {#H4E},\n                 {#P}, 'From:', {pccEmail11}, {#NL},\n                  'To:', {pccEmail1}, {#PE}), ''),\nif({pccEmail2} != {pccEmail21},\n     concat({#H4}, 'PCC email 2 updated', {#H4E},\n                 {#P}, 'From:', {pccEmail21}, {#NL},\n                  'To:', {pccEmail2}, {#PE}), ''),\nif({postcode} != {postcode1},\n     concat({#H4}, 'Postcode', {#H4E},\n                 {#P}, 'From:', {postcode1}, {#NL},\n                  'To:', {postcode}, {#PE}), ''),\nif({locality} != {locality1},\n     concat({#H4}, 'Locality', {#H4E},\n                 {#P}, 'From:', {locality1:display}, {#NL},\n                  'To:', {locality:display}, {#PE}), ''),\nif({linkedOfficer} != {linkedOfficer1},\n     concat({#H4}, 'Linked Officer', {#H4E},\n                 {#P}, 'From:', {linkedOfficer1}, {#NL},\n                  'To:', {linkedOfficer}, {#PE}), ''),\nif({idaci} != {idaci1},\n     concat({#H4}, 'IDACI', {#H4E},\n                 {#P}, 'From:', {idaci1:display}, {#NL},\n                  'To:', {idaci:display}, {#PE}), ''),\nif({website} != {website1},\n     concat({#H4}, 'Website updated', {#H4E},\n                 {#P}, 'From:', {website1}, {#NL},\n                  'To:', {website}, {#PE}), ''),\nif({ageFrom} != {ageFrom1},\n     concat({#H4}, 'Age from updated', {#H4E},\n                 {#P}, 'From:', {ageFrom1}, {#NL},\n                  'To:', {ageFrom}, {#PE}), ''),\nif({ageTo} != {ageTo1},\n     concat({#H4}, 'Age to updated', {#H4E},\n                 {#P}, 'From:', {ageTo1}, {#NL},\n                  'To:', {ageTo}, {#PE}), ''),\nif({vacancies} != {vacancies1},\n     concat({#H4}, 'Vacancies updated', {#H4E},\n                 {#P}, 'From:', {vacancies1:display}, {#NL},\n                  'To:', {vacancies:display}, {#PE}), ''),\nif({schoolPickups} != {schoolPickups1},\n     concat({#H4}, 'School pickups updated', {#H4E},\n                 {#P}, 'From:', {schoolPickups1}, {#NL},\n                  'To:', {schoolPickups}, {#PE}), ''),\nif({overallOfstedJudgeID} != {overallOfstedJudgeID1},\n     concat({#H4}, 'Ofsted judgement', {#H4E},\n                 {#P}, 'From:', {overallOfstedJudgeID1:display}, {#NL},\n                  'To:', {overallOfstedJudgeID:display}, {#PE}), ''),\nif({ofstedDate} != {ofstedDate1},\n     concat({#H4}, 'Ofstead Date', {#H4E},\n                 {#P}, 'From:', {ofstedDate1}, {#NL},\n                  'To:', {ofstedDate}, {#PE}), ''),\nif({ofstedLink} != {ofstedLink1},\n     concat({#H4}, 'Link to Ofsted report page', {#H4E},\n                 {#P}, 'From:', {ofstedLink1}, {#NL},\n                  'To:', {ofstedLink}, {#PE}), ''),\nif({options} != {options1},\n     concat({#H4}, 'Funding Accepted', {#H4E},\n                 {#P}, 'From:', {options1:display}, {#NL},\n                  'To:', {options:display}, {#PE}), ''),\nif({addInformation} != {addInformation1},\n     concat({#H4}, 'Additional information updated', {#H4E},\n                 {#P}, 'From:', {addInformation1}, {#NL},\n                  'To:', {addInformation}, {#PE}), ''),\nif({notes} != {notes1},\n     concat({#H4}, 'PCC notes updated', {#H4E},\n                 {#P}, 'From:', {notes1}, {#NL},\n                  'To:', {notes}, {#PE}), '')\n)",
+                    "defaultValue": "concat(\nif({toShow} != {toShow1},\n     concat({#H4}, 'Search display options updated', {#H4E},\n                 {#P}, 'From:', {toShow1:display}, {#NL},\n                  'To:', {toShow:display}, {#PE}), ''),\nif({typeID} != {typeID1},\n     concat({#H4}, 'Type', {#H4E},\n                 {#P}, 'From:', {typeID1:display}, {#NL},\n                  'To:', {typeID:display}, {#PE}), ''),\nif({URN} != {URN1},\n     concat({#H4}, 'Ofsted URN', {#H4E},\n                 {#P}, 'From:', {URN1}, {#NL},\n                  'To:', {URN}, {#PE}), ''),\nif({settingName} != {settingName1},\n     concat({#H4}, 'Setting name', {#H4E},\n                 {#P}, 'From:', {settingName1}, {#NL},\n                  'To:', {settingName}, {#PE}), ''),\nif({phoneNo} != {phoneNo1},\n     concat({#H4}, 'Contact phone updated', {#H4E},\n                 {#P}, 'From:', {phoneNo1}, {#NL},\n                  'To:', {phoneNo}, {#PE}), ''),\nif({mobile} != {mobile1},\n     concat({#H4}, 'Mobile number updated', {#H4E},\n                 {#P}, 'From:', {mobile1}, {#NL},\n                  'To:', {mobile}, {#PE}), ''),\nif({contactName} != {contactName1},\n     concat({#H4}, 'Contact name updated', {#H4E},\n                 {#P}, 'From:', {contactName1}, {#NL},\n                  'To:', {contactName}, {#PE}), ''),\nif({email} != {email1},\n     concat({#H4}, 'Public email updated', {#H4E},\n                 {#P}, 'From:', {email1}, {#NL},\n                  'To:', {email}, {#PE}), ''),\nif({pccEmail1} != {pccEmail11},\n     concat({#H4}, 'PCC email 1 updated', {#H4E},\n                 {#P}, 'From:', {pccEmail11}, {#NL},\n                  'To:', {pccEmail1}, {#PE}), ''),\nif({pccEmail2} != {pccEmail21},\n     concat({#H4}, 'PCC email 2 updated', {#H4E},\n                 {#P}, 'From:', {pccEmail21}, {#NL},\n                  'To:', {pccEmail2}, {#PE}), ''),\nif({postcode} != {postcode1},\n     concat({#H4}, 'Postcode', {#H4E},\n                 {#P}, 'From:', {postcode1}, {#NL},\n                  'To:', {postcode}, {#PE}), ''),\nif({locality} != {locality1},\n     concat({#H4}, 'Locality', {#H4E},\n                 {#P}, 'From:', {locality1:display}, {#NL},\n                  'To:', {locality:display}, {#PE}), ''),\nif({linkedOfficer} != {linkedOfficer1},\n     concat({#H4}, 'Linked Officer', {#H4E},\n                 {#P}, 'From:', {linkedOfficer1}, {#NL},\n                  'To:', {linkedOfficer}, {#PE}), ''),\nif({idaci} != {idaci1},\n     concat({#H4}, 'IDACI', {#H4E},\n                 {#P}, 'From:', {idaci1:display}, {#NL},\n                  'To:', {idaci:display}, {#PE}), ''),\nif({website} != {website1},\n     concat({#H4}, 'Website updated', {#H4E},\n                 {#P}, 'From:', {website1}, {#NL},\n                  'To:', {website}, {#PE}), ''),\nif({ageFrom} != {ageFrom1},\n     concat({#H4}, 'Age from updated', {#H4E},\n                 {#P}, 'From:', {ageFrom1}, {#NL},\n                  'To:', {ageFrom}, {#PE}), ''),\nif({ageTo} != {ageTo1},\n     concat({#H4}, 'Age to updated', {#H4E},\n                 {#P}, 'From:', {ageTo1}, {#NL},\n                  'To:', {ageTo}, {#PE}), ''),\nif({vacancies} != {vacancies1},\n     concat({#H4}, 'Vacancies updated', {#H4E},\n                 {#P}, 'From:', {vacancies1:display}, {#NL},\n                  'To:', {vacancies:display}, {#PE}), ''),\nif({schoolPickups} != {schoolPickups1},\n     concat({#H4}, 'School pickups updated', {#H4E},\n                 {#P}, 'From:', {schoolPickups1}, {#NL},\n                  'To:', {schoolPickups}, {#PE}), ''),\nif({overallOfstedJudgeID} != {overallOfstedJudgeID1},\n     concat({#H4}, 'Ofsted judgement', {#H4E},\n                 {#P}, 'From:', {overallOfstedJudgeID1:display}, {#NL},\n                  'To:', {overallOfstedJudgeID:display}, {#PE}), ''),\nif({ofstedDate} != {ofstedDate1},\n     concat({#H4}, 'Ofstead Date', {#H4E},\n                 {#P}, 'From:', {ofstedDate1}, {#NL},\n                  'To:', {ofstedDate}, {#PE}), ''),\nif({ofstedLink} != {ofstedLink1},\n     concat({#H4}, 'Link to Ofsted report page', {#H4E},\n                 {#P}, 'From:', {ofstedLink1}, {#NL},\n                  'To:', {ofstedLink}, {#PE}), ''),\nif({options} != {options1},\n     concat({#H4}, 'Funding Accepted', {#H4E},\n                 {#P}, 'From:', {options1:display}, {#NL},\n                  'To:', {options:display}, {#PE}), ''),\nif({addInformation} != {addInformation1},\n     concat({#H4}, 'Additional information updated', {#H4E},\n                 {#P}, 'From:', {addInformation1}, {#NL},\n                  'To:', {addInformation}, {#PE}), ''),\nif({notes} != {notes1},\n     concat({#H4}, 'PCC notes updated', {#H4E},\n                 {#P}, 'From:', {notes1}, {#NL},\n                  'To:', {notes}, {#PE}), ''),\nif({category} != {category1},\n     concat({#H4}, 'Category updated', {#H4E},\n                 {#P}, 'From:', {category}, {#NL},\n                  'To:', {category1}, {#PE}), ''),\nif({addrTextArea} != {addrTextArea1},\n     concat({#H4}, 'Address updated', {#H4E},\n                 {#P}, 'From:', {addrTextArea}, {#NL},\n                  'To:', {addrTextArea1}, {#PE}), ''),\nif({phone2} != {phone21},\n     concat({#H4}, 'Phone2 updated', {#H4E},\n                 {#P}, 'From:', {phone2}, {#NL},\n                  'To:', {phone21}, {#PE}), ''),\nif({phone3} != {phone31},\n     concat({#H4}, 'Phone3 updated', {#H4E},\n                 {#P}, 'From:', {phone3}, {#NL},\n                  'To:', {phone31}, {#PE}), ''),\nif({otherURNs} != {otherURNs1},\n     concat({#H4}, ' updated', {#H4E},\n                 {#P}, 'From:', {otherURNs}, {#NL},\n                  'To:', {otherURNs1}, {#PE}), ''),\nif({numberPlaces} != {numberPlaces1},\n     concat({#H4}, 'Number of places updated', {#H4E},\n                 {#P}, 'From:', {numberPlaces}, {#NL},\n                  'To:', {numberPlaces1}, {#PE}), ''),\nif({openHrsFeesTextArea} != {openHrsFeesTextArea1},\n     concat({#H4}, 'Opening hours / Fees updated', {#H4E},\n                 {#P}, 'From:', {openHrsFeesTextArea}, {#NL},\n                  'To:', {openHrsFeesTextArea1}, {#PE}), ''),\nif({schemes} != {schemes1},\n     concat({#H4}, 'Available schemes updated', {#H4E},\n                 {#P}, 'From:', {schemes:display}, {#NL},\n                  'To:', {schemes1:display}, {#PE}), '') \n)",
                     "helpText": "",
                     "hidden": true,
                     "readOnly": false,
@@ -5480,6 +6453,1960 @@
                   },
                   "conditionInputs": [],
                   "id": "AF-Field-2654221d-bb2c-4e42-baaa-0ed31e659477"
+                },
+                {
+                  "type": "select",
+                  "props": {
+                    "minimumChoices": "",
+                    "maximumChoices": "",
+                    "minimumChoicesMessage": "Please select at least _min_value_ choices",
+                    "maximumChoicesMessage": "Please select no more than _max_value_ choices",
+                    "label": "Category",
+                    "dataName": "category1",
+                    "labelPosition": "alignLeft",
+                    "defaultType": "specific",
+                    "defaultValue": null,
+                    "defaultValueText": null,
+                    "listSource": "one-time-list",
+                    "helpText": "",
+                    "readOnly": false,
+                    "allowOther": false,
+                    "summaryField": false,
+                    "lookup": null,
+                    "lookupCondition": null,
+                    "lookupButton": null,
+                    "preventRunningOnInitialisation": null,
+                    "noResultsMessage": null,
+                    "tokenName": null,
+                    "listOfValues": [
+                      {
+                        "label": "Child Care",
+                        "value": "Child Care"
+                      },
+                      {
+                        "label": "Out of School Club",
+                        "value": "Out of School Club"
+                      }
+                    ],
+                    "displayName": "true",
+                    "outerClass": "",
+                    "labelClass": "",
+                    "inputClass": "",
+                    "width": "",
+                    "selectLabel": "Select...",
+                    "allowMultiple": false,
+                    "enableFilter": false,
+                    "hideWhenBlank": false,
+                    "hidden": true,
+                    "disableEmptyValue": false,
+                    "displayCondition": "",
+                    "selectCondition": null,
+                    "weAdviseAgainstTheUseOfSelectConditions;PleaseUseDisplayConditionsInstead.": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "mandatoryMessage": "This field is required"
+                  },
+                  "id": "AF-Field-d25952d7-5ad8-4eee-af07-4a1e9f64ace2"
+                },
+                {
+                  "type": "textarea",
+                  "props": {
+                    "label": "Address",
+                    "dataName": "addrTextArea1",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "width": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": "",
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "id": "AF-Field-56a33b6a-bc5d-40e1-919b-bf1f51a4a48f"
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "phone2",
+                    "dataName": "phone21",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "outputFormat": "normal",
+                    "currencyPrefix": null,
+                    "width": null,
+                    "inputMask": null,
+                    "inputMaskPlaceholder": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": "",
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationCondition": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "id": "AF-Field-a868ec75-3ba4-4631-b3ab-8dbc231c0e07"
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "phone3",
+                    "dataName": "phone31",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": "true",
+                    "outerClass": "",
+                    "labelClass": "",
+                    "inputClass": "",
+                    "outputFormat": "normal",
+                    "currencyPrefix": "",
+                    "width": "",
+                    "inputMask": "",
+                    "inputMaskPlaceholder": "",
+                    "lengthCount": false,
+                    "hideWhenBlank": false,
+                    "displayCondition": "",
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationCondition": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "id": "AF-Field-fd19d1d3-e8b8-4f59-8973-f4b02361c735"
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "Other URNs",
+                    "dataName": "otherURNs1",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "outputFormat": "normal",
+                    "currencyPrefix": null,
+                    "width": null,
+                    "inputMask": null,
+                    "inputMaskPlaceholder": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": "",
+                    "mandatoryCondition": "",
+                    "readonlyCondition": "",
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationCondition": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "id": "AF-Field-d3aad725-ce5d-4452-aea6-0c5c61078d4b"
+                },
+                {
+                  "type": "number",
+                  "props": {
+                    "label": "Number of places",
+                    "dataName": "numberPlaces1",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "prefix": null,
+                    "suffix": null,
+                    "width": null,
+                    "decimalPlaces": null,
+                    "numberToText": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": "",
+                    "mandatoryCondition": "",
+                    "readonlyCondition": "",
+                    "mandatory": false,
+                    "minimumValue": "",
+                    "maximumValue": "",
+                    "validationCondition": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumValueMessage": "Please input _min_value_ or more",
+                    "maximumValueMessage": "Please input _max_value_ or less",
+                    "validationConditionMessage": "This field is invalid"
+                  },
+                  "id": "AF-Field-2a1764a9-33e6-46a1-b342-3a3be2418e36"
+                },
+                {
+                  "type": "textarea",
+                  "props": {
+                    "label": "Opening hours and Fees",
+                    "dataName": "openHrsFeesTextArea1",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "width": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": "",
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "id": "AF-Field-f902a9b4-3aa1-4207-a5e2-2a59173935f0"
+                },
+                {
+                  "type": "checkbox",
+                  "props": {
+                    "minimumChoices": "",
+                    "maximumChoices": "",
+                    "minimumChoicesMessage": "Please select at least _min_value_ choices",
+                    "maximumChoicesMessage": "Please select no more than _max_value_ choices",
+                    "label": "Available Schemes",
+                    "dataName": "schemes1",
+                    "labelPosition": "alignLeft",
+                    "defaultType": "specific",
+                    "defaultValue": null,
+                    "defaultValueText": null,
+                    "listSource": "lookup",
+                    "helpText": "",
+                    "readOnly": false,
+                    "allowOther": false,
+                    "summaryField": false,
+                    "lookup": "5d270fe1a72e5",
+                    "lookupCondition": "once",
+                    "lookupButton": null,
+                    "preventRunningOnInitialisation": true,
+                    "noResultsMessage": "",
+                    "tokenName": null,
+                    "listOfValues": null,
+                    "displayName": "true",
+                    "outerClass": "",
+                    "labelClass": "",
+                    "inputClass": "",
+                    "width": "",
+                    "displayStyle": "horizontal",
+                    "styleAsButton": false,
+                    "hideWhenBlank": false,
+                    "hidden": true,
+                    "displayCondition": "",
+                    "selectCondition": null,
+                    "weAdviseAgainstTheUseOfSelectConditions;PleaseUseDisplayConditionsInstead.": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "mandatoryMessage": "This field is required"
+                  },
+                  "id": "AF-Field-b2e46c08-2552-4105-a514-03df1d4d4edf"
+                },
+                {
+                  "type": "number",
+                  "props": {
+                    "label": "page turn",
+                    "dataName": "pageTurn1",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "{pageTurn2}",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "prefix": null,
+                    "suffix": null,
+                    "width": null,
+                    "decimalPlaces": null,
+                    "numberToText": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumValue": "",
+                    "maximumValue": "",
+                    "validationCondition": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumValueMessage": "Please input _min_value_ or more",
+                    "maximumValueMessage": "Please input _max_value_ or less",
+                    "validationConditionMessage": "This field is invalid"
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-dfc1c5bb-e050-444c-a06b-3a16f21d5604"
+                }
+              ]
+            },
+            {
+              "url": "Maintain-provider-updaters.html",
+              "id": "AF-Section-187e348f-9b7a-4661-9762-c4183de55cdf",
+              "props": {
+                "hideCancel": false,
+                "conditionInputs": [
+                  {
+                    "element": "select",
+                    "value": "updateMaintainers",
+                    "type": [
+                      "fields"
+                    ]
+                  },
+                  {
+                    "element": "select",
+                    "value": "icontains",
+                    "type": [
+                      "_select"
+                    ]
+                  },
+                  {
+                    "element": "select",
+                    "value": "yes",
+                    "type": [
+                      "list"
+                    ]
+                  }
+                ],
+                "displayCondition": "{updateMaintainers} icontains 'yes'",
+                "validationInputs": "",
+                "validation": "",
+                "validationMessage": "This Section is Invalid",
+                "validationLookup": {
+                  "enableLookup": false,
+                  "lookupID": "",
+                  "lookupName": "",
+                  "lookupValidation": "",
+                  "lookupOperator": ""
+                }
+              },
+              "name": "Maintain provider updaters",
+              "fields": [
+                {
+                  "type": "html",
+                  "props": {
+                    "label": "html 2",
+                    "dataName": "html21",
+                    "displayName": "",
+                    "outerClass": "",
+                    "width": "",
+                    "showInSummary": false,
+                    "content": "<h4>The following are already registered</h4>\n<ul>{#ListReg}</ul>",
+                    "displayCondition": "{numReg} > '0'",
+                    "readOnly": false,
+                    "mandatory": false
+                  },
+                  "conditionInputs": [
+                    {
+                      "element": "select",
+                      "value": "numReg",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": ">",
+                      "type": [
+                        "_number"
+                      ]
+                    },
+                    {
+                      "element": "number",
+                      "value": "0",
+                      "type": [
+                        "literal"
+                      ]
+                    }
+                  ],
+                  "id": "AF-Field-0dfc82ef-44bc-4d8a-8593-df0f6d7d9bb7"
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "Email addresses list",
+                    "dataName": "listValues01",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "concat({email}, \nif({email} != '', if({pccEmail1} != '',concat(',',{pccEmail1}), ''), {pccEmail1}), \nif({email} != '' or {pccEmail1} != '', if({pccEmail2} != '',concat(',',{pccEmail2}), ''), {pccEmail2}))",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": true,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "outputFormat": "normal",
+                    "currencyPrefix": null,
+                    "width": null,
+                    "inputMask": null,
+                    "inputMaskPlaceholder": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": "",
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationCondition": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "id": "AF-Field-f824e34a-e1e9-4bca-a342-2e31e51add4e"
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "Email address list existing updaters",
+                    "dataName": "existingEmails",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": true,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "outputFormat": "normal",
+                    "currencyPrefix": null,
+                    "width": null,
+                    "inputMask": null,
+                    "inputMaskPlaceholder": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationCondition": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-117fe6e8-bc4a-4686-8027-f54dd614c089"
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "listValues02",
+                    "dataName": "listValues02",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "{existingEmails}",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": true,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "outputFormat": "normal",
+                    "currencyPrefix": null,
+                    "width": null,
+                    "inputMask": null,
+                    "inputMaskPlaceholder": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationCondition": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-82e07ea6-51cc-4b8e-b2ca-77579f214d6f"
+                },
+                {
+                  "type": "select",
+                  "props": {
+                    "minimumChoices": "",
+                    "maximumChoices": "",
+                    "minimumChoicesMessage": "Please select at least _min_value_ choices",
+                    "maximumChoicesMessage": "Please select no more than _max_value_ choices",
+                    "label": "Action to preform",
+                    "dataName": "action",
+                    "labelPosition": "alignLeft",
+                    "defaultType": "specific",
+                    "defaultValue": null,
+                    "defaultValueText": null,
+                    "listSource": "one-time-list",
+                    "helpText": "",
+                    "readOnly": false,
+                    "allowOther": false,
+                    "summaryField": false,
+                    "lookup": null,
+                    "lookupCondition": null,
+                    "lookupButton": null,
+                    "preventRunningOnInitialisation": null,
+                    "noResultsMessage": null,
+                    "tokenName": null,
+                    "listOfValues": [
+                      {
+                        "label": "Send registration link",
+                        "value": "register"
+                      },
+                      {
+                        "label": "Send email with update link",
+                        "value": "reminder"
+                      },
+                      {
+                        "label": "Remove registered updater",
+                        "value": "remove"
+                      }
+                    ],
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "width": null,
+                    "selectLabel": "Select...",
+                    "allowMultiple": false,
+                    "enableFilter": false,
+                    "hideWhenBlank": null,
+                    "hidden": null,
+                    "disableEmptyValue": null,
+                    "displayCondition": null,
+                    "selectCondition": null,
+                    "weAdviseAgainstTheUseOfSelectConditions;PleaseUseDisplayConditionsInstead.": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "mandatoryMessage": "This field is required"
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-e233b6a4-e35f-47f5-a9df-1ac16448a1a6"
+                },
+                {
+                  "type": "select",
+                  "props": {
+                    "minimumChoices": "",
+                    "maximumChoices": "",
+                    "minimumChoicesMessage": "Please select at least _min_value_ choices",
+                    "maximumChoicesMessage": "Please select no more than _max_value_ choices",
+                    "label": "Send Email To",
+                    "dataName": "sendRegEmailTo",
+                    "labelPosition": "alignLeft",
+                    "defaultType": "specific",
+                    "defaultValue": null,
+                    "defaultValueText": null,
+                    "listSource": "lookup",
+                    "helpText": "",
+                    "readOnly": false,
+                    "allowOther": true,
+                    "summaryField": false,
+                    "lookup": "5da865c864df6",
+                    "lookupCondition": "onDisplayInputChange",
+                    "lookupButton": null,
+                    "preventRunningOnInitialisation": true,
+                    "noResultsMessage": "",
+                    "tokenName": null,
+                    "listOfValues": null,
+                    "displayName": "true",
+                    "outerClass": "",
+                    "labelClass": "",
+                    "inputClass": "",
+                    "width": "",
+                    "selectLabel": "Select recipient...",
+                    "allowMultiple": false,
+                    "enableFilter": false,
+                    "hideWhenBlank": false,
+                    "hidden": false,
+                    "disableEmptyValue": false,
+                    "displayCondition": "{action} icontains 'register'",
+                    "selectCondition": null,
+                    "weAdviseAgainstTheUseOfSelectConditions;PleaseUseDisplayConditionsInstead.": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "mandatoryMessage": "This field is required"
+                  },
+                  "conditionInputs": [
+                    {
+                      "element": "select",
+                      "value": "action",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "icontains",
+                      "type": [
+                        "_select"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "register",
+                      "type": [
+                        "list"
+                      ]
+                    }
+                  ],
+                  "id": "AF-Field-5de95c2f-5709-4e45-a8dd-f093a2a09749"
+                },
+                {
+                  "type": "html",
+                  "props": {
+                    "label": "html 6",
+                    "dataName": "html6",
+                    "displayName": "",
+                    "outerClass": "",
+                    "width": "",
+                    "showInSummary": false,
+                    "content": "<h4 style=\"color:red\"><center>This email address has already been registered.</center></h4>",
+                    "displayCondition": "{checkExisting} icontains 'existing'"
+                  },
+                  "conditionInputs": [
+                    {
+                      "element": "select",
+                      "value": "checkExisting",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "icontains",
+                      "type": [
+                        "_core"
+                      ]
+                    },
+                    {
+                      "element": "text",
+                      "value": "existing",
+                      "type": [
+                        "literal"
+                      ]
+                    }
+                  ],
+                  "id": "AF-Field-f1240f6a-b4d0-4db1-a6bd-ccbece7458af"
+                },
+                {
+                  "type": "select",
+                  "props": {
+                    "minimumChoices": "",
+                    "maximumChoices": "",
+                    "minimumChoicesMessage": "Please select at least _min_value_ choices",
+                    "maximumChoicesMessage": "Please select no more than _max_value_ choices",
+                    "label": "Send Email To",
+                    "dataName": "sendEmailToExist",
+                    "labelPosition": "alignLeft",
+                    "defaultType": "specific",
+                    "defaultValue": null,
+                    "defaultValueText": null,
+                    "listSource": "lookup",
+                    "helpText": "",
+                    "readOnly": false,
+                    "allowOther": false,
+                    "summaryField": false,
+                    "lookup": "5da978be443d1",
+                    "lookupCondition": "onDisplayInputChange",
+                    "lookupButton": null,
+                    "preventRunningOnInitialisation": true,
+                    "noResultsMessage": "",
+                    "tokenName": null,
+                    "listOfValues": null,
+                    "displayName": "true",
+                    "outerClass": "",
+                    "labelClass": "",
+                    "inputClass": "",
+                    "width": "",
+                    "selectLabel": "Select recipient...",
+                    "allowMultiple": false,
+                    "enableFilter": false,
+                    "hideWhenBlank": false,
+                    "hidden": false,
+                    "disableEmptyValue": false,
+                    "displayCondition": "{action} icontains 'reminder' or {action} icontains 'remove'",
+                    "selectCondition": null,
+                    "weAdviseAgainstTheUseOfSelectConditions;PleaseUseDisplayConditionsInstead.": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "mandatoryMessage": "This field is required"
+                  },
+                  "conditionInputs": [
+                    {
+                      "element": "select",
+                      "value": "action",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "icontains",
+                      "type": [
+                        "_select"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "reminder",
+                      "type": [
+                        "list"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "or",
+                      "type": [
+                        "logicalOperators"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "action",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "icontains",
+                      "type": [
+                        "_select"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "remove",
+                      "type": [
+                        "list"
+                      ]
+                    }
+                  ],
+                  "id": "AF-Field-995b398f-99ae-4e5e-8284-5293bb3bc3fe"
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "Check Existing",
+                    "dataName": "checkExisting",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "if({existingEmails} icontains {sendRegEmailTo}, 'existing', '')",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": true,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "outputFormat": "normal",
+                    "currencyPrefix": null,
+                    "width": null,
+                    "inputMask": null,
+                    "inputMaskPlaceholder": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": "",
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationCondition": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "id": "AF-Field-3e58c6a5-22db-46c2-bfee-59a55df03f06"
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "Check valid email",
+                    "dataName": "checkValidEmail",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "if(({action} = 'register' and\n{sendRegEmailTo} matches '^[A-Za-z0-9_]+[A-Za-z0-9_\\'\\.\\-]*\\@[A-Za-z0-9_]+((\\-[A-Za-z0-9_]+)|([A-Za-z0-9_]*))\\.[a-z]+(\\.[a-z]+)*$')\nor (({action} = 'reminder' or {action} = 'remove') and\n{sendEmailToExist} matches '^[A-Za-z0-9_]+[A-Za-z0-9_\\'\\.\\-]*\\@[A-Za-z0-9_]+((\\-[A-Za-z0-9_]+)|([A-Za-z0-9_]*))\\.[a-z]+(\\.[a-z]+)*$'), 'emailSel', '')",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": true,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "outputFormat": "normal",
+                    "currencyPrefix": null,
+                    "width": null,
+                    "inputMask": null,
+                    "inputMaskPlaceholder": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationCondition": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-773c7f3d-e25e-4f0c-8091-9dd229f27d74"
+                },
+                {
+                  "type": "textarea",
+                  "props": {
+                    "label": "default email Body",
+                    "dataName": "defaultEmailBody",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "if({action} = 'register', {#emailBodyRegister}, \n   if({action} = 'reminder', {#emailBodyReminder}, \n     if({action} = 'remove', {#emailBodyRemove}, '')))",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "width": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": "",
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "id": "AF-Field-35f47a85-5650-49e8-97f9-9923870ce255"
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "Email subject",
+                    "dataName": "emailSubjectDefault",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "if({action} = 'register',\n     concat('Register to update details for ', {settingName}),\n     if({action} = 'reminder',\n           concat('Reminder link for updating ', {settingName}),\n           if({action} = 'remove',\n                concat('Removed from updating ', {settingName}),\n                '')))",
+                    "helpText": "",
+                    "hidden": false,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "outputFormat": "normal",
+                    "currencyPrefix": null,
+                    "width": null,
+                    "inputMask": null,
+                    "inputMaskPlaceholder": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": "{checkValidEmail} icontains 'emailSel' and {checkExisting} noticontains 'existing'",
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationCondition": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "conditionInputs": [
+                    {
+                      "element": "select",
+                      "value": "checkValidEmail",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "icontains",
+                      "type": [
+                        "_core"
+                      ]
+                    },
+                    {
+                      "element": "text",
+                      "value": "emailSel",
+                      "type": [
+                        "literal"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "and",
+                      "type": [
+                        "logicalOperators"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "checkExisting",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "noticontains",
+                      "type": [
+                        "_core"
+                      ]
+                    },
+                    {
+                      "element": "text",
+                      "value": "existing",
+                      "type": [
+                        "literal"
+                      ]
+                    }
+                  ],
+                  "id": "AF-Field-fbd0a1fa-317a-43d4-9609-f3190c035670"
+                },
+                {
+                  "type": "richText",
+                  "props": {
+                    "label": "Email message to send",
+                    "dataName": "emailBody",
+                    "labelPosition": "alignAbove",
+                    "helpText": "",
+                    "richModeCalculation": "",
+                    "richType": "tinymce",
+                    "richMode": "html",
+                    "richTheme": "light",
+                    "readOnly": false,
+                    "summaryField": false,
+                    "defaultValue": "{#defaultEmailBody}",
+                    "displayName": "true",
+                    "outerClass": "",
+                    "labelClass": "",
+                    "inputClass": "",
+                    "width": "",
+                    "height": "",
+                    "noHTMLTags": false,
+                    "hideWhenBlank": false,
+                    "displayCondition": "{checkValidEmail} contains 'emailSel' and {checkExisting} notcontains 'existing'",
+                    "mandatoryCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "conditionInputs": [
+                    {
+                      "element": "select",
+                      "value": "checkValidEmail",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "contains",
+                      "type": [
+                        "_core"
+                      ]
+                    },
+                    {
+                      "element": "text",
+                      "value": "emailSel",
+                      "type": [
+                        "literal"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "and",
+                      "type": [
+                        "logicalOperators"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "checkExisting",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "notcontains",
+                      "type": [
+                        "_core"
+                      ]
+                    },
+                    {
+                      "element": "text",
+                      "value": "existing",
+                      "type": [
+                        "literal"
+                      ]
+                    }
+                  ],
+                  "id": "AF-Field-0d845ea7-3f1a-4e54-a1c8-6b234c5be020"
+                },
+                {
+                  "type": "button",
+                  "props": {
+                    "label": "Send Email",
+                    "dataName": "sendEmail",
+                    "labelPosition": "hideLabel",
+                    "helpText": "",
+                    "lookup": [
+                      "5da8aa7d8fd00"
+                    ],
+                    "noResultsMessage": "",
+                    "action": "",
+                    "displayName": "true",
+                    "outerClass": "",
+                    "labelClass": "",
+                    "inputClass": "pull-right",
+                    "width": "",
+                    "buttonText": "Send Email",
+                    "displayCondition": "{checkExisting} noticontains 'existing' and {checkValidEmail} contains 'emailSel' and {action} noticontains 'remove'"
+                  },
+                  "conditionInputs": [
+                    {
+                      "element": "select",
+                      "value": "checkExisting",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "noticontains",
+                      "type": [
+                        "_core"
+                      ]
+                    },
+                    {
+                      "element": "text",
+                      "value": "existing",
+                      "type": [
+                        "literal"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "and",
+                      "type": [
+                        "logicalOperators"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "checkValidEmail",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "contains",
+                      "type": [
+                        "_core"
+                      ]
+                    },
+                    {
+                      "element": "text",
+                      "value": "emailSel",
+                      "type": [
+                        "literal"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "and",
+                      "type": [
+                        "logicalOperators"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "action",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "noticontains",
+                      "type": [
+                        "_select"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "remove",
+                      "type": [
+                        "list"
+                      ]
+                    }
+                  ],
+                  "id": "AF-Field-333663c9-c822-48be-afb1-f67a48cf0654"
+                },
+                {
+                  "type": "button",
+                  "props": {
+                    "label": "button 1",
+                    "dataName": "button1",
+                    "labelPosition": "hideLabel",
+                    "helpText": "",
+                    "lookup": [
+                      "5b291cf12dacb",
+                      "5dad72eda7779",
+                      "5da8aa7d8fd00"
+                    ],
+                    "noResultsMessage": "",
+                    "action": "",
+                    "displayName": "true",
+                    "outerClass": "",
+                    "labelClass": "",
+                    "inputClass": "pull-right",
+                    "width": "",
+                    "buttonText": "Remove updater",
+                    "displayCondition": "{checkExisting} noticontains 'existing' and {checkValidEmail} contains 'emailSel' and {action} icontains 'remove'"
+                  },
+                  "conditionInputs": [
+                    {
+                      "element": "select",
+                      "value": "checkExisting",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "noticontains",
+                      "type": [
+                        "_core"
+                      ]
+                    },
+                    {
+                      "element": "text",
+                      "value": "existing",
+                      "type": [
+                        "literal"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "and",
+                      "type": [
+                        "logicalOperators"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "checkValidEmail",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "contains",
+                      "type": [
+                        "_core"
+                      ]
+                    },
+                    {
+                      "element": "text",
+                      "value": "emailSel",
+                      "type": [
+                        "literal"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "and",
+                      "type": [
+                        "logicalOperators"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "action",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "icontains",
+                      "type": [
+                        "_select"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "remove",
+                      "type": [
+                        "list"
+                      ]
+                    }
+                  ],
+                  "id": "AF-Field-37738d92-3e7e-4ee7-aa37-d5103d40aa6c"
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "emailSubject",
+                    "dataName": "emailSubject1",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "{emailSubjectDefault}",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "outputFormat": "normal",
+                    "currencyPrefix": null,
+                    "width": null,
+                    "inputMask": null,
+                    "inputMaskPlaceholder": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationCondition": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-f12ebcb7-3ba7-4037-8b10-4c9939b2337d"
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "emailSenderN",
+                    "dataName": "emailSenderN1",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "if({Surname} = '', {NoReplyEmail_N}, concat({First_Name}, ' ', {Surname}))",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "outputFormat": "normal",
+                    "currencyPrefix": null,
+                    "width": null,
+                    "inputMask": null,
+                    "inputMaskPlaceholder": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationCondition": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-5fbf1468-a591-41bb-a1f2-10438ae5a350"
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "emailSenderA",
+                    "dataName": "emailSenderA1",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "if({Email_Address} = '', {NoReplyEmail}, {Email_Address})",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "outputFormat": "normal",
+                    "currencyPrefix": null,
+                    "width": null,
+                    "inputMask": null,
+                    "inputMaskPlaceholder": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationCondition": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-83255c85-8b9d-405e-9c3f-8c6ef365529a"
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "emailRecipientA",
+                    "dataName": "emailRecipientA1",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "if({action} = 'register', {sendRegEmailTo},\n           if({action} = 'reminder' or {action} = 'remove', {sendEmailToExist}, ''))",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "outputFormat": "normal",
+                    "currencyPrefix": null,
+                    "width": null,
+                    "inputMask": null,
+                    "inputMaskPlaceholder": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationCondition": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-451f1fa7-eab2-49a9-a3f6-617353160e24"
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "emailCCRecipient",
+                    "dataName": "emailCCRecipient1",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "outputFormat": "normal",
+                    "currencyPrefix": null,
+                    "width": null,
+                    "inputMask": null,
+                    "inputMaskPlaceholder": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationCondition": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-de90be42-0c36-4d27-8215-1121deab859a"
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "emailBCCRecipient",
+                    "dataName": "emailBCCRecipient1",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "outputFormat": "normal",
+                    "currencyPrefix": null,
+                    "width": null,
+                    "inputMask": null,
+                    "inputMaskPlaceholder": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationCondition": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-b6213d61-1a41-4675-a221-a2686afeb709"
+                },
+                {
+                  "type": "textarea",
+                  "props": {
+                    "label": "emailMain",
+                    "dataName": "emailMain1",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "concat({#emailStart},{#emailBody},{#emailEnd})",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": true,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "width": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-0ac4998a-5196-4dc2-a096-99140bce30ac"
+                },
+                {
+                  "type": "autoLookup",
+                  "props": {
+                    "label": "autoLookup 1",
+                    "dataName": "CheckAlready",
+                    "lookup": "5b291cf12dacb",
+                    "lookupCondition": "onDisplayInputChange",
+                    "lookupButton": null,
+                    "noResultsMessage": "",
+                    "noRetryOnIntegrationFailure": false,
+                    "preventRunningOnInitialisation": false,
+                    "displayName": "",
+                    "displayCondition": "{selectProvider} isnt ''",
+                    "readOnly": false,
+                    "mandatory": false
+                  },
+                  "conditionInputs": [
+                    {
+                      "element": "select",
+                      "value": "selectProvider",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "isnt ''",
+                      "type": [
+                        "_select"
+                      ]
+                    }
+                  ],
+                  "id": "AF-Field-2b1706d8-f79a-4533-9905-513dfe610abe"
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "label": "alreadyReg",
+                    "dataName": "alreadyReg",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": true,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "outputFormat": "normal",
+                    "currencyPrefix": null,
+                    "width": null,
+                    "inputMask": null,
+                    "inputMaskPlaceholder": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationCondition": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationConditionMessage": "This field is invalid",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-aef2852e-57cf-454e-8201-7ab23f1f7281"
+                },
+                {
+                  "type": "number",
+                  "props": {
+                    "label": "numReg",
+                    "dataName": "numReg",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": true,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "prefix": null,
+                    "suffix": null,
+                    "width": null,
+                    "decimalPlaces": null,
+                    "numberToText": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumValue": "",
+                    "maximumValue": "",
+                    "validationCondition": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumValueMessage": "Please input _min_value_ or more",
+                    "maximumValueMessage": "Please input _max_value_ or less",
+                    "validationConditionMessage": "This field is invalid"
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-61d0edae-82a3-4a80-b117-dd96b3bbf157"
+                },
+                {
+                  "type": "html",
+                  "props": {
+                    "label": "html 3",
+                    "dataName": "html31",
+                    "displayName": "",
+                    "outerClass": "",
+                    "width": "",
+                    "showInSummary": false,
+                    "content": "<p>This person is already registered to update the setting details, submit will send them another email to the form to update setting details</p>",
+                    "displayCondition": "{selectProvider} isnt '' and {alreadyReg} contains 'yes' and {isItOKToAuthoris} icontains 'yes'",
+                    "readOnly": false,
+                    "mandatory": false
+                  },
+                  "conditionInputs": [
+                    {
+                      "element": "select",
+                      "value": "selectProvider",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "isnt ''",
+                      "type": [
+                        "_select"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "and",
+                      "type": [
+                        "logicalOperators"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "alreadyReg",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "contains",
+                      "type": [
+                        "_core"
+                      ]
+                    },
+                    {
+                      "element": "text",
+                      "value": "yes",
+                      "type": [
+                        "literal"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "and",
+                      "type": [
+                        "logicalOperators"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "isItOKToAuthoris",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "icontains",
+                      "type": [
+                        "_select"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "yes",
+                      "type": [
+                        "list"
+                      ]
+                    }
+                  ],
+                  "id": "AF-Field-b7a3c9e7-7641-443b-be3d-ea2f42d3a302"
+                },
+                {
+                  "type": "textarea",
+                  "props": {
+                    "label": "ListReg",
+                    "dataName": "ListReg",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": true,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "width": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-3a0feaf2-2c6a-48aa-b4e8-ce9bfaa53a65"
+                },
+                {
+                  "type": "textarea",
+                  "props": {
+                    "label": "default reminder email body",
+                    "dataName": "emailBodyReminder",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "concat({#P}, 'Dear Colleague,', {#PE}, \n{#P}, 'Thank you for registering to update ', {settingName}, ' setting', {SQ}, 's details on the online childcare search.  Please find below the link to access your form to update your details.', {#PE},\n{#P}, {#SHL}, {url_childcareUpdate}, '\">Update Record', {#PEE},{#PE},\n{#P}, 'You might want to create a desktop shortcut the full link is:', {#PE},\n{#P}, {url_childcareUpdate}, {#PE},\n{#P}, 'Please contact us if you have any queries.', {#PE},\n{#P}, 'Regards,', {#NL},\nif({Surname} = '', 'Early Years and Childcare Service', concat({First_Name}, ' ', {Surname}, {#NL}, 'Early Years and Childcare Service')), {#NL}, \n'Portsmouth City Council', {#NL}, \n'T: 023 9284 1974', {#NL}, \n'E: eydelivery@portsmouthcc.gov.uk', {#NL},  \n'W: www.portsmouth.gov.uk',  {#PE})",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "width": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-54a2ceb8-9d16-4a5c-9302-b369b4e64edd"
+                },
+                {
+                  "type": "textarea",
+                  "props": {
+                    "label": "default register email body",
+                    "dataName": "emailBodyRegister",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "concat({#P}, 'Dear Colleague,', {#PE}, \n{#P}, 'We are writing to advise you that we have now included details of all Portsmouth Ofsted registered Out of School clubs in our online childcare search.  This is accessed through the ', {SQ}, 'Finding Childcare', {SQ}, ' section of the Early Years webpages at ', {#SHL}, 'https://www.portsmouth.gov.uk/ext/schools-learning-and-childcare/early-years-and-childcare/finding-childcare\">https://www.portsmouth.gov.uk/ext/schools-learning-and-childcare/early-years-and-childcare/finding-childcare', {#PEE}, {#PE}, \n{#P}, {settingName}, if({toShow} = 'hAl', ' details are on the system but are not made visible to the public yet.', 'are on the system and visible to the public from the search form.'), \n' To update your information, you need to set up an account via this link: ', {#SHL}, {#urlRegistrationForm}, '&selectProvider=', {IDcarer}, '\">Provider access request', {#PEE}, '.  We will be notified and authorise signon to update setting details, and you will then be able to maintain your setting',\nif({toShow} = 'hAl', ' and make it visible to the public', ''),\n'.  Any updates you make to the setting will be automatically notified to us, so you will not need to let us know seperately.', {#PE},\n{#P}, 'Please contact us if you have any queries.', {#PE},\n{#P}, 'Regards,', {#NL},\nif({Surname} = '', 'Early Years and Childcare Service', concat({First_Name}, ' ', {Surname}, {#NL}, 'Early Years and Childcare Service')), {#NL}, \n'Portsmouth City Council', {#NL}, \n'T: 023 9284 1974', {#NL}, \n'E: eydelivery@portsmouthcc.gov.uk', {#NL},  \n'W: www.portsmouth.gov.uk',  {#PE})",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "width": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-89f2b78b-51a2-40b6-893a-84c80f7ad865"
+                },
+                {
+                  "type": "textarea",
+                  "props": {
+                    "label": "default remove email body",
+                    "dataName": "emailBodyRemove",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "concat({#P}, 'Dear Colleague,', {#PE}, \n{#P}, 'We are writing to advise you that ', {sendEmailToExist}, ' has been removed from being able to update ', {settingName}, ' setting', {SQ}, 's details.', {#PE},  \n{#P}, 'Please contact us if you have any queries.', {#PE},\n{#P}, 'Regards,', {#NL},\nif({Surname} = '', 'Early Years and Childcare Service', concat({First_Name}, ' ', {Surname}, {#NL}, 'Early Years and Childcare Service')), {#NL}, \n'Portsmouth City Council', {#NL}, \n'T: 023 9284 1974', {#NL}, \n'E: eydelivery@portsmouthcc.gov.uk', {#NL},  \n'W: www.portsmouth.gov.uk',  {#PE})",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "width": null,
+                    "lengthCount": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": "",
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumLength": "",
+                    "maximumLength": "",
+                    "validationMask": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumLengthMessage": "Please input at least _min_value_ characters",
+                    "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                    "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                    "validationMaskMessageValue": "Select..."
+                  },
+                  "id": "AF-Field-a2dc4be0-e984-4567-b93f-53132e56ef53"
+                },
+                {
+                  "type": "number",
+                  "props": {
+                    "label": "page turn",
+                    "dataName": "pageTurn2",
+                    "labelPosition": "alignLeft",
+                    "defaultValue": "{pageTurn1} + 1",
+                    "helpText": "",
+                    "hidden": true,
+                    "readOnly": false,
+                    "summaryField": false,
+                    "displayName": true,
+                    "outerClass": null,
+                    "labelClass": null,
+                    "inputClass": null,
+                    "prefix": null,
+                    "suffix": null,
+                    "width": null,
+                    "decimalPlaces": null,
+                    "numberToText": null,
+                    "hideWhenBlank": null,
+                    "displayCondition": null,
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "minimumValue": "",
+                    "maximumValue": "",
+                    "validationCondition": "",
+                    "mandatoryMessage": "This field is required",
+                    "minimumValueMessage": "Please input _min_value_ or more",
+                    "maximumValueMessage": "Please input _max_value_ or less",
+                    "validationConditionMessage": "This field is invalid"
+                  },
+                  "conditionInputs": [],
+                  "id": "AF-Field-cd77d12e-8971-412e-a11d-f6e62616b029"
                 }
               ]
             },

@@ -2,7 +2,7 @@
   "processName": "FID Provider Access Request",
   "processDescription": "",
   "props": {
-    "id": "AF-Process-f0b3a3a4-77e9-4de3-81dd-7f0e2ec3cb5c",
+    "id": "AF-Process-24bd4b43-df0f-43a3-a51c-3b248cee8c9a",
     "category": "AF-Category-ec967425-274f-44f8-92bd-c58220819504",
     "tags": "",
     "viewGroup": null,
@@ -10,13 +10,13 @@
     "date_due": null,
     "date_due_warn": null,
     "showCaseReference": false,
+    "isPublished": true,
     "isSubform": false,
-    "notes": "First publish in live",
+    "notes": false,
     "initial_stage": "Request",
     "initial_stage_id": "AF-Stage-4b2fb4eb-cbcf-468e-81e7-0534268fe810",
     "serverSubmit": true,
-    "prefix": "FID",
-    "isPublished": true
+    "prefix": "FID"
   },
   "stages": {
     "Request": {
@@ -163,7 +163,7 @@
                 "Category": "ChildCare",
                 "data_type": "integration-lookup",
                 "allow_offline": 0,
-                "Output_template": "{\"lookup_validation\":\"0\",\"systemID\":\"5b87d305583a1\",\"systemName\":\"ChildCare\",\"query\":\"EXEC ListProviders\\n\\t\\t@typeID = {careType}\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
+                "Output_template": "{\"systemID\":\"5a8c309998604\",\"systemName\":\"ChildCare\",\"query\":\"EXEC ListProviders\\n\\t\\t@typeID = {careType}\\n\\t\\t,@countChanges = {countChanges}\\n\\t\\t,@filCategory = {filCategory}\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
                 "log_only_on_error": 0,
                 "error_notification": "{\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniel.gregory@portsmouthcc.gov.uk\"}"
               },
@@ -176,7 +176,7 @@
                 "Category": "ChildCare",
                 "data_type": "lookup",
                 "allow_offline": 0,
-                "Output_template": "{\"lookup_validation\":\"0\",\"systemID\":\"5b87d305583a1\",\"systemName\":\"ChildCare\",\"query\":\"EXEC ProviderCheckUpdaters\\n\\t\\t@IDcarer = {selectProvider}\\n\\t\\t,@UCRN = {UCRN_prov}\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
+                "Output_template": "{\"lookup_validation\":\"0\",\"systemID\":\"5a8c309998604\",\"systemName\":\"ChildCare\",\"query\":\"EXEC ProviderCheckUpdaters\\n\\t\\t@IDcarer = {selectProvider}\\n\\t\\t,@UCRN = {UCRN_prov}\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
                 "log_only_on_error": 0,
                 "error_notification": "{\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniel.gregory@portsmouthcc.gov.uk\"}"
               }
@@ -203,6 +203,22 @@
               },
               "name": "Section 1",
               "fields": [
+                {
+                  "type": "html",
+                  "props": {
+                    "label": "html 1",
+                    "dataName": "html11",
+                    "displayName": "",
+                    "outerClass": "",
+                    "width": "",
+                    "showInSummary": false,
+                    "content": "<h1 style=\"color:red; text-align:center\">WARNING this is the test site</h1>\n<p>For the live site use <a target=\"_blank\" href=\"https://my.portsmouth.gov.uk/en/AchieveForms/?form_uri=sandbox-publish://AF-Process-f0b3a3a4-77e9-4de3-81dd-7f0e2ec3cb5c/AF-Stage-4b2fb4eb-cbcf-468e-81e7-0534268fe810/definition.json&redirectlink=%2F&cancelRedirectLink=%2F\">FID Provider Access Request</a>.</p>",
+                    "displayCondition": "{site_origin} contains 'sandbox'",
+                    "readOnly": false,
+                    "mandatory": false
+                  },
+                  "id": "AF-Field-b99340a1-cf64-4145-8577-9a202f8ff121"
+                },
                 {
                   "type": "html",
                   "props": {
@@ -837,8 +853,8 @@
       "name": "Authorise",
       "props": {
         "form": "AF-Form-dbc72bf1-510a-4767-a060-ee5324567bd0",
-        "xpos": 405.98959541321,
-        "ypos": 30.989593505859,
+        "xpos": 404.984375,
+        "ypos": 29.984375,
         "group": "USERGROUP-ff39fc66-8447-4593-a5d5-7ffa9aaeed04",
         "integrations": [
           {
@@ -1006,7 +1022,7 @@
                 "Category": "ChildCare",
                 "data_type": "integration-lookup",
                 "allow_offline": 0,
-                "Output_template": "{\"lookup_validation\":\"0\",\"systemID\":\"5b87d305583a1\",\"systemName\":\"ChildCare\",\"query\":\"EXEC ListProviders\\n\\t\\t@typeID = {careType}\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
+                "Output_template": "{\"systemID\":\"5a8c309998604\",\"systemName\":\"ChildCare\",\"query\":\"EXEC ListProviders\\n\\t\\t@typeID = {careType}\\n\\t\\t,@countChanges = {countChanges}\\n\\t\\t,@filCategory = {filCategory}\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
                 "log_only_on_error": 0,
                 "error_notification": "{\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniel.gregory@portsmouthcc.gov.uk\"}"
               },
@@ -1019,7 +1035,7 @@
                 "Category": "ChildCare",
                 "data_type": "lookup",
                 "allow_offline": 0,
-                "Output_template": "{\"lookup_validation\":\"0\",\"systemID\":\"5b87d305583a1\",\"systemName\":\"ChildCare\",\"query\":\"EXEC ProviderCheckUpdaters\\n\\t\\t@IDcarer = {selectProvider}\\n\\t\\t,@UCRN = {UCRN_prov}\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
+                "Output_template": "{\"lookup_validation\":\"0\",\"systemID\":\"5a8c309998604\",\"systemName\":\"ChildCare\",\"query\":\"EXEC ProviderCheckUpdaters\\n\\t\\t@IDcarer = {selectProvider}\\n\\t\\t,@UCRN = {UCRN_prov}\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
                 "log_only_on_error": 0,
                 "error_notification": "{\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniel.gregory@portsmouthcc.gov.uk\"}"
               }

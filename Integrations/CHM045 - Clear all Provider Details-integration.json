@@ -1,0 +1,16 @@
+[
+    {
+        "ID": "5d1e1f647792f",
+        "Name": "CHM045 - Clear all Provider Details",
+        "Type": "DATABASE",
+        "LIM_id": "3f07ecf4-0dfa-11e2-b0b9-12313b03ed59",
+        "Editable": true,
+        "LIM_name": "LIM14",
+        "Category": "ChildCare",
+        "data_type": "integration-lookup",
+        "allow_offline": 0,
+        "Output_template": "{\"systemID\":\"59a4f21090a7f\",\"systemName\":\"Firmstep Solutions Read\",\"query\":\"SELECT  '' as IDcarer,\\n\\t\\t'' as toShow,\\n\\t\\t'' as typeID,\\n\\t\\t'' as URN, \\n\\t\\t'' as settingName,\\n\\t\\t'' as phoneNo,\\n\\t\\t'' as mobile,\\n\\t\\t\\n\\t\\t'' as phone2,\\n\\t\\t'' as phone3,\\n\\t\\t\\n\\t\\t'' as contactName,\\n\\t\\t'' as email,\\n\\t\\t'' as pccEmail1,\\n\\t\\t'' as pccEmail2,\\n\\t\\t\\n\\t\\t'' as addrTextArea,\\n\\t\\t\\n\\t\\t'' as postcode,\\n\\t\\t'' as locality,\\n\\t\\t'' as linkedOfficer,\\n\\t\\t'' as idaci,\\n\\t\\t'' as website,\\n\\t\\t'' as ageFrom,\\n\\t\\t'' as ageTo,\\n\\t\\t'' as vacancies,\\n\\t\\t'' as schoolPickups,\\n\\t\\t'' as addInformation,\\n\\t\\t'' as overallOfstedJudgeID,\\n\\t\\t'' as ofstedDate,\\n\\t\\t'' as ofstedLink,\\n\\t\\t'' as options,\\n\\t\\t\\n\\t\\t'' as schemes,\\n\\t\\t'' as openHrsFeesTextArea,\\n\\t\\t\\n\\t\\t'' as notes,\\n\\t\\t'' as lat,\\n\\t\\t'' as lng,\\n\\t\\t'' as newRecord\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
+        "log_only_on_error": 0,
+        "error_notification": "{\"LIM_id\":\"3f07ecf4-0dfa-11e2-b0b9-12313b03ed59\",\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniel.gregory@portsmouthcc.gov.uk\"}"
+    }
+]

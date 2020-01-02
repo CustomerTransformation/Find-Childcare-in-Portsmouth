@@ -1,0 +1,16 @@
+[
+    {
+        "ID": "5da8aa7d8fd00",
+        "Name": "GPR022 - Simple Email (with 1 on fields)",
+        "Type": "EMAIL",
+        "LIM_id": "83ef69d1-2c5e-11e5-ad20-22000a7a05f5",
+        "Editable": true,
+        "LIM_name": "Portsmouth",
+        "Category": "z Global",
+        "data_type": "integration-lookup",
+        "allow_offline": 0,
+        "Output_template": "{\"subject\":\"{emailSubject1}\",\"fromName\":\"{emailSenderN1}\",\"from\":\"{emailSenderA1}\",\"recipients_to\":\"{emailRecipientA1}\",\"recipients_cc\":\"{emailBCCRecipient1}\",\"recipients_bcc\":\"\",\"pdf_attachments\":\"\",\"body\":\"<div>{#emailMain1}{#emailMain_sp1}</div>\",\"attachments\":\"\"}",
+        "log_only_on_error": 0,
+        "error_notification": "{\"LIM_id\":\"3f07ecf4-0dfa-11e2-b0b9-12313b03ed59\",\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniel.gregory@portmouthcc.gov.uk\"}"
+    }
+]
